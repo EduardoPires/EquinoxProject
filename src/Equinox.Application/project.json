@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "AutoMapper": "5.2.0",
+    "Equinox.Domain": "1.0.0-*",
+    "Equinox.Infra.Data": "1.0.0-*",
+    "NETStandard.Library": "1.6.1",
+    "System.ComponentModel.Annotations": "4.3.0",
+    "System.ComponentModel.Primitives": "4.3.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

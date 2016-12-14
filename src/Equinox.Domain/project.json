@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Equinox.Domain.Core": "1.0.0-*",
+    "Equinox.Infra.CrossCutting.Bus": "1.0.0-*",
+    "FluentValidation": "6.4.0-beta9",
+    "NETStandard.Library": "1.6.1",
+    "System.ComponentModel": "4.3.0",
+    "System.ComponentModel.Annotations": "4.3.0",
+    "System.Security.Claims": "4.3.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
