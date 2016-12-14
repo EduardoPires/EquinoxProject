@@ -29,7 +29,17 @@ The goal of this project is implement the most common used technologies and shar
 - CQRS (Imediate Consistency)
 - Event Sourcing
 
-=====================
+##Disclaimer:
+This is a sample application using some beta/pre-release versions (including ASP.NET Core 1.1)
+- **NOT** intended to be a definitive solution
+- Beware to use in production way
+- Maybe you don't need a lot of implementations that is included, try avoid the **over engineering**
+
+##About the next versions
+Watch your [RoadMap](https://github.com/EduardoPires/EquinoxProject/wiki/RoadMap) to know the new changes
+
+Pull-Requests are welcome!
+
 ##We are Online:
 See the project running on <a href="http://equinoxproject.azurewebsites.net" target="_blank">Azure</a>
 
