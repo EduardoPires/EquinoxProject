@@ -18,10 +18,12 @@ The goal of this project is implement the most common used technologies and shar
 - .NET Core Native DI
 - Unit of Work
 - Repository and Generic Repository
+- FluentValidator
 
-##Concepts implemented:
+##Architecture:
 
-- Domain Driven Design
+- Full architecture with responsibility separation concerns, SOLID and Clean Code
+- Domain Driven Design (Layers and Domain Model Pattern)
 - Domain Events
 - Domain Notification
 - CQRS (Imediate Consistency)
