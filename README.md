@@ -28,6 +28,7 @@ The goal of this project is implement the most common used technologies and shar
 - Event Sourcing
 
 =====================
+##We are Online:
 See the project running on <a href="http://equinoxproject.azurewebsites.net" target="_blank">Azure</a>
 
 =====================
