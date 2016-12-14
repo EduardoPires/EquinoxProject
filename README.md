@@ -3,7 +3,7 @@
 
 What is Equinox Project?
 =====================
-Equinox Project is a open-source project written in .NET Core
+The Equinox Project is a open-source project written in .NET Core
 
 The goal of this project is implement the most common used technologies and share with the technical community the best way to develop great applications with .NET
 
@@ -28,4 +28,7 @@ The goal of this project is implement the most common used technologies and shar
 - Event Sourcing
 
 =====================
-Equinox was developed by [Eduardo Pires](http://eduardopires.net.br) under the [MIT license](LICENSE).
+See the project running on <a href="http://equinoxproject.azurewebsites.net" target="_blank">Azure</a>
+
+=====================
+The Equinox Project was developed by [Eduardo Pires](http://eduardopires.net.br) under the [MIT license](LICENSE).
