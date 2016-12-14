@@ -1,0 +1,42 @@
+@model Equinox.Application.ViewModels.CustomerViewModel
+
+@{
+    ViewData["Title"] = "Delete Customer";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Delete">
+    <vc:summary />
+
+    <h3>Are you sure you want to delete the @Model.Name?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BirthDate)
+            </dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-info">Back to List</a>
+        </div>
+    </div>
+</form>

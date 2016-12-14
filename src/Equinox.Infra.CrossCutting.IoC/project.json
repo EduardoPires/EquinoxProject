@@ -1,0 +1,18 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Equinox.Application": "1.0.0-*",
+    "Equinox.Domain": "1.0.0-*",
+    "Equinox.Infra.CrossCutting.Identity": "1.0.0-*",
+    "Equinox.Infra.Data": "1.0.0-*",
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+    "NETStandard.Library": "1.6.1"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

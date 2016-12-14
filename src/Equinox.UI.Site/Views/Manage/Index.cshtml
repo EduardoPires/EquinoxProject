@@ -1,0 +1,34 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Manage your account";
+}
+
+<h2>@ViewData["Title"].</h2>
+<p class="text-success">@ViewData["StatusMessage"]</p>
+
+<div>
+    <h4>Change your account settings</h4>
+    <hr/>
+
+    <h4>Password</h4>
+    <div>
+        @if (Model.HasPassword)
+        {
+            <a asp-controller="Manage" asp-action="ChangePassword" class="btn btn-success">Change Password</a>
+        }
+        else
+        {
+            <a asp-controller="Manage" asp-action="SetPassword" class="btn btn-success">Create Password</a>
+        }
+    </div>
+
+    <hr />
+
+    <h4>Logins</h4>
+    <div>
+        Logins Count: @Model.Logins.Count
+    </div>
+    <div>
+        <a asp-controller="Manage" asp-action="ManageLogins" class="btn btn-info">Manage</a>
+    </div>
+</div>
