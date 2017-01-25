@@ -1,17 +1,11 @@
 ﻿using System.IO;
-using Equinox.Infra.CrossCutting.Identity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-using Equinox.Infra.CrossCutting.Identity.Models;
-using AutoMapper;
 using Equinox.Infra.CrossCutting.Bus;
-using Equinox.Infra.CrossCutting.Identity.Authorization;
 using Equinox.Infra.CrossCutting.IoC;
 
 namespace Equinox.UI.Site
@@ -38,25 +32,10 @@ namespace Equinox.UI.Site
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                    options.Cookies.ApplicationCookie.AccessDeniedPath = "/home/access-denied")
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
             services.AddMvc();
-            services.AddAutoMapper();
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers","Write")));
-                options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
-            });
-
-            // .NET Native DI Abstraction
-            RegisterServices(services);
+            
+            var iocContainer = new IoCContainer(services, Configuration);
+            iocContainer.RegisterModules();
         }
 
         public void Configure(IApplicationBuilder app,
@@ -96,12 +75,6 @@ namespace Equinox.UI.Site
 
             // Setting the IContainer interface for use like service locator for events.
             InMemoryBus.ContainerAccessor = () => accessor.HttpContext.RequestServices;
-        }
-
-        private static void RegisterServices(IServiceCollection services)
-        {
-            // Adding dependencies from another layers (isolated from Presentation)
-            SimpleInjectorBootStrapper.RegisterServices(services);
         }
     }
 }
