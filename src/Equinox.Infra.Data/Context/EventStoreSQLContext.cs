@@ -1,7 +1,10 @@
 ﻿using System.IO;
 using Equinox.Domain.Core.Events;
+using Equinox.Infra.Data.Mappings;
+using Equinox.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+
 
 namespace Equinox.Infra.Data.Context
 {
@@ -11,14 +14,7 @@ namespace Equinox.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<StoredEvent>()
-                .Property(c => c.Timestamp)
-                .HasColumnName("CreationDate");
-
-            modelBuilder.Entity<StoredEvent>()
-                .Property(c => c.MessageType)
-                .HasColumnName("Action")
-                .HasColumnType("varchar(100)");
+            modelBuilder.AddConfiguration(new StoredEventMap());
 
             base.OnModelCreating(modelBuilder);
         }
