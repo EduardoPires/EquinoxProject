@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using Equinox.Domain.Models;
+using Equinox.Infra.Data.Mappings;
+using Equinox.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -11,22 +13,8 @@ namespace Equinox.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>()
-                .Property(c => c.Id)
-                .HasColumnName("Id");
-
-            modelBuilder.Entity<Customer>()
-                .Property(c => c.Name)
-                .HasColumnType("varchar(100)")
-                .HasMaxLength(100)
-                .IsRequired();
-
-            modelBuilder.Entity<Customer>()
-                .Property(c => c.Email)
-                .HasColumnType("varchar(100)")
-                .HasMaxLength(11)
-                .IsRequired();
-            
+            modelBuilder.AddConfiguration(new CustomerMap());
+                        
             base.OnModelCreating(modelBuilder);
         }
 
