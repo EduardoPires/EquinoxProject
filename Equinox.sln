@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AE3E98DB-35C1-42D8-AB6D-DE37189DDAA1}"
 EndProject
@@ -22,21 +22,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{68258835-A222-468B-84F5-441AD58BCD51}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Equinox.UI.Site", "src\Equinox.UI.Site\Equinox.UI.Site.xproj", "{E38E811D-9A10-41EF-A245-907A71C79ACB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.UI.Site", "src\Equinox.UI.Site\Equinox.UI.Site.csproj", "{E38E811D-9A10-41EF-A245-907A71C79ACB}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Equinox.Domain", "src\Equinox.Domain\Equinox.Domain.xproj", "{906E381B-85D8-4AEC-9DD0-48F4117FDD9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Domain", "src\Equinox.Domain\Equinox.Domain.csproj", "{906E381B-85D8-4AEC-9DD0-48F4117FDD9D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Equinox.Application", "src\Equinox.Application\Equinox.Application.xproj", "{8EA27390-8455-48EA-ABCB-881272BCE68A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Application", "src\Equinox.Application\Equinox.Application.csproj", "{8EA27390-8455-48EA-ABCB-881272BCE68A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Equinox.Infra.Data", "src\Equinox.Infra.Data\Equinox.Infra.Data.xproj", "{3701E4D6-A057-49F4-9872-2CAD0487452C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.Data", "src\Equinox.Infra.Data\Equinox.Infra.Data.csproj", "{3701E4D6-A057-49F4-9872-2CAD0487452C}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Equinox.Infra.CrossCutting.Identity", "src\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.xproj", "{37C44A01-20FE-4B09-8435-47164F08C0C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.Identity", "src\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj", "{37C44A01-20FE-4B09-8435-47164F08C0C8}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Equinox.Infra.CrossCutting.IoC", "src\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.xproj", "{9330566C-4093-4FC7-AF61-14850DD15793}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.IoC", "src\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.csproj", "{9330566C-4093-4FC7-AF61-14850DD15793}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Equinox.Domain.Core", "src\Equinox.Domain.Core\Equinox.Domain.Core.xproj", "{A9CB4A5C-DCF4-4F87-83C2-2D6A34C6E2BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Domain.Core", "src\Equinox.Domain.Core\Equinox.Domain.Core.csproj", "{A9CB4A5C-DCF4-4F87-83C2-2D6A34C6E2BA}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Equinox.Infra.CrossCutting.Bus", "src\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.xproj", "{7C9495CE-AEC5-44CB-9D9C-1150DF99F817}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.Bus", "src\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.csproj", "{7C9495CE-AEC5-44CB-9D9C-1150DF99F817}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
