@@ -12,7 +12,7 @@ You will need Visual Studio 2017 (latest version) and the .NET Core SDK (release
 
 Also you can run the Equinox Project in Visual Studio Code (Windows, Linux or MacOS).
 
-To know more about how to prepare your enviroment visit the [Microsoft .NET Download Guide](https://www.microsoft.com/net/download)
+To know more about how to setup your enviroment visit the [Microsoft .NET Download Guide](https://www.microsoft.com/net/download)
 
 ##Technologies implemented:
 
