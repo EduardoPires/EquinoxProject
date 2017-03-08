@@ -8,7 +8,7 @@ The Equinox Project is a open-source project written in .NET Core
 The goal of this project is implement the most common used technologies and share with the technical community the best way to develop great applications with .NET
 
 ##How to use:
-You will need Visual Studio 2017 (latest version) and the .NET Core SDK (released in March 07, 2017).
+You will need Visual Studio 2017 and the .NET Core SDK (released in March 07, 2017).
 
 Also you can run the Equinox Project in Visual Studio Code (Windows, Linux or MacOS).
 
@@ -43,7 +43,7 @@ This is a sample application using some beta/pre-release versions (including ASP
 - Maybe you don't need a lot of implementations that is included, try avoid the **over engineering**
 
 ##About the next versions
-Watch your [RoadMap](https://github.com/EduardoPires/EquinoxProject/wiki/RoadMap) to know the new changes
+Watch our [RoadMap](https://github.com/EduardoPires/EquinoxProject/wiki/RoadMap) to know the new changes
 
 Pull-Requests are welcome!
 
