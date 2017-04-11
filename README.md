@@ -1,5 +1,5 @@
 <img src="http://www.eduardopires.net.br/wp-content/uploads/2016/12/EquinoxLogo.png" alt="Equinox Project"> 
-================================
+
 
 What is the Equinox Project?
 =====================
