@@ -8,7 +8,6 @@
     <PackageId>Equinox.UI.Site</PackageId>
     <UserSecretsId>aspnet-Equinox.UI.Site-de2246eb-3cce-41bd-ab51-a1e37e0f6934</UserSecretsId>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
