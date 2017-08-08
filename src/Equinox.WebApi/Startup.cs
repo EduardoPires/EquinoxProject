@@ -46,7 +46,7 @@ namespace Equinox.WebApi
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvcCore();
+            services.AddWebApi();
             services.AddAutoMapper();
 
             services.AddAuthorization(options =>
