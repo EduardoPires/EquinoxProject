@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Equinox.Application.EventSourcedNormalizers;
 using Equinox.Application.Interfaces;
 using Equinox.Application.ViewModels;
@@ -18,9 +19,9 @@ namespace Equinox.Application.Services
         private readonly IEventStoreRepository _eventStoreRepository;
         private readonly IBus Bus;
 
-        public CustomerAppService(IMapper mapper, 
-                                  ICustomerRepository customerRepository, 
-                                  IBus bus, 
+        public CustomerAppService(IMapper mapper,
+                                  ICustomerRepository customerRepository,
+                                  IBus bus,
                                   IEventStoreRepository eventStoreRepository)
         {
             _mapper = mapper;
@@ -31,7 +32,7 @@ namespace Equinox.Application.Services
 
         public IEnumerable<CustomerViewModel> GetAll()
         {
-            return _mapper.Map<IEnumerable<CustomerViewModel>>(_customerRepository.GetAll());
+            return _customerRepository.GetAll().ProjectTo<CustomerViewModel>();
         }
 
         public CustomerViewModel GetById(Guid id)

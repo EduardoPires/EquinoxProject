@@ -5,17 +5,17 @@ using Equinox.Infra.Data.Context;
 
 namespace Equinox.Infra.Data.Repository
 {
-    public class CustomerRepository : Repository<Customer>,  ICustomerRepository
+    public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
         public CustomerRepository(EquinoxContext context)
-            :base(context)
+            : base(context)
         {
 
-        }       
+        }
 
         public Customer GetByEmail(string email)
         {
-            return Find(c => c.Email == email).FirstOrDefault();
+            return DbSet.FirstOrDefault(c => c.Email == email);
         }
     }
 }
