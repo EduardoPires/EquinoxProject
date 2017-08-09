@@ -15,7 +15,7 @@ namespace Equinox.Infra.Data.Repository
 
         public Customer GetByEmail(string email)
         {
-            return DbSet.FirstOrDefault(c => c.Email == email);
+            return DbSet.AsNoTracking().FirstOrDefault(c => c.Email == email);
         }
     }
 }
