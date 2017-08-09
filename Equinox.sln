@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AE3E98DB-35C1-42D8-AB6D-DE37189DDAA1}"
 EndProject
@@ -37,6 +37,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Domain.Core", "src\Equinox.Domain.Core\Equinox.Domain.Core.csproj", "{A9CB4A5C-DCF4-4F87-83C2-2D6A34C6E2BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.Bus", "src\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.csproj", "{7C9495CE-AEC5-44CB-9D9C-1150DF99F817}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.WebApi", "src\Equinox.WebApi\Equinox.WebApi.csproj", "{918C9F92-CA9C-4481-9AFA-8DD5A1A810D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +78,10 @@ Global
 		{7C9495CE-AEC5-44CB-9D9C-1150DF99F817}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C9495CE-AEC5-44CB-9D9C-1150DF99F817}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C9495CE-AEC5-44CB-9D9C-1150DF99F817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{918C9F92-CA9C-4481-9AFA-8DD5A1A810D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{918C9F92-CA9C-4481-9AFA-8DD5A1A810D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{918C9F92-CA9C-4481-9AFA-8DD5A1A810D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{918C9F92-CA9C-4481-9AFA-8DD5A1A810D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,5 +101,6 @@ Global
 		{9330566C-4093-4FC7-AF61-14850DD15793} = {68258835-A222-468B-84F5-441AD58BCD51}
 		{A9CB4A5C-DCF4-4F87-83C2-2D6A34C6E2BA} = {988F2F26-89C2-4C44-B1BB-42C394832A4E}
 		{7C9495CE-AEC5-44CB-9D9C-1150DF99F817} = {68258835-A222-468B-84F5-441AD58BCD51}
+		{918C9F92-CA9C-4481-9AFA-8DD5A1A810D3} = {9340B0E0-D3D9-4917-B0AA-093A95183265}
 	EndGlobalSection
 EndGlobal
