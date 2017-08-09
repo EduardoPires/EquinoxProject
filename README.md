@@ -18,6 +18,7 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 - ASP.NET Core 1.1 (with .NET Core)
  - ASP.NET MVC Core 
+ - ASP.NET WebApi Core
  - ASP.NET Identity Core
 - Entity Framework Core
 - Dapper

@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.ComponentModel" Version="4.3.0" />
-    <PackageReference Include="FluentValidation" Version="6.4.0" />
+    <PackageReference Include="FluentValidation" Version="7.1.1" />
   </ItemGroup>
 
 </Project>
