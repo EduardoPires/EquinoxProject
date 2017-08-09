@@ -11,7 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using System.IO;
+using Equinox.Infra.CrossCutting.Bus;
+using Equinox.WebApi.Configurations;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Equinox.WebApi
 {
@@ -34,8 +39,7 @@ namespace Equinox.WebApi
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -46,7 +50,14 @@ namespace Equinox.WebApi
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddWebApi();
+            services.AddMvcCore(options =>
+            {
+                options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
+                options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
+            })
+            .AddApiExplorer()
+            .AddJsonFormatters();
+
             services.AddAutoMapper();
 
             services.AddAuthorization(options =>
@@ -55,12 +66,29 @@ namespace Equinox.WebApi
                 options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
             });
 
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Equinox Project",
+                    Description = "Equinox API Swagger surface",
+                    Contact = new Contact { Name = "Eduardo Pires", Email = "contato@eduardopires.net.br", Url = "http://www.eduardopires.net.br" },
+                    License = new License { Name = "MIT", Url = "https://github.com/EduardoPires/EquinoxProject/blob/master/LICENSE" }
+                });
+            });
+
+            services.AddCors();
+
             // .NET Native DI Abstraction
             RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app,
+                              IHostingEnvironment env,
+                              ILoggerFactory loggerFactory,
+                              IHttpContextAccessor accessor)
         {
             loggerFactory.AddConsole();
 
@@ -69,10 +97,24 @@ namespace Equinox.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.UseCors(c =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                c.AllowAnyHeader();
+                c.AllowAnyMethod();
+                c.AllowAnyOrigin();
             });
+
+            app.UseIdentity();
+            app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Equinox Project API v1.1");
+            });
+
+            // Setting the IContainer interface for use like service locator for events.
+            InMemoryBus.ContainerAccessor = () => accessor.HttpContext.RequestServices;
         }
 
         private static void RegisterServices(IServiceCollection services)

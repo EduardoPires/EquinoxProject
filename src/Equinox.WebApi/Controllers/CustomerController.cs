@@ -12,129 +12,79 @@ namespace Equinox.WebApi.Controllers
     {
         private readonly ICustomerAppService _customerAppService;
 
-        public CustomerController(ICustomerAppService customerAppService, IDomainNotificationHandler<DomainNotification> notifications) : base(notifications)
+        public CustomerController(ICustomerAppService customerAppService, 
+                                  IDomainNotificationHandler<DomainNotification> notifications) : base(notifications)
         {
             _customerAppService = customerAppService;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("customer-management/list-all")]
-        public IActionResult Index()
+        [Route("customer-management")]
+        public IActionResult Get()
         {
-            return Ok(_customerAppService.GetAll());
+            return Response(_customerAppService.GetAll());
         }
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("customer-management/customer-details/{id:guid}")]
-        public IActionResult Details(Guid? id)
+        [Route("customer-management/{id:guid}")]
+        public IActionResult Get(Guid id)
         {
-            if (id == null)
-            {
-                return BadRequest();
-            }
+            var customerViewModel = _customerAppService.GetById(id);
 
-            var customerViewModel = _customerAppService.GetById(id.Value);
-
-            if (customerViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(customerViewModel);
+            return Response(customerViewModel);
         }     
 
         [HttpPost]
         [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management/register-new")]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(CustomerViewModel customerViewModel)
+        [Route("customer-management")]
+        public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
-            if (!ModelState.IsValid) return BadRequest(customerViewModel);
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return Response(customerViewModel);
+            }
+
             _customerAppService.Register(customerViewModel);
 
-            if (IsValidOperation())
-                Ok();
-
-            return BadRequest(Notifications);
+            return Response(customerViewModel);
         }
         
-        [HttpGet]
-        [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management/edit-customer/{id:guid}")]
-        public IActionResult Edit(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var customerViewModel = _customerAppService.GetById(id.Value);
-
-            if (customerViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(customerViewModel);
-        }
-
         [HttpPut]
         [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management/edit-customer/{id:guid}")]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(CustomerViewModel customerViewModel)
+        [Route("customer-management")]
+        public IActionResult Put([FromBody]CustomerViewModel customerViewModel)
         {
-            if (!ModelState.IsValid) return BadRequest(customerViewModel);
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return Response(customerViewModel);
+            }
 
             _customerAppService.Update(customerViewModel);
 
-            if (IsValidOperation())
-                Ok();
+            return Response(customerViewModel);
+        }
 
-            return BadRequest(Notifications);
+        [HttpDelete]
+        [Authorize(Policy = "CanRemoveCustomerData")]
+        [Route("customer-management")]
+        public IActionResult Delete(Guid id)
+        {
+            _customerAppService.Remove(id);
+            
+            return Response();
         }
 
         [HttpGet]
-        [Authorize(Policy = "CanRemoveCustomerData")]
-        [Route("customer-management/remove-customer/{id:guid}")]
-        public IActionResult Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return BadRequest();
-            }
-
-            var customerViewModel = _customerAppService.GetById(id.Value);
-
-            if (customerViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(customerViewModel);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [Authorize(Policy = "CanRemoveCustomerData")]
-        [Route("customer-management/remove-customer/{id:guid}")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(Guid id)
-        {
-            _customerAppService.Remove(id);
-
-            if (!IsValidOperation()) return BadRequest(Notifications);
-
-            return DeleteConfirmed(id);
-        }
-
         [AllowAnonymous]
-        [Route("customer-management/customer-history/{id:guid}")]
+        [Route("customer-management/history/{id:guid}")]
         public IActionResult History(Guid id)
         {
             var customerHistoryData = _customerAppService.GetAllHistory(id);
-            return Ok(customerHistoryData);
+            return Response(customerHistoryData);
         }
     }
 }
