@@ -2,6 +2,7 @@
 using Equinox.Domain.Core.Notifications;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace Equinox.WebApi.Controllers
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IDomainNotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainNotification> notifications,
             ILoggerFactory loggerFactory) : base(notifications)
         {
             _userManager = userManager;

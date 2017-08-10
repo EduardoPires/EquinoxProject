@@ -12,6 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="mediatr" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Equinox.Domain.Core\Equinox.Domain.Core.csproj" />
   </ItemGroup>
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Equinox.Domain.Core.Events;
+using MediatR;
 
 namespace Equinox.Domain.Core.Notifications
 {
-    public class DomainNotificationHandler : IDomainNotificationHandler<DomainNotification>
+    public class DomainNotificationHandler : INotificationHandler<DomainNotification>
     {
         private List<DomainNotification> _notifications;
 
@@ -18,12 +18,12 @@ namespace Equinox.Domain.Core.Notifications
             _notifications.Add(message);
         }
 
-        public List<DomainNotification> GetNotifications()
+        public virtual List<DomainNotification> GetNotifications()
         {
             return _notifications;
         }
 
-        public bool HasNotifications()
+        public virtual bool HasNotifications()
         {
             return GetNotifications().Any();
         }

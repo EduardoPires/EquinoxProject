@@ -13,8 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.IO;
-using Equinox.Infra.CrossCutting.Bus;
 using Equinox.WebApi.Configurations;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -80,6 +80,9 @@ namespace Equinox.WebApi
 
             services.AddCors();
 
+            // Adding MediatR for Domain Events and Notifications
+            services.AddMediatR(typeof(Startup));
+
             // .NET Native DI Abstraction
             RegisterServices(services);
         }
@@ -112,15 +115,12 @@ namespace Equinox.WebApi
             {
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "Equinox Project API v1.1");
             });
-
-            // Setting the IContainer interface for use like service locator for events.
-            InMemoryBus.ContainerAccessor = () => accessor.HttpContext.RequestServices;
         }
 
         private static void RegisterServices(IServiceCollection services)
         {
             // Adding dependencies from another layers (isolated from Presentation)
-            SimpleInjectorBootStrapper.RegisterServices(services);
+            NativeInjectorBootStrapper.RegisterServices(services);
         }
     }
 }

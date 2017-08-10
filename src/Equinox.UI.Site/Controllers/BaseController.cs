@@ -1,15 +1,16 @@
 ﻿using Equinox.Domain.Core.Notifications;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Equinox.UI.Site.Controllers
 {
     public class BaseController : Controller
     {
-        private readonly IDomainNotificationHandler<DomainNotification> _notifications;
+        private readonly DomainNotificationHandler _notifications;
 
-        public BaseController(IDomainNotificationHandler<DomainNotification> notifications)
+        public BaseController(INotificationHandler<DomainNotification> notifications)
         {
-            _notifications = notifications;
+            _notifications = (DomainNotificationHandler)notifications;
         }
 
         public bool IsValidOperation()

@@ -1,12 +1,12 @@
-﻿using Equinox.Domain.Core.Events;
-using Equinox.Domain.Events;
+﻿using Equinox.Domain.Events;
+using MediatR;
 
 namespace Equinox.Domain.EventHandlers
 {
     public class CustomerEventHandler :
-        IHandler<CustomerRegisteredEvent>,
-        IHandler<CustomerUpdatedEvent>,
-        IHandler<CustomerRemovedEvent>
+        INotificationHandler<CustomerRegisteredEvent>,
+        INotificationHandler<CustomerUpdatedEvent>,
+        INotificationHandler<CustomerRemovedEvent>
     {
         public void Handle(CustomerUpdatedEvent message)
         {

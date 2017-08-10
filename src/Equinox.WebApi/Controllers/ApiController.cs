@@ -2,17 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 namespace Equinox.WebApi.Controllers
 {
     public abstract class ApiController : ControllerBase
     {
-        private readonly IDomainNotificationHandler<DomainNotification> _notifications;
+        private readonly DomainNotificationHandler _notifications;
 
-        protected ApiController(IDomainNotificationHandler<DomainNotification> notifications)
+        protected ApiController(INotificationHandler<DomainNotification> notifications)
         {
-            _notifications = notifications;
+            _notifications = (DomainNotificationHandler)notifications;
         }
 
         protected IEnumerable<DomainNotification> Notifications => _notifications.GetNotifications();

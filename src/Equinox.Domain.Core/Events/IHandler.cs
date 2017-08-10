@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Equinox.Domain.Core.Events
+﻿namespace Equinox.Domain.Core.Events
 {
     public interface IHandler<in T> where T : Message
     {
