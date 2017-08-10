@@ -40,7 +40,7 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## News
 
-08/09/2017
+**08/09/2017**
 - Adding WebAPI service exposing the application features
 - Adding Swagger UI for better viewing and testing
 - Adding MediatR for Memory Bus Messaging
