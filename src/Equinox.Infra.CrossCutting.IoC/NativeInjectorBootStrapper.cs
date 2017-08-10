@@ -18,18 +18,22 @@ using Equinox.Infra.Data.EventSourcing;
 using Equinox.Infra.Data.Repository;
 using Equinox.Infra.Data.Repository.EventSourcing;
 using Equinox.Infra.Data.UoW;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Equinox.Infra.CrossCutting.IoC
 {
-    public class SimpleInjectorBootStrapper
+    public class NativeInjectorBootStrapper
     {
         public static void RegisterServices(IServiceCollection services)
         {
             // ASP.NET HttpContext dependency
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // Domain Bus (Mediator)
+            services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             // ASP.NET Authorization Polices
             services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>(); ;
@@ -40,15 +44,15 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<ICustomerAppService, CustomerAppService>();
 
             // Domain - Events
-            services.AddScoped<IDomainNotificationHandler<DomainNotification>, DomainNotificationHandler>();
-            services.AddScoped<IHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
-            services.AddScoped<IHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
-            services.AddScoped<IHandler<CustomerRemovedEvent>, CustomerEventHandler>();
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<INotificationHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
+            services.AddScoped<INotificationHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
+            services.AddScoped<INotificationHandler<CustomerRemovedEvent>, CustomerEventHandler>();
 
             // Domain - Commands
-            services.AddScoped<IHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
-            services.AddScoped<IHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
-            services.AddScoped<IHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
+            services.AddScoped<INotificationHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
+            services.AddScoped<INotificationHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
+            services.AddScoped<INotificationHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
 
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -66,9 +70,6 @@ namespace Equinox.Infra.CrossCutting.IoC
 
             // Infra - Identity
             services.AddScoped<IUser, AspNetUser>();
-
-            // Infra - Bus
-            services.AddScoped<IBus, InMemoryBus>();
         }
     }
 }

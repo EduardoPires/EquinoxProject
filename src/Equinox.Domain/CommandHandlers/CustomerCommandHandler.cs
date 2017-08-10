@@ -1,26 +1,26 @@
 ﻿using System;
 using Equinox.Domain.Commands;
 using Equinox.Domain.Core.Bus;
-using Equinox.Domain.Core.Events;
 using Equinox.Domain.Core.Notifications;
 using Equinox.Domain.Events;
 using Equinox.Domain.Interfaces;
 using Equinox.Domain.Models;
+using MediatR;
 
 namespace Equinox.Domain.CommandHandlers
 {
     public class CustomerCommandHandler : CommandHandler,
-        IHandler<RegisterNewCustomerCommand>,
-        IHandler<UpdateCustomerCommand>,
-        IHandler<RemoveCustomerCommand>
+        INotificationHandler<RegisterNewCustomerCommand>,
+        INotificationHandler<UpdateCustomerCommand>,
+        INotificationHandler<RemoveCustomerCommand>
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly IBus Bus;
+        private readonly IMediatorHandler Bus;
 
         public CustomerCommandHandler(ICustomerRepository customerRepository, 
-                                      IUnitOfWork uow, 
-                                      IBus bus,
-                                      IDomainNotificationHandler<DomainNotification> notifications) :base(uow, bus, notifications)
+                                      IUnitOfWork uow,
+                                      IMediatorHandler bus,
+                                      INotificationHandler<DomainNotification> notifications) :base(uow, bus, notifications)
         {
             _customerRepository = customerRepository;
             Bus = bus;

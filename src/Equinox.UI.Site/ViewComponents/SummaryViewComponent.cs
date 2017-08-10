@@ -1,16 +1,17 @@
 ﻿using System.Threading.Tasks;
 using Equinox.Domain.Core.Notifications;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Equinox.UI.Site.ViewComponents
 {
     public class SummaryViewComponent : ViewComponent
     {
-        private readonly IDomainNotificationHandler<DomainNotification> _notifications;
+        private readonly DomainNotificationHandler _notifications;
 
-        public SummaryViewComponent(IDomainNotificationHandler<DomainNotification> notifications)
+        public SummaryViewComponent(INotificationHandler<DomainNotification> notifications)
         {
-            _notifications = notifications;
+            _notifications = (DomainNotificationHandler)notifications;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()

@@ -17,11 +17,11 @@ namespace Equinox.Application.Services
         private readonly IMapper _mapper;
         private readonly ICustomerRepository _customerRepository;
         private readonly IEventStoreRepository _eventStoreRepository;
-        private readonly IBus Bus;
+        private readonly IMediatorHandler Bus;
 
         public CustomerAppService(IMapper mapper,
                                   ICustomerRepository customerRepository,
-                                  IBus bus,
+                                  IMediatorHandler bus,
                                   IEventStoreRepository eventStoreRepository)
         {
             _mapper = mapper;

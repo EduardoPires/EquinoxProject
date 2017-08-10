@@ -1,55 +1,38 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Equinox.Domain.Core.Bus;
 using Equinox.Domain.Core.Commands;
 using Equinox.Domain.Core.Events;
-using Equinox.Domain.Core.Notifications;
+using MediatR;
 
 namespace Equinox.Infra.CrossCutting.Bus
 {
-    public sealed class InMemoryBus : IBus
+    public sealed class InMemoryBus : IMediatorHandler
     {
-        public static Func<IServiceProvider> ContainerAccessor { get; set; }
-        private static IServiceProvider Container => ContainerAccessor();
-
+        private readonly IMediator _mediator;
         private readonly IEventStore _eventStore;
 
-        public InMemoryBus(IEventStore eventStore)
+        public InMemoryBus(IEventStore eventStore, IMediator mediator)
         {
             _eventStore = eventStore;
+            _mediator = mediator;
         }
 
-        public void SendCommand<T>(T theCommand) where T : Command
+        public Task SendCommand<T>(T command) where T : Command
         {
-            Publish(theCommand);
+            return Publish(command);
         }
 
-        public void RaiseEvent<T>(T theEvent) where T : Event
+        public Task RaiseEvent<T>(T @event) where T : Event
         {
-            if(!theEvent.MessageType.Equals("DomainNotification"))
-                _eventStore?.Save(theEvent);
+            if (!@event.MessageType.Equals("DomainNotification"))
+                _eventStore?.Save(@event);
 
-            Publish(theEvent);
+            return Publish(@event);
         }
 
-        private static void Publish<T>(T message) where T : Message
+        private Task Publish<T>(T message) where T : Message
         {
-            if (Container == null) return;
-
-            var obj = Container.GetService(message.MessageType.Equals("DomainNotification")
-                ? typeof(IDomainNotificationHandler<T>)
-                : typeof(IHandler<T>));
-
-            ((IHandler<T>)obj).Handle(message);
-        }
-
-        private object GetService(Type serviceType)
-        {
-            return Container.GetService(serviceType);
-        }
-
-        private T GetService<T>()
-        {
-            return (T)Container.GetService(typeof(T));
+            return _mediator.Publish(message);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Equinox.Domain.Core.Commands
+﻿namespace Equinox.Domain.Core.Commands
 {
     public class CommandResponse
     {

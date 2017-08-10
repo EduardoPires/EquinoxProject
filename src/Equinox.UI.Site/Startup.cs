@@ -10,9 +10,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using AutoMapper;
-using Equinox.Infra.CrossCutting.Bus;
 using Equinox.Infra.CrossCutting.Identity.Authorization;
 using Equinox.Infra.CrossCutting.IoC;
+using MediatR;
 
 namespace Equinox.UI.Site
 {
@@ -55,6 +55,9 @@ namespace Equinox.UI.Site
                 options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
             });
 
+            // Adding MediatR for Domain Events and Notifications
+            services.AddMediatR(typeof(Startup));
+
             // .NET Native DI Abstraction
             RegisterServices(services);
         }
@@ -93,15 +96,12 @@ namespace Equinox.UI.Site
                     name: "default",
                     template: "{controller=Home}/{action=welcome}/{id?}");
             });
-
-            // Setting the IContainer interface for use like service locator for events.
-            InMemoryBus.ContainerAccessor = () => accessor.HttpContext.RequestServices;
         }
 
         private static void RegisterServices(IServiceCollection services)
         {
             // Adding dependencies from another layers (isolated from Presentation)
-            SimpleInjectorBootStrapper.RegisterServices(services);
+            NativeInjectorBootStrapper.RegisterServices(services);
         }
     }
 }

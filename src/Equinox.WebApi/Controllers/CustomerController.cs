@@ -2,6 +2,7 @@ using System;
 using Equinox.Application.Interfaces;
 using Equinox.Application.ViewModels;
 using Equinox.Domain.Core.Notifications;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,8 +13,8 @@ namespace Equinox.WebApi.Controllers
     {
         private readonly ICustomerAppService _customerAppService;
 
-        public CustomerController(ICustomerAppService customerAppService, 
-                                  IDomainNotificationHandler<DomainNotification> notifications) : base(notifications)
+        public CustomerController(ICustomerAppService customerAppService,
+                                  INotificationHandler<DomainNotification> notifications) : base(notifications)
         {
             _customerAppService = customerAppService;
         }
