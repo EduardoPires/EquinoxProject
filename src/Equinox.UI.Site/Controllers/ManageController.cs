@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Text.Encodings.Web;
 using System;
+using System.Security.Cryptography;
 using System.Text;
 using Equinox.Infra.CrossCutting.Identity.Extensions;
 using Equinox.Infra.CrossCutting.Identity.Models;
@@ -508,7 +509,7 @@ namespace Equinox.UI.Site.Controllers
         {
             return string.Format(
                 AuthenicatorUriFormat,
-                _urlEncoder.Encode("WebApplication1"),
+                _urlEncoder.Encode("Equinox Project"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }
