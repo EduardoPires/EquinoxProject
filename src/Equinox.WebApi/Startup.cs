@@ -17,6 +17,7 @@ using Equinox.WebApi.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Identity;
 
 namespace Equinox.WebApi
 {
@@ -45,18 +46,15 @@ namespace Equinox.WebApi
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                    options.Cookies.ApplicationCookie.AccessDeniedPath = "/home/access-denied")
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvcCore(options =>
+            services.AddWebApi(options =>
             {
                 options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
                 options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
-            })
-            .AddApiExplorer()
-            .AddJsonFormatters();
+            });
 
             services.AddAutoMapper();
 
@@ -77,8 +75,6 @@ namespace Equinox.WebApi
                     License = new License { Name = "MIT", Url = "https://github.com/EduardoPires/EquinoxProject/blob/master/LICENSE" }
                 });
             });
-
-            services.AddCors();
 
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
@@ -107,7 +103,7 @@ namespace Equinox.WebApi
                 c.AllowAnyOrigin();
             });
 
-            app.UseIdentity();
+            app.UseAuthentication();
             app.UseMvc();
 
             app.UseSwagger();

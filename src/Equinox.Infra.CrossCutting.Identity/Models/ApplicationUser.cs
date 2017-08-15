@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace Equinox.Infra.CrossCutting.Identity.Models
 {

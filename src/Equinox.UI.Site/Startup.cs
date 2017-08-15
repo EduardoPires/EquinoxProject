@@ -2,7 +2,6 @@
 using Equinox.Infra.CrossCutting.Identity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +12,8 @@ using AutoMapper;
 using Equinox.Infra.CrossCutting.Identity.Authorization;
 using Equinox.Infra.CrossCutting.IoC;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Equinox.UI.Site
 {
@@ -41,10 +42,20 @@ namespace Equinox.UI.Site
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                    options.Cookies.ApplicationCookie.AccessDeniedPath = "/home/access-denied")
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(o => {
+                    o.LoginPath = new PathString("/login");
+                    o.AccessDeniedPath = new PathString("/home/access-denied");
+                })
+                .AddFacebook(o =>
+                {
+                    o.AppId = Configuration["Authentication:Facebook:AppId"];
+                    o.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                });
 
             services.AddMvc();
             services.AddAutoMapper();
@@ -74,7 +85,7 @@ namespace Equinox.UI.Site
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
+                //app.UseBrowserLink();
             }
             else
             {
@@ -82,13 +93,7 @@ namespace Equinox.UI.Site
             }
 
             app.UseStaticFiles();
-            app.UseIdentity();
-
-            app.UseFacebookAuthentication(new FacebookOptions()
-            {
-                AppId = "SetYourDataHere",
-                AppSecret = "SetYourDataHere"
-            });
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
@@ -105,3 +110,4 @@ namespace Equinox.UI.Site
         }
     }
 }
+

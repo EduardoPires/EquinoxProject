@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels
 {
-    public class ExternalLoginConfirmationViewModel
+    public class ExternalLoginViewModel
     {
         [Required]
         [EmailAddress]
