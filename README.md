@@ -52,7 +52,6 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Adding MediatR for Memory Bus Messaging
 
 ## Disclaimer:
-This is a sample application using some beta/pre-release versions (including ASP.NET Core 1.1)
 - **NOT** intended to be a definitive solution
 - Beware to use in production way
 - Maybe you don't need a lot of implementations that is included, try avoid the **over engineering**
