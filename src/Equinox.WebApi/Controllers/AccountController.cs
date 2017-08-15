@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using Equinox.Domain.Core.Notifications;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -61,14 +61,13 @@ namespace Equinox.WebApi.Controllers
 
             var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
-            // User claim for write customers data
-            user.Claims.Add(new IdentityUserClaim<string> { ClaimType = "Customers", ClaimValue = "Read" });
-            user.Claims.Add(new IdentityUserClaim<string> { ClaimType = "Customers", ClaimValue = "Write" });
-
-
             var result = await _userManager.CreateAsync(user, model.Password);
+
             if (result.Succeeded)
             {
+                // User claim for write customers data
+                await _userManager.AddClaimAsync(user, new Claim("Customers", "Write"));
+
                 await _signInManager.SignInAsync(user, false);
                 _logger.LogInformation(3, "User created a new account with password.");
                 return Response(model);

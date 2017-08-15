@@ -61,7 +61,7 @@ namespace Equinox.Domain.CommandHandlers
             var customer = new Customer(message.Id, message.Name, message.Email, message.BirthDate);
             var existingCustomer = _customerRepository.GetByEmail(customer.Email);
 
-            if (existingCustomer != null)
+            if (existingCustomer != null && existingCustomer.Id != customer.Id)
             {
                 if (!existingCustomer.Equals(customer))
                 {
