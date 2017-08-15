@@ -21,12 +21,11 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
  - ASP.NET WebApi Core
  - ASP.NET Identity Core
 - Entity Framework Core
-- Dapper
-- AutoMapper
 - .NET Core Native DI
-- Unit of Work
-- Repository and Generic Repository
+- AutoMapper
 - FluentValidator
+- MediatR
+- Swagger UI
 
 ## Architecture:
 
@@ -36,6 +35,15 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Domain Notification
 - CQRS (Imediate Consistency)
 - Event Sourcing
+- Unit of Work
+- Repository and Generic Repository
+
+## News
+
+**08/09/2017**
+- Adding WebAPI service exposing the application features
+- Adding Swagger UI for better viewing and testing
+- Adding MediatR for Memory Bus Messaging
 
 ## Disclaimer:
 This is a sample application using some beta/pre-release versions (including ASP.NET Core 1.1)
