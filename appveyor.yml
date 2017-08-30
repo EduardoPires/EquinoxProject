@@ -2,14 +2,6 @@ version: 1.0.0.{build}
 
 image: Visual Studio 2017
 
-artifacts:
-  - path: src
-    name: src
-  - path: test
-    name: test
-  - path: log
-    name: log
-
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
