@@ -7,7 +7,7 @@ The Equinox Project is a open-source project written in .NET Core
 
 The goal of this project is implement the most common used technologies and share with the technical community the best way to develop great applications with .NET
 
-[![License](https://img.shields.io/github/license/eduardopires/equinoxproject.svg)](https://github.com/EduardoPires/EquinoxProject/blob/master/LICENSE.txt)
+[![License](https://img.shields.io/github/license/eduardopires/equinoxproject.svg)](LICENSE)
 [![Issues open](https://img.shields.io/github/issues/eduardopires/equinoxproject.svg)](https://huboard.com/EduardoPires/EquinoxProject/)
 
 ## How to use:
