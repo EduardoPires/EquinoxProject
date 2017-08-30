@@ -5,5 +5,10 @@ dotnet_csproj:
   file: '**\*.csproj'
   version: '{version}'
   package_version: '{version}'
+before_build:
+- cmd: >-
+    dotnet restore
+
+    dotnet build
 build:
   verbosity: minimal
