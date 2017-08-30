@@ -1,0 +1,8 @@
+version: 1.0.{build}
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+build:
+  verbosity: minimal
