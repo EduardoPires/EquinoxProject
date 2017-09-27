@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using Equinox.Domain.Models;
 using Equinox.Infra.Data.Mappings;
-using Equinox.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -13,7 +12,7 @@ namespace Equinox.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.AddConfiguration(new CustomerMap());
+            modelBuilder.ApplyConfiguration(new CustomerMap());
                         
             base.OnModelCreating(modelBuilder);
         }
