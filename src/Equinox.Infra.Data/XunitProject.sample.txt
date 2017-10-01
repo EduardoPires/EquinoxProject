@@ -1,0 +1,27 @@
+ private EquinoxContext _context;
+        private readonly Repository<Custumer> _repository;
+        public UnitTestEF()
+        {
+            _context = new EquinoxContext();
+            _repository = new Repository<Custumer>(_context);
+        }
+
+        [Fact]
+        public void PagedQuery()
+        {
+            // 
+            var pageNumber = 1;
+            var pageLength = 10;
+            var result = _repository.GetPage(pageNumber, pageLength);
+            Assert.True(result.Count() == pageLength);
+
+        }
+
+        [Fact]
+        public void Insert()
+        {
+            var newTestCustomers = Enumerable.Range(1, 510)
+                    .Select(i => new Custumer { Name = $"Name{i}", Email = $"Email{i}@email.com" });
+            _context.Customers.AddRange(customers);
+            int changed = _context.SaveChanges();
+        }
