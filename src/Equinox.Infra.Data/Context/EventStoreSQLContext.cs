@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using Equinox.Domain.Core.Events;
 using Equinox.Infra.Data.Mappings;
-using Equinox.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -14,7 +13,7 @@ namespace Equinox.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.AddConfiguration(new StoredEventMap());
+            modelBuilder.ApplyConfiguration(new StoredEventMap());
 
             base.OnModelCreating(modelBuilder);
         }
