@@ -1,14 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Equinox.Infra.Data.Extensions;
 using Equinox.Domain.Core.Events;
-
 
 namespace Equinox.Infra.Data.Mappings
 {    
-    public class StoredEventMap : EntityTypeConfiguration<StoredEvent>
+    public class StoredEventMap : IEntityTypeConfiguration<StoredEvent>
     {
-        public override void Map(EntityTypeBuilder<StoredEvent> builder)
+        public void Configure(EntityTypeBuilder<StoredEvent> builder)
         {
             builder.Property(c => c.Timestamp)
                 .HasColumnName("CreationDate");
@@ -16,7 +14,6 @@ namespace Equinox.Infra.Data.Mappings
             builder.Property(c => c.MessageType)
                 .HasColumnName("Action")
                 .HasColumnType("varchar(100)");
-  
         }
     }
 }
