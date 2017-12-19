@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Equinox.Infra.CrossCutting.Identity.Data;
+﻿using Equinox.Infra.CrossCutting.Identity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -19,23 +18,12 @@ namespace Equinox.UI.Site
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            if (env.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
-
-        public IConfigurationRoot Configuration { get; }
         
         public void ConfigureServices(IServiceCollection services)
         {
@@ -60,7 +48,7 @@ namespace Equinox.UI.Site
                 {
                     googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                     googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                }); ;
+                });
 
             services.AddMvc();
             services.AddAutoMapper();
@@ -90,7 +78,6 @@ namespace Equinox.UI.Site
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                //app.UseBrowserLink();
             }
             else
             {
