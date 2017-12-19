@@ -1,0 +1,14 @@
+version: 1.0.{build}
+image: Visual Studio 2017 Preview
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+before_build:
+- cmd: >-
+    dotnet restore
+
+    dotnet build
+build:
+  verbosity: minimal
