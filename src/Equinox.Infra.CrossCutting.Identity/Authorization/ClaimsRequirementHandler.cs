@@ -11,8 +11,7 @@ namespace Equinox.Infra.CrossCutting.Identity.Authorization
                                                        ClaimRequirement requirement)
         {
 
-            var claim = context.User.Claims.FirstOrDefault(c => c.Type == requirement.ClaimName);
-            if (claim != null && claim.Value.Contains(requirement.ClaimValue))
+            if(context.User.Claims.Any(c => c.Type == requirement.ClaimName && requirement.ClaimValue == c.Value))
             {
                 context.Succeed(requirement);
             }
