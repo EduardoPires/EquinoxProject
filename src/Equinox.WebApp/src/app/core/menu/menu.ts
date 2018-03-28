@@ -9,7 +9,7 @@ const Settings = {
     text: "Home",
     link: "/panel/home",
     icon: "icon-home"
-}
+};
 
 const headingMain = {
     text: "Main Navigation",
