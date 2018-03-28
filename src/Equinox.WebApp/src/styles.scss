@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+//== Vendor
+@import '~font-awesome/css/font-awesome.css';
+@import '~simple-line-icons/css/simple-line-icons.css';
+
+//== Bootstrap
+@import "./app/shared/styles/bootstrap.scss";
+//== Application
+@import "./app/shared/styles/app.scss";

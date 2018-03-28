@@ -1,0 +1,340 @@
+/* ========================================================================
+     Component: top-navbar
+ ========================================================================== */
+
+//
+// Horizontal top navbar
+// based on the bootstrap navbar styles and markup
+// ----------------------------------------------------
+// helper mixin to disable bs gradient mixin
+@mixin gradient-remove() {
+    background-image: none;
+    background-repeat: no-repeat;
+    filter: none;
+}
+
+$nav-header-wd:                 $aside-wd;
+$nav-header-wd-toggled:         $aside-wd-collapsed;
+
+$nav-header-wd-toggled-text:    $aside-wd-collapsed-text;
+
+$nav-top-bg:                    $info;
+$nav-top-bg-start:              $nav-top-bg;
+$nav-top-bg-end:                $info-light;
+$nav-header-bg:                 transparent;
+
+$nav-top-item-mobile:           $nav-top-bg;
+$nav-top-item-mobile-active:    darken($nav-top-item-mobile, 20%);
+
+$nav-top-item-desktop:          #fff;
+$nav-top-item-desktop-active:   $nav-top-item-mobile-active;
+
+
+// Navbar top layout
+.topnavbar {
+    -webkit-backface-visibility: hidden; /* fixes chrome jump */
+    margin-bottom: 0;
+    border-radius: 0;
+    z-index: 1050;
+    border: 0;
+    padding: 0;
+    min-height: $navbar-height;
+    background-color: $nav-top-bg;
+    @include gradient-x($nav-top-bg-start, $nav-top-bg-end); // // dont' allow stacked icons
+
+    @include media-breakpoint-up(md) {
+        .navbar-header {
+            width: $nav-header-wd;
+            text-align: center;
+            .navbar-brand {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// Navbar Mobile General styles
+// ------------------------------
+.topnavbar {
+    position: relative;
+
+    .navbar-header {
+        background-color: $nav-header-bg;
+        @include media-breakpoint-up(md) {
+            background-image: none;
+        }
+    }
+
+    .navbar-header {
+        position: relative;
+        z-index: 11;
+        padding-left: 2rem;
+
+        @include media-breakpoint-up(md) {
+            padding-left: 0;
+        } // Reset default to allow handle via different logo size
+        .navbar-brand {
+            padding: 0;
+        } // Different Logo size depends on the navbar state
+        .brand-logo,
+        .brand-logo-collapsed {
+            >img {
+                margin: 0 auto;
+            }
+        }
+        .brand-logo {
+            display: block;
+            padding: 10px 15px;
+        }
+        .brand-logo-collapsed {
+            display: none;
+            padding: 6px 15px;
+        }
+    }
+
+    .dropdown {
+        position: static; // allow header to be parent of dropdown
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 0; // close to header
+            top: auto;
+            left: 0;
+            right: 0;
+        }
+    } // Top navbar dropdown on desktop
+    @include media-breakpoint-up(lg) {
+        .dropdown {
+            position: relative;
+            .dropdown-menu {
+                // standard left alignment
+                top: $navbar-height - 1;
+                left: 0;
+                right: auto;
+            } // redefined since we don't used navbar-expand-* class
+            .dropdown-menu-right {
+                right: 0;
+                left: auto;
+            }
+        }
+    }
+    .navbar-nav>.nav-item>.navbar-text {
+        color: $nav-top-item-desktop;
+    }
+
+    .navbar-nav>.nav-item>.nav-link {
+        padding: 1.1rem .95rem;
+        font-size: .85rem;
+    }
+    .navbar-nav>.nav-item>.nav-link,
+    .navbar-nav>.nav-item.show>.nav-link {
+        color: $nav-top-item-desktop;
+        &:hover,
+        &:focus {
+            color: $nav-top-item-desktop-active;
+        }
+    } // Navbar link active style
+    .navbar-nav>.nav-item.active>.nav-link,
+    .navbar-nav>.nav-item.show>.nav-link {
+        &,
+        &:hover,
+        &:focus {
+            background-color: transparent;
+        }
+    } // the button to toggle search
+    .navbar-nav>li>[data-toggle='navbar-search'] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 20;
+        font-size: 16px;
+        line-height: $navbar-height;
+        color: #fff;
+        padding-top: 0;
+        padding-bottom: 0;
+        @include transition(color .3s ease);
+        @include media-breakpoint-up(md) {
+            color: $nav-top-item-desktop;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .navbar-text {
+            margin: 10px;
+        }
+    }
+}
+
+
+// Customize header for horizontal layout
+.layout-h {
+    .topnavbar {
+        // flex-flow: wrap;
+        .navbar-header {
+            display: flex;
+            width: 100%;
+            padding: 0;
+            text-align: left;
+            @include media-breakpoint-up(lg) {
+                width: auto;
+            }
+        }
+        .navbar-toggler {
+            border: 0;
+            margin-left: auto;
+            .navbar-toggler-icon {
+                $button-toggler-icon-color: rgba(255, 255, 255, 0.75);
+                background-image: url("data:image/svg+xml;charset=utf8,<svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'><path stroke='#{$button-toggler-icon-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+            }
+        }
+        // make menu full size
+        .dropdown-menu {
+            @include media-breakpoint-down(md) {
+                left: 0 !important;
+                right: 0 !important;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .sidebar-toggle {
+        position: absolute !important;
+        top: 2px;
+        left: 0;
+        z-index: 3001; // Add color only for the icon
+        >em {
+            color: white;
+        }
+    }
+}
+
+
+// Navbar Search Form
+// ------------------------------
+.topnavbar {
+
+    .navbar-form {
+        position: absolute;
+        top: -100%;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        height: $navbar-height;
+        z-index: 9001;
+        transition: all .3s;
+        border: 0;
+        border-bottom: 1px solid #e1e2e3;
+
+        .form-group {
+            height: 100%;
+            width: 100%;
+        }
+
+        .form-control {
+            height: 100%;
+            border: 0;
+            border-radius: 0;
+            width: 100%;
+        }
+        &.open {
+            top: 0;
+        } // re locate and center feedback
+        .navbar-form-close {
+            position: absolute;
+            height: 30px;
+            cursor: pointer;
+            top: 50%;
+            right: 0;
+            margin-top: -15px;
+            line-height: 30px;
+            margin-right: 10px;
+            color: #c1c2c3;
+            font-size: 1.5em;
+            pointer-events: auto; // make icon clickable
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        .navbar-form {
+            left: $nav-header-wd;
+        }
+    }
+}
+
+// Navbar Desktop styles
+// ------------------------------
+@include media-breakpoint-up(md) {
+
+    // Navbar top styles
+    .topnavbar {
+
+        .navbar-header {
+            @include gradient-remove();
+        } // Dropdown link open style
+        .navbar-nav>a {
+            box-shadow: 0 0 0 #000 inset;
+            @include transition(all .2s);
+        }
+
+        .navbar-nav>.nav-item.show>.nav-link {
+            &,
+            &:hover,
+            &:focus {
+                box-shadow: 0 -3px 0 darken($nav-top-bg, 6%) inset;
+                @include transition(all .2s);
+            }
+        }
+        // relocate search toggle button
+        .navbar-nav>li>[data-toggle='navbar-search'] {
+            position: static;
+        }
+    } // .topnavbar
+}
+
+@include media-breakpoint-up(md) {
+    .aside-collapsed {
+        .topnavbar {
+            .navbar-header {
+                .brand-logo {
+                    display: none;
+                }
+                .brand-logo-collapsed {
+                    display: block;
+                }
+            }
+
+            .navbar-header {
+                width: $nav-header-wd-toggled;
+            }
+
+            .navbar-form {
+                left: $nav-header-wd-toggled;
+            }
+        }
+    }
+}
+
+// Header on aside collapsed with Text
+@include media-breakpoint-up(md) {
+    .aside-collapsed-text {
+        .topnavbar {
+            .navbar-header {
+                .brand-logo {
+                    display: none;
+                }
+                .brand-logo-collapsed {
+                    display: block;
+                }
+            }
+
+            .navbar-header {
+                width: $nav-header-wd-toggled-text;
+            }
+
+            .navbar-form {
+                left: $nav-header-wd-toggled-text;
+            }
+        }
+    }
+}

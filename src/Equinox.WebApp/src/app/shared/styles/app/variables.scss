@@ -1,0 +1,203 @@
+
+// Cutoms Gray colors for theme
+$gray-darker:           #232735;
+$gray-dark:             #3a3f51;
+$gray:                  #dde6e9;
+$gray-light:            #e4eaec;
+$gray-lighter:          #edf1f2;
+
+// Custom brand colors for theme
+$inverse:               #131e26;
+$purple:                #7266ba;
+$pink:                  #f532e5;
+$yellow:                #fad732;
+$green:                 #37bc9b;
+
+$primary:               #5d9cec;
+$secondary:             #fff;
+$success:               #27c24c;
+$info:                  #23b7e5;
+$warning:               #ff902b;
+$danger:                #f05050;
+$dark:                  #3a3f51;
+
+// Custom color variants
+$amountOfLight: 10%;
+
+$primary-light:         lighten($primary, $amountOfLight);
+$success-light:         lighten($success, $amountOfLight);
+$info-light:            lighten($info, $amountOfLight);
+$warning-light:         lighten($warning, $amountOfLight);
+$danger-light:          lighten($danger, $amountOfLight);
+$inverse-light:         lighten($inverse, $amountOfLight);
+$green-light:           lighten($green, $amountOfLight);
+$pink-light:            lighten($pink, $amountOfLight);
+$purple-light:          lighten($purple, $amountOfLight);
+$yellow-light:          lighten($yellow, $amountOfLight);
+$primary-dark:          darken($primary, $amountOfLight);
+$success-dark:          darken($success, $amountOfLight);
+$info-dark:             darken($info, $amountOfLight);
+$warning-dark:          darken($warning, $amountOfLight);
+$danger-dark:           darken($danger, $amountOfLight);
+$inverse-dark:          darken($inverse, $amountOfLight);
+$green-dark:            darken($green, $amountOfLight);
+$pink-dark:             darken($pink, $amountOfLight);
+$purple-dark:           darken($purple, $amountOfLight);
+$yellow-dark:           darken($yellow, $amountOfLight);
+
+// Theme variables
+
+// used for sidebars and content spacing
+$navbar-height:                    55px;
+
+// Button secondary redefinition style for theme
+$btn-secondary-color:              #333;
+$btn-secondary-bg:                 #fff;
+$btn-secondary-border:             #eaeaea;
+
+// Top Border color for custom default cards (.card-default)
+$card-default-border-color:        #cfdbe2;
+
+
+// ---------------------
+// Utilities variables
+// ---------------------
+
+$text-alpha:            rgba(255,255,255,.5);
+$text-alpha-inverse:    rgba(0,0,0,.5);
+
+$font-size-base:        1rem;
+$text-sm:               $font-size-base * 0.74375;
+$text-md:               $font-size-base * 1.6625;
+$text-lg:               $font-size-base * 2.625;
+
+$border-color:          rgba(0,0,0,.12);
+
+$wd-xxs:                60px;
+$wd-xs:                 90px;
+$wd-sm:                 150px;
+$wd-sd:                 200px; // sd == standard
+$wd-md:                 240px;
+$wd-lg:                 280px;
+$wd-xl:                 320px;
+$wd-xxl:                360px;
+$wd-wide:               100%;
+$wd-auto:               auto;
+$wd-zero:               0;
+
+
+// ---------------------
+// Bootstrap 4 Variables Override
+// ---------------------
+
+// Color system
+
+$colors: (
+    "purple":     $purple,
+    "pink":       $pink,
+    "yellow":     $yellow,
+    "green":      $green,
+    "primary":    $primary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    'inverse':    $inverse,
+
+    'primary-light': $primary-light,
+    'primary-dark':  $primary-dark,
+    'success-light': $success-light,
+    'success-dark':  $success-dark,
+    'info-light':    $info-light,
+    'info-dark':     $info-dark,
+    'warning-light': $warning-light,
+    'warning-dark':  $warning-dark,
+    'danger-light':  $danger-light,
+    'danger-dark':   $danger-dark,
+    'green-light':   $green-light,
+    'green-dark':    $green-dark,
+    'pink-light':    $pink-light,
+    'pink-dark':     $pink-dark,
+    'purple-light':  $purple-light,
+    'purple-dark':   $purple-dark,
+    'inverse-light': $inverse-light,
+    'inverse-dark':  $inverse-dark,
+    'yellow-light':  $yellow-light,
+    'yellow-dark':   $yellow-dark,
+);
+
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger
+);
+
+// Body
+
+$body-bg:                   #f5f7fa;
+$body-color:                #656565;
+
+$border-radius:               .25rem;
+$border-radius-lg:            .375rem;
+
+$line-height-base:            1.528571429;
+
+$headings-line-height:        1.1;
+
+$text-muted:                  #909FA7;
+
+// Tables
+
+$table-accent-bg:             #fafbfc;
+$table-hover-bg:              #fafbfc;
+
+$table-border-color:          #eee;
+
+// Buttons + Forms
+
+$input-btn-padding-y:         .375rem;
+$input-btn-padding-x:         1rem;
+
+$input-btn-padding-y-sm:      .3125rem;
+$input-btn-padding-x-sm:      .625rem;
+
+$input-btn-padding-y-lg:      .625rem;
+$input-btn-padding-x-lg:      1.25rem;
+
+// Forms
+
+$input-disabled-bg:                     $gray-lighter;
+$input-border-color:                    $gray;
+$input-focus-border-color:              #66afe9;
+$input-placeholder-color:               #b7bac9;
+
+// Dropdowns
+
+$dropdown-border-color:             #e1e1e1;
+
+// Navs
+
+$nav-tabs-link-active-bg:           #fff;
+
+// Jumbotron
+
+$jumbotron-bg:                      #fcfcfc;
+
+// List group
+
+$list-group-border-color:           #e4eaec;
+
+// Image thumbnails
+
+$thumbnail-padding:                 .125rem;
+
+
+// Breadcrumbs
+
+$breadcrumb-bg:                     #fafafa;
+$breadcrumb-divider-color:          #c1c2c3;
+$breadcrumb-active-color:           $body-color;

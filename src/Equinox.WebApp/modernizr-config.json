@@ -1,0 +1,32 @@
+{
+    "classPrefix": "",
+    "options": [
+        "setClasses"
+    ],
+    "feature-detects": [
+        "css/backgroundposition-shorthand",
+        "css/backgroundposition-xy",
+        "css/backgroundrepeat",
+        "css/backgroundsizecover",
+        "css/borderradius",
+        "css/animations",
+        "css/calc",
+        "css/transforms",
+        "css/transforms3d",
+        "css/transformstylepreserve3d",
+        "css/transitions",
+        "css/flexboxtweener",
+        "css/fontface",
+        "svg",
+        "svg/asimg",
+        "svg/clippaths",
+        "svg/filters",
+        "svg/foreignobject",
+        "svg/inline",
+        "svg/smil",
+        "storage/localstorage",
+        "storage/sessionstorage",
+        "storage/websqldatabase",
+        "css/multiplebgs"
+    ]
+}

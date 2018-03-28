@@ -1,0 +1,105 @@
+<div class="register-container wrapper">
+    <div class="block-center mt-4 wd-xl">
+        <!-- START panel-->
+        <div class="card card-flat">
+            <div class="card-header text-center bg-dark">
+                <a href="#">
+                    <img class="block-center rounded register-logo" src="assets/img/logo-inverse.png" alt="Image" />
+                </a>
+            </div>
+            <div class="card-body">
+                <p class="text-center pv">Register yourself to get instant access.</p>
+                <alert *ngIf="newUser.provider" type="success">Successful access by {{newUser.provider}}.</alert>
+                <div [hidden]="!errors.length">
+                    <alert *ngFor="let alert of errors;let i = index" [type]="'danger'" dismissible="true" (close)="closeAlert(i)">
+                        <span [innerHTML]="alert"></span>
+                    </alert>
+                </div>
+                <div *ngIf="newUser.imagem" class="half-float-bottom text-center">
+                    <img class="img-thumbnail img-circle thumb128" [src]="newUser.imagem" alt="Image" />
+                </div>
+                <form [formGroup]="valForm" class="form-validate mb-lg" role="form" name="registerForm" novalidate="" (submit)="submitForm($event, valForm.value)">
+                    <div class="form-group">
+                        <label class="text-muted">E-mail</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" type="email" name="account_email" placeholder="Type your e-mail" autocomplete="off"
+                                formControlName="email" required="" />
+                            <div class="input-group-append">
+                                <span class="fa fa-envelope input-group-text text-muted bg-transparent border-left-0"></span>
+                            </div>
+                        </div>
+                        <span class="text-danger" *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">Required field</span>
+                        <span class="text-danger" *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">Invalid E-mail</span>
+                    </div>
+                    <div formGroupName="passwordGroup">
+                        <div class="form-group has-feedback">
+                            <label class="text-muted">Pass</label>
+                            <div class="input-group with-focus">
+                                <input class="form-control border-right-0" type="password" name="password"  placeholder="Type your pass"  formControlName="password" [formControl]="valForm.get('passwordGroup.password')"
+                                />
+                                <div class="input-group-append">
+                                    <span class="fa fa-lock input-group-text text-muted bg-transparent border-left-0"></span>
+                                </div>
+                            </div>
+                            <span class="text-danger" *ngIf="valForm.get('passwordGroup.password').hasError('required') && (valForm.get('passwordGroup.password').dirty || valForm.get('passwordGroup.password').touched)">Type your pass</span>
+                            <span class="text-danger" *ngIf="valForm.get('passwordGroup.password').hasError('pattern') && (valForm.get('passwordGroup.password').dirty || valForm.get('passwordGroup.password').touched)">The pass must have 'a-zA-Z0-9' and between 8 and 100 characters long</span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="text-muted">Retype Pass</label>
+                            <div class="input-group with-focus">
+                                <input class="form-control border-right-0" type="password"  placeholder="Retype your e-mail"  name="confirmPassword" formControlName="confirmPassword" [formControl]="valForm.get('passwordGroup.confirmPassword')"
+                                />
+                                <div class="input-group-append">
+                                    <span class="fa fa-lock input-group-text text-muted bg-transparent border-left-0"></span>
+                                </div>
+                            </div>
+                            <span class="text-danger" *ngIf="valForm.get('passwordGroup.confirmPassword').hasError('equalTo')">The pass must match</span>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="text-muted">Telephone</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" [textMask]="{mask: telefoneMask}" type="text" name="telephone" autocomplete="off"
+                                formControlName="telephone" />
+                            <div class="input-group-append">
+                                <span class="fa fa-phone input-group-text text-muted bg-transparent border-left-0"></span>
+                            </div>
+                        </div>
+                        <span class="text-danger" *ngIf="valForm.controls['telephone'].hasError('required') && (valForm.controls['telephone'].dirty || valForm.controls['telephone'].touched)">Required field</span>
+                    </div>
+                    <div class="clearfix">
+                        <div class="checkbox c-checkbox pull-left mt0">
+                            <label>
+                                <input type="checkbox" required="" name="account_agreed" formControlName="accountagreed" />
+                                <span class="fa fa-check"></span>I agree with
+                                <a href="#">terms</a>
+                            </label>
+                        </div>
+                    </div>
+                    <span class="text-danger" *ngIf="valForm.controls['accountagreed'].hasError('required') && (valForm.controls['accountagreed'].dirty || valForm.controls['accountagreed'].touched)">You need read and agree with the terms</span>
+                    <button class="btn btn-block btn-primary mt-lg" *ngIf="showButtonLoading == false" type="submit">Register</button>
+                    <button class="btn btn-block mt-lg" *ngIf="showButtonLoading" type="submit">
+                        <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                    </button>
+                </form>
+                <div *ngIf="!newUser.provider">
+                    <p class="pt-lg text-center">Or register through your social network</p>
+                    <button type="submit" value="Google" class="btn btn-default btn-danger" (click)="googleRegister($event)">Google</button>
+                    <button type="submit" value="Facebook" class="btn btn-default btn-primary" (click)="facebookRegister($event)">Facebook</button>
+                </div>
+                <!-- <div class="alert alert-danger text-center"></div> -->
+                <p class="pt-lg text-center">Already have a login?</p>
+                <a class="btn btn-block btn-secondary" [routerLink]="'/sign-in'">Access</a>
+            </div>
+        </div>
+        <!-- END panel-->
+        <div class="p-lg text-center">
+            <span>&copy;</span>
+            <span>{{ settings.app.year }}</span>
+            <span>-</span>
+            <span>{{ settings.app.name }}</span>
+            <br/>
+            <span>{{ settings.app.description }}</span>
+        </div>
+    </div>
+</div>

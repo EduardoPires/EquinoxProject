@@ -1,0 +1,177 @@
+/* ========================================================================
+     Component: button-extra
+ ========================================================================== */
+
+//
+// Extension for Bootstrap buttons
+// ------------------------------------
+// BUTTONS LABEL mixin
+// --------------------------------------------------
+@mixin button-label-size($padding-vertical, $padding-horizontal, $border-radius) {
+    padding: $padding-vertical $padding-horizontal;
+    left: (-1 * $padding-horizontal);
+    border-radius: ($border-radius/*  - 1px */
+    ) 0 0 ($border-radius/*  - 1px */
+    );
+
+    &.btn-label-right {
+        left: auto;
+        right: (-1 * $padding-horizontal);
+        border-radius: 0 ($border-radius/*  - 1px */
+        ) ($border-radius/*  - 1px */
+        ) 0;
+    }
+}
+
+
+// New colors
+.btn-inverse {
+    @include button-variant($inverse, $inverse);
+}
+
+.btn-green {
+    @include button-variant($green, $green);
+}
+
+.btn-purple {
+    @include button-variant($purple, $purple);
+}
+
+.btn-pink {
+    @include button-variant($pink, $pink);
+}
+
+// Flat square button
+.btn-flat {
+    border-bottom-width: 1px;
+    border-radius: 0;
+    box-shadow: 0 0 0 #000;
+}
+
+// Extra size
+.btn-xs {
+    padding: 0.0625rem 0.3125rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.btn-xl {
+    padding: 20px 16px;
+    font-size: 18px;
+}
+
+// Button square
+.btn-square {
+    border-radius: 0;
+}
+
+
+// Button pill
+.btn-pill-left {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    padding-left: 18px;
+}
+
+.btn-pill-right {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding-right: 18px;
+}
+
+// Rounded buttons
+.btn-oval {
+    @extend .btn-pill-right;
+    @extend .btn-pill-left;
+}
+
+// Labels for buttons
+// --------------------------------------------------
+.btn-labeled {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.btn-label {
+    position: relative;
+    background: transparent;
+    background: rgba(0, 0, 0, 0.05);
+    display: inline-block;
+    @include button-label-size($input-btn-padding-y, $input-btn-padding-x, $border-radius);
+}
+
+.btn-lg .btn-label {
+    @include button-label-size($input-btn-padding-y-lg, $input-btn-padding-x-lg, $border-radius-lg);
+}
+
+.btn-sm .btn-label {
+    @include button-label-size($input-btn-padding-y-sm, $input-btn-padding-x-sm, $border-radius-sm);
+}
+
+.btn-xs .btn-label {
+    @include button-label-size(1px, 5px, $border-radius-sm);
+}
+
+
+// Fixed width buttons
+// --------------------------------------------------
+$btn-fw-default : 80px;
+$btn-fw-sm : 40px;
+$btn-fw-md : 60px;
+$btn-fw-lg : 140px;
+
+.btn-fw {
+    min-width: $btn-fw-default;
+    &.btn-sm {
+        min-width: $btn-fw-sm;
+    }
+    &.btn-md {
+        min-width: $btn-fw-md;
+    }
+    &.btn-lg {
+        min-width: $btn-fw-lg;
+    }
+}
+
+
+
+// Button Circle
+// -----------------------------------
+.btn-circle {
+    $sz: 35px;
+    width: $sz;
+    height: $sz;
+    text-align: center;
+    font-size: 12px;
+    line-height: $sz;
+    border-radius: 500px;
+    padding: 0;
+    border: 0;
+    >* {
+        line-height: inherit !important;
+    }
+    &.btn-lg {
+        $sz-lg: 50px;
+        width: $sz-lg;
+        height: $sz-lg;
+        font-size: 18px;
+        line-height: $sz-lg;
+    }
+}
+
+// Button Outline
+// -----------------------------------
+.btn-outline {
+    &-inverse {
+        @include button-outline-variant($inverse);
+    }
+    &-green {
+        @include button-outline-variant($green);
+    }
+    &-purple {
+        @include button-outline-variant($purple);
+    }
+    &-pink {
+        @include button-outline-variant($pink);
+    }
+}

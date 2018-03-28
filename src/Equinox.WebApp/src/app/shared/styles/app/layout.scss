@@ -1,0 +1,533 @@
+/* ========================================================================
+     Component: layout
+ ========================================================================== */
+
+//
+// Main layout
+// This file controls the presentation of all components
+//  .wrapper
+//     .section-container
+//       .content-wrapper
+//     .aside-container
+//
+// If modified or removed make sure to check the variable
+// shared with other components
+// -------------------------------------------------------------
+$aside-wd:                                220px;
+$aside-wd-collapsed:                      70px;
+$aside-wd-collapsed-text:                 90px;
+$aside-bg:                                #fff;
+
+$content-bg:                              $body-bg;
+$content-heading-bg:                      #fafbfc;
+$content-heading-border:                  #cfdbe2;
+$content-padding:                         20px;
+
+$footer-hg:                               60px;
+
+$navbar-hg:                               $navbar-height;
+
+$boxed-max-width:                         1140px;
+$z-index-main-section:                    111;
+
+html {
+    /* $replace rtl */
+    direction: ltr;
+    height: 100%; // http://updates.html5rocks.com/2013/12/300ms-tap-delay-gone-away
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    font-size: 16px; // force same font size acrros all device
+}
+
+html,
+body {
+    // overflow-x: hidden;
+    height: 100%;
+}
+
+// Main wrapper
+// -----------------------------
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    &.ng-leave {
+        display: none;
+    }
+    // Contains the main sidebar
+    .aside-container {
+        // visibility: hidden;
+        position: absolute;
+        width: $aside-wd;
+
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: $z-index-main-section + 5; // @include transition(visibility 0s linear .3s);
+        backface-visibility: hidden;
+        background-color: $aside-bg;
+
+        .aside-inner {
+            padding-top: $navbar-hg;
+            height: 100%;
+            width: $aside-wd;
+            overflow: hidden;
+        }
+
+        .nav-floating {
+
+            // position: handled from directive
+            left: inherit;
+            margin-left: $aside-wd;
+            z-index: $z-index-main-section * 10;
+
+            min-width: 190px;
+            overflow: auto;
+        }
+    }
+
+    .dropdown-backdrop {
+        z-index: $z-index-main-section - 2;
+    } // Contains the main content
+    .section-container {
+        position: relative;
+        height: 100%;
+        margin-left: 0; // overflow: hidden;
+        z-index: $z-index-main-section;
+        background-color: $content-bg;
+        margin-bottom: $footer-hg !important; // ensure a space for the footer
+    } // Page Footer
+    .footer-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: $footer-hg;
+        border-top: 1px solid $gray-light;
+        padding: $content-padding;
+        z-index: $z-index-main-section - 2;
+        font-size: .875rem;
+        p {
+            margin: 0;
+        }
+    }
+}
+
+.modal-open .wrapper .section-container {
+  z-index: inherit;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+// Page main content
+// -----------------------------
+.content-wrapper {
+    padding: 15px;
+    width: 100%; // styling to visually wrap the component
+    border-top: 1px solid rgba(0, 0, 0, .15);
+    margin-top: -1px;
+
+    .unwrap {
+        margin: -15px; // expand over wrapper padding
+        @include media-breakpoint-up(md) {
+            margin: -20px; // expand over wrapper padding
+        }
+    }
+
+    .content-heading {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        line-height: $headings-line-height;
+        color: #929292;
+        margin: -15px;
+        margin-bottom: 20px;
+        padding: 15px;
+        font-weight: normal;
+        background-color: $content-heading-bg;
+        border-bottom: 1px solid $content-heading-border;
+        small {
+            display: block;
+            font-size: 12px;
+            color: $text-muted;
+        }
+    }
+
+    .container,
+    .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @include media-breakpoint-up(md) {
+        padding: $content-padding; //overflow: auto; // required for portlets
+        .content-heading {
+            margin: -$content-padding;
+            margin-bottom: $content-padding;
+            padding: $content-padding;
+            button,
+            .btn {
+                margin: 0;
+            }
+        }
+    }
+}
+
+// Desktop layout
+// -----------------------------
+@include media-breakpoint-up(md) {
+
+    body {
+        min-height: 100%;
+    }
+
+    .wrapper {
+
+        .aside-container {
+            .aside-inner {
+                // padding-top: $navbar-hg;
+            }
+        }
+
+        .section-container,
+        .footer-container {
+            margin-left: $aside-wd;
+        }
+
+        .section-container {
+            // with just a margin we can make the
+            // right sidebar always visible
+            &.has-sidebar-right {
+                margin-right: $aside-wd + 20;
+                +.offsidebar {
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}
+
+// Aside toggled layout
+// On mobile acts like offcanvas
+// -----------------------------
+@include media-breakpoint-down(sm) {
+    .wrapper {
+        .aside-container {
+            margin-left: -$aside-wd;
+        }
+    }
+    .aside-toggled {
+        .wrapper {
+            .section-container,
+            .footer-container {
+                margin-left: $aside-wd;
+            }
+
+            .aside-container {
+                margin-left: 0;
+            }
+        }
+    }
+
+    .csstransforms3d {
+
+        .wrapper {
+            backface-visibility: hidden;
+            .section-container,
+            .footer-container {
+                margin-left: 0;
+                transform: translate3d(0, 0, 0);
+                transition: transform .3s ease;
+            }
+            .aside-container {
+                margin-left: 0;
+                transform: translate3d(-$aside-wd, 0, 0);
+                transition: transform .3s ease;
+            }
+        }
+
+        .aside-toggled {
+            .wrapper {
+                .section-container,
+                .footer-container {
+                    transform: translate3d($aside-wd, 0, 0);
+                }
+                .aside-container {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+        }
+    }
+}
+
+// Toggle and collapsed behavior overrides
+@include media-breakpoint-down(sm) {
+
+    .aside-collapsed .wrapper {
+        .aside-container {
+            margin-left: -$aside-wd-collapsed;
+        }
+    }
+
+    .aside-collapsed.aside-toggled {
+        .wrapper {
+            .section-container,
+            .footer-container {
+                margin-left: $aside-wd-collapsed;
+            }
+
+            .aside-container {
+                margin-left: 0;
+            }
+        }
+    }
+
+
+    .csstransforms3d {
+
+        .aside-collapsed .wrapper {
+            backface-visibility: hidden;
+            .section-container,
+            .footer-container {
+                margin-left: 0;
+                transform: translate3d(0, 0, 0);
+                transition: transform .3s ease;
+            }
+            .aside-container {
+                margin-left: 0;
+                transform: translate3d(-$aside-wd-collapsed, 0, 0);
+                transition: transform .3s ease;
+            }
+        }
+
+        .aside-collapsed.aside-toggled {
+            .wrapper {
+                .section-container,
+                .footer-container {
+                    transform: translate3d($aside-wd-collapsed, 0, 0);
+                }
+                .aside-container {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+        }
+    }
+}
+
+// Aside collapsed layout
+// -------------------------------
+// Aside status toggled via JS
+.aside-collapsed {
+    overflow-y: auto;
+    .wrapper {
+        .aside-container {
+            &,
+            .aside-inner {
+                width: $aside-wd-collapsed;
+            }
+            .nav-floating {
+                margin-left: $aside-wd-collapsed;
+            }
+        }
+    }
+}
+
+// Margin only exists above tablet
+@include media-breakpoint-up(md) {
+    // Aside status toggled via JS
+    .aside-collapsed {
+        .wrapper {
+            .section-container,
+            .footer-container {
+                margin-left: $aside-wd-collapsed;
+            }
+        }
+    }
+}
+
+// ------------------------------
+// Collapsed variation with text
+// ------------------------------
+@include media-breakpoint-down(sm) {
+
+    .aside-collapsed-text .wrapper {
+        .aside-container {
+            margin-left: -$aside-wd-collapsed-text;
+        }
+    }
+
+    .aside-collapsed-text.aside-toggled {
+        .wrapper {
+            .section-container,
+            .footer-container {
+                margin-left: $aside-wd-collapsed-text;
+            }
+
+            .aside-container {
+                margin-left: 0;
+            }
+        }
+    }
+
+
+    .csstransforms3d {
+
+        .aside-collapsed-text .wrapper {
+            backface-visibility: hidden;
+            .section-container,
+            .footer-container {
+                margin-left: 0;
+                transform: translate3d(0, 0, 0);
+                transition: transform .3s ease;
+            }
+            .aside-container {
+                margin-left: 0;
+                transform: translate3d(-$aside-wd-collapsed-text, 0, 0);
+                transition: transform .3s ease;
+            }
+        }
+
+        .aside-collapsed-text.aside-toggled {
+            .wrapper {
+                .section-container,
+                .footer-container {
+                    transform: translate3d($aside-wd-collapsed-text, 0, 0);
+                }
+                .aside-container {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+        }
+    }
+}
+
+// Aside collapsed layout
+// -------------------------------
+// Aside status toggled via JS
+.aside-collapsed-text {
+    overflow-y: auto;
+    .wrapper {
+        .aside-container {
+            &,
+            .aside-inner {
+                width: $aside-wd-collapsed-text;
+            }
+            .nav-floating {
+                margin-left: $aside-wd-collapsed-text;
+            }
+        }
+    }
+}
+
+// Margin only exists above tablet
+@include media-breakpoint-up(md) {
+    // Aside status toggled via JS
+    .aside-collapsed-text {
+        .wrapper {
+            .section-container,
+            .footer-container {
+                margin-left: $aside-wd-collapsed-text;
+            }
+        }
+    }
+}
+
+// end collapsed variation with text
+// mixin to remove transformations
+@mixin disable-transform() {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -opera-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+
+// Fixed layout
+// -----------------------------
+.layout-fixed {
+
+    @media (max-width: $boxed-max-width) {
+        &.aside-toggled,
+        &.offsidebar-open {
+            overflow-y: hidden;
+        }
+    }
+
+    .wrapper {
+        .topnavbar-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: $z-index-main-section + 10;
+        }
+        .aside-container,
+        .offsidebar {
+            position: fixed;
+        }
+        /* only applied to sidebar */
+        .aside-container {
+            /* safari fix */
+            height: 1px;
+            min-height: 100%;
+            /* ios blanks space fix */
+            .aside-inner {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+            }
+        }
+        .section-container {
+            margin-top: $navbar-hg;
+        }
+    }
+}
+
+
+/* IE10+ hack: safari fix breaks ie so we need to target ie only to restore */
+
+_:-ms-lang(x),
+.layout-fixed .wrapper .aside-container .aside-inner {
+    position: static !important;
+}
+
+// Boxed layout (only for desktops)
+// -----------------------------
+.layout-boxed {
+
+    @include media-breakpoint-up(lg) {
+        overflow: auto !important;
+        .wrapper {
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 0 13px rgba(0, 0, 0, .25);
+
+            .offsidebar {
+                position: absolute !important;
+            }
+
+            .aside-container {
+                left: inherit;
+            }
+            &,
+            & .topnavbar-wrapper {
+                width: 970px;
+            }
+        }
+
+        &.layout-fixed {
+            .wrapper .aside-container .aside-inner {
+                left: inherit;
+            }
+        }
+    } // max size for large devices
+    @include media-breakpoint-up(xl) {
+        .wrapper {
+            &,
+            & .topnavbar-wrapper {
+                width: $boxed-max-width;
+            }
+        }
+    }
+} // boxed
