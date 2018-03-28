@@ -1,0 +1,153 @@
+{
+  "mails":[
+    {
+      "id": 10,
+      "subject": "Admin web application",
+      "from": {
+        "name": "Evelyn Holmes", "email" : "evelyn@example.com",
+        "avatar": "assets/img/user/01.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Fusce gravida, diam ac adipiscing pretium, sem nibh bibendum diam, non consequat quam metus non nunc. <em>Praesent lacinia ultricies neque</em>. Suspendisse faucibus bibendum ipsum, et feugiat justo convallis lobortis. Nam eget risus tellus. Pellentesque vel massa est. ",
+      "attach":[
+        {"name":"IMG_4.jpg", "url":"assets/img/bg4.jpg"},
+        {"name":"IMG_5.jpg", "url":"assets/img/bg5.jpg"}
+      ],
+      "date":"18:20 11/23/2014",
+      "folder":"important"
+    },
+    {
+      "id": 9,
+      "subject": "Admin theme based on Bootstrap and AngularJS",
+      "from": {
+        "name": "Allison Grant", "email" : "allison@example.com",
+        "avatar": "assets/img/user/02.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Nunc eget lacinia felis. <b>Pellentesque sollicitudin sollicitudin erat, in imperdiet tortor fringilla ut</b>.. Vestibulum ante ipsum primis in faucibus orci et ultrices posuere cubilia Curae; Class taciti conubia nostra, per himenaeos. Vivamus libero tortor, cursus in ultricies sed, scelerisque non eros. ",
+      "date":"15:20 11/23/2014",
+      "folder":"important"
+    },
+    {
+      "id": 8,
+      "subject": "Nested route mailbox application",
+      "from": {
+        "name": "Daryl Carlson", "email" : "daryl@example.com",
+        "avatar": "assets/img/user/03.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Nulla <strong>facilisi</strong>. Sed sit amet sem vel purus pulvinar venenatis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut vestibulum est eget justo facilisis ullamcorper. ",
+      "attach":[
+        {"name":"IMG_7.jpg", "url":"assets/img/bg7.jpg"}
+      ],
+      "date":"18:20 11/22/2014",
+      "folder":"important"
+    },
+    {
+      "id": 7,
+      "subject": "Angular with lazy load components",
+      "from": {
+        "name": "George Clark", "email" : "george@example.com",
+        "avatar": "assets/img/user/04.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Integer sit amet vulputate mauris. Proin purus nisl, tempor ut tempor at, ornare vel mauris. Ut ac lectus a ante vehicula pharetra vitae id risus. Vestibulum risus lectus, sollicitudin a fermentum ac, ultricies sit amet lectus. ",
+      "date":"12:20 11/22/2014",
+      "folder":"sent",
+      "state":"unread"
+    },
+    {
+      "id": 6,
+      "subject": "Translation ready and RTL support!",
+      "from": {
+        "name": "Bonnie Bowman", "email" : "bonnie@example.com",
+        "avatar": "assets/img/user/05.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Integer sit amet vulputate mauris. Proin purus nisl, tempor ut tempor at, ornare vel mauris. Ut ac lectus a ante vehicula pharetra vitae id risus. Vestibulum risus lectus, sollicitudin a fermentum ac, ultricies sit amet lectus. ",
+      "date":"6:20 11/22/2014",
+      "folder":"starred",
+      "state":"unread"
+    },
+    {
+      "id": 5,
+      "subject": "Don't forget to check latest updates!",
+      "from": {
+        "name": "Warren Watts", "email" : "warren@example.com",
+        "avatar": "assets/img/user/06.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In at consequat nibh. Vestibulum mauris nisl, dictum vitae dapibus iaculis, tempor sed libero. Duis ac justo ac nisi aliquam laoreet. ",
+      "date":"6:20 11/22/2014",
+      "folder":"sent"
+    },
+    {
+      "id": 4,
+      "subject": "We have to meet someday",
+      "from": {
+        "name": "Elijah Ward", "email" : "elijah@example.com",
+        "avatar": "assets/img/user/07.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Nunc hendrerit, neque ullamcorper eleifend ornare, arcu est bibendum ipsum, id malesuada sem justo vitae justo. Phasellus elit felis, condimentum hendrerit ullamcorper sit amet, egestas at justo. Sed ut nulla dui, nec auctor mi. ",
+      "date":"3:20 11/22/2014",
+      "folder":"starred"
+    },
+    {
+      "id": 3,
+      "subject": "New issue found",
+      "from": {
+        "name": "Colleen Payne", "email" : "colleen@example.com",
+        "avatar": "assets/img/user/08.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Integer sit amet vulputate mauris. Proin purus nisl, tempor ut tempor at, ornare vel mauris. Ut ac lectus a ante vehicula pharetra vitae id risus. Vestibulum risus lectus, sollicitudin a fermentum ac, ultricies sit amet lectus. ",
+      "date":"6:20 11/21/2014",
+      "folder":"starred"
+    },
+    {
+      "id": 2,
+      "subject": "Issue #5478 awaiting reply",
+      "from": {
+        "name": "Rose Fox", "email" : "rose@example.com",
+        "avatar": "assets/img/user/09.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Sed eu felis nulla. Nunc malesuada sapien at risus eleifend ut lacinia sem pretium.  ",
+      "date":"8:20 11/15/2014",
+      "folder":"trash"
+    },
+    {
+      "id": 1,
+      "subject": "Check Angle for your next startup project",
+      "from": {
+        "name": "Jenny Knight", "email" : "jenny@example.com",
+        "avatar": "assets/img/user/10.jpg"
+      },
+      "to":[
+        {"name":"John", "email":"John.mail@example.com"}
+      ],
+      "content":"Morbi varius sem quis purus suscipit tempus. Integer fermentum accumsan metus, id sagittis ipsum molestie vitae. Duis suscipit ultricies pellentesque. Pellentesque porta tincidunt justo, non fringilla erat iaculis in. ",
+      "date":"16:00 10/15/2014",
+      "folder":"starred"
+    }
+  ]
+}

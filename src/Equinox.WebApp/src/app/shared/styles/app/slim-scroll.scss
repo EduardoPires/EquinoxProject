@@ -1,0 +1,27 @@
+/* ========================================================================
+     Component: slim-scroll
+ ========================================================================== */
+
+$slim-scroll-bar-bg : fade-out(#000, 0.65);
+$slim-scroll-rail-bg : fade-out(#000, 0.85);
+
+// New scrollable element
+scrollable {
+    display: block;
+}
+
+// Important to override js inline styles
+.slimScrollBar {
+    opacity: 1 !important;
+    background-color: $slim-scroll-bar-bg !important;
+    border: 0 !important;
+    border-radius: 1px !important;
+}
+
+.slimScrollRail {
+    opacity: 1 !important;
+    background-color: $slim-scroll-rail-bg !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    bottom: 0;
+}

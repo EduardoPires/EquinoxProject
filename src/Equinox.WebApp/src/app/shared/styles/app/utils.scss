@@ -1,0 +1,249 @@
+/* ========================================================================
+         Component: utils
+ ========================================================================== */
+
+// Utilities classes to simplify
+// components constructions
+
+
+// Extra Background helpers
+@function custom-color($key) {
+  @return map-get($colors, $key);
+}
+
+@mixin bgcolor-variant($bgcolor, $text-color: #fff) {
+  $amountOfLight: 10%;
+  & {
+    background-color: custom-color($bgcolor);
+    color: $text-color !important;
+  }
+  &-light {
+    $col: custom-color($bgcolor + '-light');
+    background-color: #{$col};
+    color: $text-color !important;
+  }
+  &-dark {
+    $col: custom-color($bgcolor + '-dark');
+    background-color: #{$col};
+    color: $text-color !important;
+  }
+  small {
+    color: inherit;
+  }
+}
+
+@mixin make-bg($bgcolor, $text-color: #fff) {
+  background-color: $bgcolor;
+  color: $text-color !important;
+}
+
+// Common thumbnail sizes (ideal for images)
+@mixin thumnbail-size($sz: 8px) {
+  width: $sz !important;
+  height: $sz !important;
+}
+
+
+
+// Border
+// --------------------
+
+.b0 { border-width: 0 !important; }
+.bl0 { border-left-width: 0 !important; }
+.br0 { border-right-width: 0 !important; }
+.bt0 { border-top-width: 0 !important; }
+.bb0 { border-bottom-width: 0 !important; }
+
+.br { border-right: 1px solid $border-color;}
+.bl { border-left: 1px solid $border-color;}
+.bt { border-top: 1px solid $border-color;}
+.bb { border-bottom: 1px solid $border-color;}
+.b, .ba  { @extend .br;@extend .bl;@extend .bt;@extend .bb; } // all borders
+
+
+// Text helpers
+
+.text-primary { color: $primary !important; }
+.text-success { color: $success !important; }
+.text-info { color: $info !important; }
+.text-warning { color: $warning !important; }
+.text-danger { color: $danger !important; }
+
+.text-white         { color: #fff !important; }
+.text-inverse       { color: $inverse !important; }
+.text-alpha         { color: $text-alpha !important; }
+.text-pink          { color: $pink !important; }
+.text-purple        { color: $purple !important; }
+.text-dark          { color: $dark !important; }
+.text-alpha-inverse { color: $text-alpha-inverse !important; }
+.text-green         { color: $green !important; }
+.text-yellow        { color: $yellow !important; }
+.text-gray-darker   { color: $gray-darker !important; }
+.text-gray-dark     { color: $gray-dark !important; }
+.text-gray          { color: $gray !important; }
+.text-gray-light    { color: $gray-light !important; }
+.text-gray-lighter  { color: $gray-lighter !important; }
+.text-inherit       { color: inherit !important; }
+
+// Text sizing
+
+.text-sm { font-size: $text-sm; }
+.text-md { font-size: $text-md; }
+.text-lg { font-size: $text-lg; }
+
+// Text others
+
+.text-nowrap { white-space: nowrap; }
+.text-thin   { font-weight: 100 !important; }
+.text-normal { font-weight: normal !important; }
+.text-bold   { font-weight: bold !important; }
+
+.inline { display: inline-block !important; }
+.block-center { margin: 0 auto; }
+
+// Background helpers
+
+.bg-primary      { @include bgcolor-variant('primary'); }
+.bg-success      { @include bgcolor-variant('success'); }
+.bg-info         { @include bgcolor-variant('info'); }
+.bg-warning      { @include bgcolor-variant('warning'); }
+.bg-danger       { @include bgcolor-variant('danger'); }
+.bg-green        { @include bgcolor-variant('green'); }
+.bg-pink         { @include bgcolor-variant('pink'); }
+.bg-purple       { @include bgcolor-variant('purple'); }
+.bg-inverse      { @include bgcolor-variant('inverse'); }
+.bg-yellow       { @include bgcolor-variant('yellow'); }
+
+.bg-white        { @include make-bg(#fff, inherit); }
+.bg-gray-darker  { @include make-bg($gray-darker); }
+.bg-gray-dark    { @include make-bg($gray-dark); }
+.bg-gray         { @include make-bg($gray, $body-color); }
+.bg-gray-light   { @include make-bg($gray-light, $body-color); }
+.bg-gray-lighter { @include make-bg($gray-lighter, $body-color); }
+
+.bg-transparent  { background-color: transparent !important; }
+
+.bg-cover {
+    background-size: cover;
+}
+
+// Common thumbnail sizes (ideal for images)
+
+.thumb8   { @include thumnbail-size(); }
+.thumb16  { @include thumnbail-size(16px); }
+.thumb24  { @include thumnbail-size(24px); }
+.thumb32  { @include thumnbail-size(32px); }
+.thumb48  { @include thumnbail-size(48px); }
+.thumb64  { @include thumnbail-size(64px); }
+.thumb80  { @include thumnbail-size(80px); }
+.thumb96  { @include thumnbail-size(96px); }
+.thumb128 { @include thumnbail-size(128px); }
+
+
+// Vertical align helpers
+
+.align-middle {
+    vertical-align: middle;
+}
+.align-top {
+    vertical-align: top;
+}
+.align-bottom {
+    vertical-align: bottom;
+}
+
+
+// Background image
+.bg-center {
+    background-position: center center;
+    background-size: cover;
+}
+
+// List
+.list-icon {
+    em {
+        font-size: 14px;
+        width: 40px;
+        vertical-align: middle;
+        margin: 0;
+        display: inline-block;
+        text-align: center;
+        @include transition(all .2s);
+        line-height: 30px;
+    }
+    div:hover em {
+        transform: scale(3, 3)
+    }
+}
+
+// Fixed table layout algorithm
+.d-table-fixed {
+    table-layout: fixed;
+}
+
+// Components size
+
+.wd-xxs  { width: $wd-xxs;  }
+.wd-xs   { width: $wd-xs;   }
+.wd-sm   { width: $wd-sm;   }
+.wd-sd   { width: $wd-sd;   }
+.wd-md   { width: $wd-md;   }
+.wd-lg   { width: $wd-lg;   }
+.wd-xl   { width: $wd-xl;   }
+.wd-xxl  { width: $wd-xxl;  }
+.wd-wide { width: $wd-wide; }
+.wd-auto { width: $wd-auto; }
+.wd-zero { width: $wd-zero; }
+
+// Simulate clickable element
+.clickable {
+    cursor: pointer;
+}
+
+// Absolute center element
+// -----------------------------------
+
+.abs-center-container {
+    position: relative;
+}
+.abs-center {
+    // width: 50%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+
+    &.abs-fixed {
+        position: fixed;
+        z-index: 999;
+    }
+
+    &.abs-right {
+        left: auto; right: 20px;
+        text-align: right;
+    }
+
+    &.abs-left {
+        right: auto; left: 20px;
+        text-align: left;
+    }
+}
+
+@media (max-height: 720px) {
+    .abs-center {
+        position: relative;
+    }
+}
+
+
+.link-unstyled {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+.no-resize {
+    resize: none;
+    max-width: 100%;
+    min-width: 100%;
+}

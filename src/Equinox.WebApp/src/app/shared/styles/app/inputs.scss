@@ -1,0 +1,297 @@
+/* ========================================================================
+     Component: inputs
+ ========================================================================== */
+
+
+/**
+ * Custom form elements
+ *    - Checkbox
+ *    - Radios
+ *    - Switch
+ *    - Note editor
+ */
+
+//
+// CHECKBOX AND RADIOS
+//
+$ui-fg-color: $primary;
+$ui-bg-color: #ddd;
+
+
+@mixin switch-variant($wd, $hg) {
+    & span {
+        width: $wd;
+        height: $hg;
+    }
+
+    & span:after {
+        height: $hg - 2;
+        width: $hg - 2;
+    }
+}
+
+.c-checkbox,
+.c-radio {
+    margin-right: 4px;
+    * {
+        cursor: pointer;
+    }
+    input {
+        opacity: 0;
+        position: absolute;
+        margin-left: 0 !important;
+    } // the element that replaces the input
+    span {
+        position: relative;
+        display: inline-block;
+        vertical-align: top; // margin-left: -20px;
+        width: 20px;
+        height: 20px;
+        border-radius: 2px;
+        border: 1px solid #ccc;
+        margin-right: 5px;
+        text-align: center;
+        &:before {
+            margin-left: 1px; // fa align trick
+        }
+    }
+
+    &:hover span {
+        border-color: $ui-fg-color;
+    }
+
+    .form-inline & span {
+        margin-left: 0;
+    }
+
+    &.c-checkbox-rounded,
+    &.c-radio-rounded {
+        span {
+            border-radius: 500px;
+        }
+    }
+}
+
+/* override for radio */
+.c-radio span {
+    border-radius: 500px;
+}
+
+/* the icon */
+.c-checkbox,
+.c-radio {
+    span:before {
+        //content: "\2713"; /* comment content to use custom icon classes */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        text-align: center !important;
+        font-size: 12px;
+        line-height: 18px;
+        vertical-align: middle;
+    }
+}
+
+
+/* Checked state */
+.c-checkbox,
+.c-radio {
+    input[type=checkbox]:checked+span:before,
+    input[type=radio]:checked+span:before {
+        color: #fff;
+        opacity: 1;
+        transition: color .3s ease-out;
+    }
+
+    input[type=checkbox]:checked+span,
+    input[type=radio]:checked+span {
+        border-color: $ui-fg-color;
+        background-color: $ui-fg-color;
+    }
+
+    /* override for radio */
+    input[type=radio]:checked+span {
+        background-color: #fff;
+        &:before {
+            color: $ui-fg-color;
+        }
+    }
+
+    /* Disable state */
+    input[type=checkbox]:disabled+span,
+    input[type=radio]:disabled+span {
+        border-color: $ui-bg-color !important;
+        background-color: $ui-bg-color !important;
+    }
+    /* override for radio */
+    input[type=radio]:disabled+span {
+        background-color: #fff !important;
+        &:before {
+            color: $ui-bg-color;
+        }
+    }
+}
+
+.c-radio.c-radio-nofont {
+    span {
+        &:before {
+            $sz: 10px;
+            content: "";
+            width: $sz;
+            height: $sz;
+            top: 50%;
+            left: 50%;
+            margin-top: -($sz/2);
+            margin-left: -($sz/2);
+            border-radius: 500px;
+        }
+    }
+
+    input[type=radio]:checked+span:before {
+        color: #fff;
+        opacity: 1;
+        transition: color .3s ease-out;
+    }
+
+    input[type=radio]:checked+span {
+        border-color: $ui-fg-color;
+        background-color: $ui-fg-color;
+    }
+
+    /* override for radio */
+    input[type=radio]:checked+span {
+        background-color: #fff;
+        &:before {
+            background-color: $ui-fg-color;
+        }
+    }
+
+    /* Disable state */
+    input[type=radio]:disabled+span {
+        border-color: $ui-bg-color !important;
+        background-color: $ui-bg-color !important;
+    }
+    /* override for radio */
+    input[type=radio]:disabled+span {
+        background-color: #fff !important;
+        &:before {
+            background-color: $ui-bg-color;
+        }
+    }
+}
+
+
+//
+// Form SWITCH
+// Supports radio and checkbox
+//
+
+$switch-wd: 40px;
+$switch-hg: $switch-wd/2;
+
+$switch-lg-wd: 50px;
+$switch-lg-hg: $switch-lg-wd/2;
+
+$switch-sm-wd: 30px;
+$switch-sm-hg: $switch-sm-wd/2;
+
+.switch {
+    .form-control {
+        padding-top: 7px;
+        margin-bottom: 0;
+    }
+}
+
+.switch * {
+    cursor: pointer;
+}
+
+.switch input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.switch {
+    display: flex;
+    align-items: center;
+    direction: row;
+    & span {
+        position: relative;
+        display: inline-block;
+        width: $switch-wd;
+        height: $switch-hg;
+        background-color: #fff;
+        border: 1px solid $ui-bg-color;
+        border-radius: 100px;
+        transition: all .5s;
+        box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1) inset;
+    }
+
+    & span:after {
+        content: "";
+        position: absolute;
+        background-color: #fff;
+        top: 0;
+        left: 0;
+        height: $switch-hg - 2;
+        width: $switch-hg - 2;
+        border: 1px solid #ddd;
+        border-radius: 400px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        -webkit-transition: all .2s;
+    }
+
+    &.switch-lg {
+        @include switch-variant($switch-lg-wd, $switch-lg-hg);
+    }
+    &.switch-sm {
+        @include switch-variant($switch-sm-wd, $switch-sm-hg);
+    }
+}
+
+.switch input {
+    &:checked+span {
+        background-color: $ui-fg-color;
+        border-color: $ui-fg-color;
+        transition: all .5s;
+    }
+
+    &:checked+span:after {
+        left: 50%;
+        transition: all .2s;
+    }
+
+    &:disabled+span {
+        background-color: #f1f1f1;
+        cursor: not-allowed;
+    }
+}
+
+//
+// Textarea note editor
+//
+
+.note-editor {
+    background-image: -webkit-linear-gradient(#eee .1em, transparent .1em);
+    background-image: linear-gradient(#eee .1em, transparent .1em);
+
+    background-size: 100% 20px;
+    background-color: #fff;
+
+    line-height: 20px;
+    margin-top: 5px;
+    padding: 0;
+    padding-bottom: 1px;
+    border: none;
+    $margin-color: $warning;
+    &.note-editor-margin {
+        background-image: -webkit-linear-gradient(0deg, transparent 49px, lighten($margin-color, 30%) 49px, lighten($margin-color, 30%) 51px, transparent 51px), -webkit-linear-gradient(#eee .1em, transparent .1em);
+        background-image: linear-gradient(90deg, transparent 49px, lighten($margin-color, 30%) 49px, lighten($margin-color, 30%) 51px, transparent 51px),
+        linear-gradient(#eee .1em, transparent .1em);
+        padding-left: 55px;
+    }
+}

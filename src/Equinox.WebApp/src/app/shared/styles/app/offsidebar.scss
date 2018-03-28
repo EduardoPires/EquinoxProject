@@ -1,0 +1,102 @@
+/* ========================================================================
+     Component: offsidebar
+ ========================================================================== */
+
+//
+// A sidebar in offcanvas mode
+// Open status toggled via JS
+// -----------------------------------------
+
+$offsidebar-bg:           #fff;
+$offsidebar-border-color: grayscale(darken($offsidebar-bg, 20%));
+$offsidebar-color:        $body-color;
+$offsidebar-wd:           $aside-wd + 15px;      // match the width with the main aside component
+
+.offsidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: $offsidebar-wd;
+    margin-top: $navbar-height;
+    border-left: 1px solid $offsidebar-border-color;
+    background-color: $offsidebar-bg;
+    color: $offsidebar-color;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: -1;
+
+    >.list-group {
+        min-height: 100%;
+        overflow: hidden;
+        -webkit-transform: translateZ(0px);
+    }
+
+    .progress {
+        border: 0;
+    }
+
+    .tab-content {
+        padding: 0;
+        border: 0;
+    } // change style of tab component inside offsidebar
+    .nav-tabs {
+        border-bottom: 1px solid rgba(0, 0, 0, .05);
+        >.nav-item>.nav-link {
+            background-color: transparent;
+            border: 0;
+            border-right: 1px solid rgba(0, 0, 0, .05);
+            border-radius: 0;
+            color: $text-muted;
+            &.active {
+                color: $primary;
+            }
+        }
+    }
+
+
+    @include media-breakpoint-up(md) {
+        margin-top: $navbar-height;
+    }
+}
+
+// Global open status (attach to body)
+.offsidebar-open {
+    .offsidebar {
+        overflow-y: auto;
+        z-index: $z-index-main-section + 5;
+    }
+    @include media-breakpoint-up(md) {
+        overflow-y: auto;
+    }
+}
+
+// No tranformation devices
+.offsidebar {
+    right: -$offsidebar-wd;
+}
+
+.no-csstransforms3d {
+    .offsidebar-open {
+        .offsidebar {
+            right: 0;
+        }
+    }
+}
+
+
+/* Transformation ready devices*/
+
+.csstransforms3d {
+    .offsidebar {
+        right: 0;
+        transform: translate3d( ($offsidebar-wd), 0, 0);
+        transition: transform .3s ease, z-index 0s linear .3s;
+    }
+    .offsidebar-open {
+        .offsidebar {
+            transform: translate3d(0, 0, 0);
+            transition: transform .3s ease;
+        }
+    }
+}

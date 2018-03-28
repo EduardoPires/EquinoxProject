@@ -1,0 +1,39 @@
+/* ========================================================================
+     Component: placeholder
+ ========================================================================== */
+
+// Defines styles for placeholder boxes
+// Create a placeholder space that can be used for uploading files via drag and drop.
+// Based on uikit placeholder addon
+// ==========================================================================
+// Variables
+// ==========================================================================
+$placeholder-margin-vertical : 15px;
+$placeholder-padding : 20px;
+$placeholder-border : #ddd;
+$placeholder-background : #fafafa;
+$placeholder-color : #444;
+
+$placeholder-large-padding-vertical : 80px;
+
+
+// Placeholder container
+.box-placeholder {
+    margin-bottom: $placeholder-margin-vertical;
+    padding: $placeholder-padding;
+    border: 1px dashed $placeholder-border;
+    background: $placeholder-background;
+    color: $placeholder-color;
+}
+
+
+// Remove margin from the last-child 
+.box-placeholder> :last-child {
+    margin-bottom: 0;
+}
+
+// Variant
+.box-placeholder-lg {
+    padding-top: $placeholder-large-padding-vertical;
+    padding-bottom: $placeholder-large-padding-vertical;
+}

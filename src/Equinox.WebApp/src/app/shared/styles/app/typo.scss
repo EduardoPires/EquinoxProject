@@ -1,0 +1,92 @@
+/* ========================================================================
+     Component: typo
+ ========================================================================== */
+
+@font-face{
+    font-family: 'Source Sans Pro';
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('~/source-sans-pro/EOT/SourceSansPro-Light.eot') format('embedded-opentype'),
+         url('~/source-sans-pro/WOFF2/TTF/SourceSansPro-Light.ttf.woff2') format('woff2'),
+         url('~/source-sans-pro/WOFF/OTF/SourceSansPro-Light.otf.woff') format('woff'),
+         url('~/source-sans-pro/OTF/SourceSansPro-Light.otf') format('opentype'),
+         url('~/source-sans-pro/TTF/SourceSansPro-Light.ttf') format('truetype');
+}
+@font-face{
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('~/source-sans-pro/EOT/SourceSansPro-Regular.eot') format('embedded-opentype'),
+         url('~/source-sans-pro/WOFF2/TTF/SourceSansPro-Regular.ttf.woff2') format('woff2'),
+         url('~/source-sans-pro/WOFF/OTF/SourceSansPro-Regular.otf.woff') format('woff'),
+         url('~/source-sans-pro/OTF/SourceSansPro-Regular.otf') format('opentype'),
+         url('~/source-sans-pro/TTF/SourceSansPro-Regular.ttf') format('truetype');
+}
+@font-face{
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('~/source-sans-pro/EOT/SourceSansPro-It.eot') format('embedded-opentype'),
+         url('~/source-sans-pro/WOFF2/TTF/SourceSansPro-It.ttf.woff2') format('woff2'),
+         url('~/source-sans-pro/WOFF/OTF/SourceSansPro-It.otf.woff') format('woff'),
+         url('~/source-sans-pro/OTF/SourceSansPro-It.otf') format('opentype'),
+         url('~/source-sans-pro/TTF/SourceSansPro-It.ttf') format('truetype');
+}
+@font-face{
+    font-family: 'Source Sans Pro';
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('~/source-sans-pro/EOT/SourceSansPro-Semibold.eot') format('embedded-opentype'),
+         url('~/source-sans-pro/WOFF2/TTF/SourceSansPro-Semibold.ttf.woff2') format('woff2'),
+         url('~/source-sans-pro/WOFF/OTF/SourceSansPro-Semibold.otf.woff') format('woff'),
+         url('~/source-sans-pro/OTF/SourceSansPro-Semibold.otf') format('opentype'),
+         url('~/source-sans-pro/TTF/SourceSansPro-Semibold.ttf') format('truetype');
+}
+
+
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    color: $body-color;
+    font-size: 0.875rem; // 14px
+}
+
+h1,h2,h3,h4 {
+    font-weight: bold;
+}
+
+h1,h2,h3,h4,h5,h6,
+.h1,.h2,.h3,.h4,.h5,.h6 {
+    margin-bottom: 0.65625rem;
+}
+
+h1,.h1 {
+    font-size: 2.25rem; // 36px
+}
+
+h2,.h2 {
+    font-size: 1.875rem; // 30px
+}
+
+h3,.h3 {
+    font-size: 1.5rem; // 24px
+}
+
+h4,.h4 {
+    font-size: 1.125rem; // 18px
+}
+
+h5,.h5 {
+    font-size: .875rem;
+}
+
+h6,.h6 {
+    font-size: 1rem;
+}
+
+p {
+    margin-bottom: .65rem; // ~10px
+}
