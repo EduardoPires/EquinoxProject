@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Equinox.Domain.Core.Notifications;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels;
+using Equinox.WebApi.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -42,9 +43,15 @@ namespace Equinox.WebApi.Controllers
 
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
             if (!result.Succeeded)
+            {
                 NotifyError(result.ToString(), "Login failure");
+                return Response(result);
+            }
 
-            return Response(result);
+            var userProfile = await _userManager.FindByEmailAsync(model.Email);
+
+            return Response(new { SignInResult = result, Profile = new UserProfile(userProfile) });
+
             //if (result.Succeeded)
             //{
             //    _logger.LogInformation("User logged in.");
@@ -65,10 +72,7 @@ namespace Equinox.WebApi.Controllers
             //    return View(model);
             //}
 
-            
 
-            _logger.LogInformation(1, "User logged in.");
-            
         }
 
         [HttpPost]

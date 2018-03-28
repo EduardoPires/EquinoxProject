@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
+import { UserProfile } from "../../shared/viewModel/userProfile.model";
 declare var $: any;
 
 @Injectable()
 export class SettingsService {
 
-    public user: any;
+    public user: UserProfile;
     public app: any;
     public layout: any;
 
