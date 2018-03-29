@@ -1,0 +1,264 @@
+/* ========================================================================
+     Component: timeline
+ ========================================================================== */
+
+$timeline-badge-size : 36px;
+$timeline-datetime-height : 20px;
+$timeline-separator-width : 120px;
+
+// Timeline container
+// --------------------------------
+.timeline,
+.timeline-alt {
+    list-style: none;
+    padding: 0 0 20px;
+    position: relative;
+    z-index: 0; // Timeline central line
+    &:before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        content: " ";
+        width: 1px;
+        background-color: #d1d2d3;
+        left: $timeline-badge-size / 2;
+    } // clear all float element using a last item
+    .timeline-end {
+        float: none;
+        clear: both;
+    } // change popover default colors to use no title
+    .popover {
+        &.left>.arrow:after {
+            border-left-color: #fff;
+        }
+        &.right>.arrow:after {
+            border-right-color: #fff;
+        } // but restore the color if we use a title
+        &.left>.popover-title+.arrow:after {
+            border-left-color: $popover-arrow-color;
+        }
+        &.right>.popover-title+.arrow:after {
+            border-right-color: $popover-arrow-color;
+        }
+    } // Timeline list itmes
+    // --------------------------------
+    >li {
+        @include clearfix();
+        margin-bottom: 20px;
+
+        &.timeline-separator {
+            position: relative;
+            float: none;
+            clear: both;
+            margin: 0 auto;
+            padding: 40px 0;
+            &:first-child {
+                padding-top: 0;
+            }
+            &:before {
+                content: attr(data-datetime);
+                display: inline-block;
+                width: $timeline-separator-width;
+                text-align: center;
+                padding: 0 20px;
+                line-height: 30px;
+                background-color: #b6c5da;
+                color: #fff;
+            }
+        }
+    } // Timeline card
+    // --------------------------------
+    >li>.timeline-card {
+        margin-left: $timeline-separator-width / 2; // Popover inside timeline cards
+        .popover {
+            position: relative;
+            display: block;
+            margin: 0;
+            width: 100%;
+            max-width: none;
+            .arrow {
+                top: $timeline-badge-size/2;
+                display: none;
+            }
+            .popover-content {
+                .popover-title {
+                    background-color: transparent;
+                    border: 0;
+                    padding-left: 0;
+                    padding-top: 0;
+                }
+            }
+        }
+    } // Timeline Date
+    // --------------------------------
+    >li>.timeline-date {
+        margin: -$timeline-datetime-height 0 0;
+        display: block;
+        height: $timeline-datetime-height;
+        line-height: $timeline-datetime-height;
+        font-size: 13px;
+
+        >time {
+            &:after {
+                content: attr(datetime);
+            }
+        }
+    } // Timeline badges
+    // --------------------------------
+    >li>.timeline-badge {
+        position: absolute;
+        left: 0;
+        width: $timeline-badge-size;
+        height: $timeline-badge-size;
+        border-radius: 500px;
+        line-height: $timeline-badge-size;
+        font-size: 1em;
+        text-align: center;
+        color: #fff;
+        background-color: #999;
+        z-index: 100; // Color variants
+        &.primary {
+            background-color: $primary;
+        }
+        &.success {
+            background-color: $success;
+        }
+        &.warning {
+            background-color: $warning;
+        }
+        &.danger {
+            background-color: $danger;
+        }
+        &.info {
+            background-color: $info;
+        }
+
+        &.inverse {
+            background-color: $inverse;
+        }
+        &.green {
+            background-color: $green;
+        }
+        &.pink {
+            background-color: $pink;
+        }
+        &.purple {
+            background-color: $purple;
+        }
+        &.dark {
+            background-color: $dark;
+        }
+        &.yellow {
+            background-color: $yellow;
+        }
+    }
+}
+
+.timeline-alt {
+    .popover .arrow {
+        display: block !important;
+    }
+}
+
+// Timeline title
+// --------------------------------
+.timeline-title {
+    margin-top: 0;
+    color: inherit;
+}
+
+// Timeline Body
+// --------------------------------
+.timeline-body>p,
+.timeline-body>ul {
+    margin-bottom: 0;
+}
+
+.timeline-body>p+p {
+    margin-top: 5px;
+}
+
+// Timeline for Desktops
+// --------------------------------
+
+@include media-breakpoint-up(lg) {
+
+    .timeline {
+        &:before {
+            left: 50%;
+            margin-left: ($timeline-badge-size/2);
+        }
+        >li {
+            float: left;
+            clear: left;
+            width: 45%;
+
+            &.timeline-inverted {
+                float: right;
+                clear: right;
+                margin-top: 50px;
+            }
+        }
+
+        >li.timeline-separator {
+            text-align: center;
+            &:before {
+                margin-left: ($timeline-badge-size);
+            }
+        }
+
+        >li>.timeline-badge {
+            left: 50%;
+            margin-left: 0;
+        }
+
+        >li>.timeline-date {
+            float: none;
+            position: absolute;
+            width: 40%;
+            left: 50%;
+            top: $timeline-badge-size / 2;
+            margin-left: $timeline-badge-size * 1.5;
+            margin-top: -($timeline-datetime-height/2);
+        }
+
+        >li>.timeline-card {
+            margin: 0;
+
+            &:before {
+                border-left-width: 15px;
+                border-right-width: 0;
+                top: 26px;
+                right: -15px;
+                left: auto;
+            }
+
+            &:after {
+                border-left-width: 14px;
+                border-right-width: 0;
+                top: 27px;
+                right: -14px;
+                left: auto;
+            }
+
+            .popover .arrow {
+                display: block;
+            }
+        } // Timeline inverted
+        // --------------------------------
+        >li.timeline-inverted {
+
+            >.timeline-card {
+                padding-left: $timeline-badge-size;
+            }
+
+            .timeline-date {
+                left: auto;
+                right: 50%;
+                width: auto;
+                margin-left: 0;
+                margin-right: $timeline-badge-size;
+            }
+        }
+    }
+}

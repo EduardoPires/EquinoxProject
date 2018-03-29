@@ -1,0 +1,43 @@
+/* ========================================================================
+     Component: todo
+ ========================================================================== */
+
+.todo {
+
+    .todo-item-list {
+        position: relative;
+    }
+
+    .todo-item {
+
+        .todo-edit {
+            display: none;
+            cursor: pointer;
+        }
+        &:hover .todo-edit {
+            display: inline;
+        }
+        &.todo-complete .todo-edit {
+            display: none;
+        }
+    }
+
+    .close {
+        font-size: 1rem;
+    }
+
+    textarea {
+        resize: none;
+        max-width: 100%;
+        min-width: 100%;
+    }
+    .todo-complete {
+        background: $gray-lighter;
+        opacity: .6;
+        color: $gray-darker;
+
+        .todo-title {
+            text-decoration: line-through;
+        }
+    }
+}

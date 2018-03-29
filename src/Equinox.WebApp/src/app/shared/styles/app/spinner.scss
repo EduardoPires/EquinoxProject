@@ -1,0 +1,192 @@
+/* ========================================================================
+   Component: spinner
+ ========================================================================== */
+
+// whirl base variables
+$height: 40px;
+$width: 40px;
+$overlay-color: #f0f0f0;
+
+body {
+
+    // whirl loaders can be used in cards to show a preloader
+    .whirl {
+        position: relative;
+        &:before {
+            content: attr(data-spinner-text);
+            display: block; // Added to force display
+            background-color: $overlay-color;
+            opacity: 0.7;
+        }
+        &.solid {
+            opacity: 1;
+        }
+        &:after {
+            border-top-color: $primary;
+        }
+    } // Note: Some other Whirl CSS requires to customize
+    //       the animation $keyframes
+    .whirl.blade:after {
+        border-bottom-color: $primary;
+    }
+    .whirl.double-up:after {
+        border-right-color: $primary;
+        border-top-color: $primary;
+        border-left-color: $primary;
+        border-bottom-color: $primary;
+    }
+    .whirl.duo:after {
+        border-right-color: $primary;
+        border-left-color: $primary;
+        border-top-color: $purple;
+        border-bottom-color: $purple;
+    }
+    .whirl.helicopter:after {
+        background-color: $primary;
+    }
+    .whirl.ringed:after {
+        border-right-color: $info;
+        border-top-color: $purple;
+        border-left-color: $purple;
+        border-bottom-color: $purple;
+    }
+    .whirl.traditional:after {
+        border-right-color: $info;
+        border-top-color: $info;
+        border-left-color: $purple;
+        border-bottom-color: $yellow;
+    }
+    .whirl.line:after {
+        box-shadow: inset -10px 0px 0px rgba($primary, .5);
+    } // IE9 and below doesn't support animations
+    .no-cssanimations & {
+        .whirl:before {
+            opacity: .9;
+        }
+        .whirl:after {
+            content: "Loading..."; // absolute positioned
+            width: $width;
+            height: $height;
+            margin: -($height/2) 0 0 -($width/2); // center text
+            line-height: $height; // reset styles
+            color: #000;
+            opacity: 1;
+            border: 0;
+            box-shadow: 0 0 0 #000;
+            background-color: transparent;
+            text-align: center;
+        }
+    }
+
+    // Loader.CSS
+    // -----------------------------------
+
+    // Global background override
+    .ball-pulse>div,
+    .ball-grid-pulse>div,
+    .square-spin>div,
+    .ball-pulse-rise>div,
+    .ball-rotate>div,
+    .ball-rotate>div:before,
+    .ball-rotate>div:after,
+    .cube-transition>div,
+    .ball-zig-zag>div,
+    .ball-zig-zag-deflect>div,
+    .ball-triangle-path>div,
+    .ball-scale>div,
+    .line-scale>div,
+    .line-scale-party>div,
+    .ball-scale-multiple>div,
+    .ball-pulse-sync>div,
+    .ball-beat>div,
+    .line-scale-pulse-out>div,
+    .line-scale-pulse-out-rapid>div,
+    .ball-spin-fade-loader>div,
+    .line-spin-fade-loader>div,
+    .triangle-skew-spin>div,
+    .ball-grid-beat>div,
+    .semi-circle-spin>div {
+        background-color: $primary;
+    } // custom override
+    .ball-clip-rotate-multiple {
+        width: 1px;
+        >div {
+            border-color: $primary transparent $primary transparent;
+            &:last-child {
+                border-color: transparent $primary transparent $primary;
+            }
+        }
+    }
+    .ball-clip-rotate>div {
+        border-color: $primary;
+        border-bottom-color: transparent;
+    }
+    .ball-clip-rotate-pulse>div {
+        &:first-child {
+            background-color: $primary;
+            top: 5px;
+            left: -8px;
+        }
+        &:last-child {
+            border-color: $primary transparent $primary transparent;
+        }
+    }
+    .square-spin>div,
+    .ball-scale-ripple>div,
+    .ball-scale-ripple-multiple>div {
+        border-color: $primary;
+    }
+    .pacman>div:first-of-type {
+        border-top-color: $primary;
+        border-left-color: $primary;
+        border-bottom-color: $primary;
+    }
+    .pacman>div:nth-child(2) {
+        border-top-color: $primary;
+        border-left-color: $primary;
+        border-bottom-color: $primary;
+    }
+    .pacman>div:nth-child(3),
+    .pacman>div:nth-child(4),
+    .pacman>div:nth-child(5),
+    .pacman>div:nth-child(6) {
+        background-color: $primary;
+    }
+
+    // Spin Kit
+    // -----------------------------------
+    .sk-rotating-plane.sk-spinner,
+    .sk-double-bounce .sk-double-bounce1,
+    .sk-double-bounce .sk-double-bounce2,
+    .sk-wave .sk-rect,
+    .sk-wandering-cubes .sk-cube1,
+    .sk-wandering-cubes .sk-cube2,
+    .sk-chasing-dots .sk-dot1,
+    .sk-chasing-dots .sk-dot2,
+    .sk-three-bounce div,
+    .sk-circle .sk-child:before,
+    .sk-cube-grid .sk-cube,
+    .sk-fading-circle .sk-circle:before,
+    .sk-spinner-pulse.sk-spinner,
+    .sk-rotating-plane {
+        background-color: $primary !important;
+    }
+
+    .sk-wordpress .sk-inner-circle {
+        background-color: #fff;
+    }
+}
+
+
+/* just for loaders.css demo */
+.loader-demo {
+    height: 150px;
+    padding-top: 50px;
+    text-align: center;
+    >div {
+        display: inline-block;
+    }
+    &.loader-demo-sk {
+        padding-top: 0;
+    }
+}

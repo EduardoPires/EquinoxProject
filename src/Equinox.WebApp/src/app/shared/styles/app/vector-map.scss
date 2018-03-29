@@ -1,0 +1,45 @@
+/* ========================================================================
+     Component: vector-map
+ ========================================================================== */
+
+$vmap-label-bg: #313232;
+$vmap-zoom-ctrl-bg: #515253;
+
+body {
+    // adds priority
+
+    .jvectormap-label {
+        position: absolute;
+        display: none;
+        border: solid 1px $vmap-label-bg;
+        border-radius: 2px;
+        background: $vmap-label-bg;
+        color: white;
+        padding: 3px 6px;
+        opacity: 0.9;
+        z-index: 1100;
+    }
+
+    .jvectormap-zoomin, .jvectormap-zoomout {
+        position: absolute;
+        left: 10px;
+        width: 22px;
+        height: 22px;
+        border-radius: 2px;
+        background: $vmap-zoom-ctrl-bg;
+        padding: 5px;
+        color: white;
+        cursor: pointer;
+        line-height: 10px;
+        text-align: center;
+    }
+
+    .jvectormap-zoomin {
+        top: 10px;
+    }
+
+    .jvectormap-zoomout {
+        top: 30px;
+    }
+
+}

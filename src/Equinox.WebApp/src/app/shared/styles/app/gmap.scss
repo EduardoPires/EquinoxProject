@@ -1,0 +1,13 @@
+/* ========================================================================
+     Component: gmap
+ ========================================================================== */
+.gmap {
+    // Sets an arbitrary height for the map element
+    // Google Map requires it
+    height: 300px;
+
+    &.gmap-sm {
+        height: 150px;
+    }
+
+}
