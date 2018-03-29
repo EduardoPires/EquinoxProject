@@ -7,8 +7,14 @@ const Home = {
 
 const Settings = {
     text: "User Settings",
-    link: "/user-settings",
-    icon: "icon-home"
+    link: "/user",
+    icon: "icon-settings",
+    submenu: [
+        {
+            text: "Profile",
+            link: "/user/profile"
+        }
+    ]
 };
 
 const headingMain = {

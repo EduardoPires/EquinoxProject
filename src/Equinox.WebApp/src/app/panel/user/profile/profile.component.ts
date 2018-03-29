@@ -4,7 +4,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
     selector: "app-home",
     templateUrl: "./profile.component.html",
-    styleUrls: ["./profilez.component.scss"]
+    styleUrls: ["./profile.component.scss"]
 })
 export class ProfileComponent implements OnInit {
 
