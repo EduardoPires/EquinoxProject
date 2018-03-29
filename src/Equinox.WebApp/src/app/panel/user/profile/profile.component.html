@@ -1,35 +1,40 @@
-<div class="bg-cover" style="background-image: url(assets/img/profile-bg.jpg);">
-    <div class="p-4 text-center text-white">
-        <img class="img-thumbnail rounded-circle thumb128" src="assets/img/user/09.jpg" alt="Image" />
-        <h3 class="m-0">Ted Berry</h3>
-        <p>Lead director</p>
-        <p>Proin metus justo, commodo in ultrices at, lobortis sit amet dui. Fusce dolor purus, adipiscing a tempus at, gravida
-            vel purus.</p>
+<div class="unwrap">
+    <div class="bg-cover" style="background-image: url(assets/img/profile-bg.jpg);">
+        <div class="p-4 text-center text-white">
+            <img class="img-thumbnail rounded-circle thumb128" src="assets/img/user/09.jpg" alt="Image" />
+            <h3 class="m-0">{{settings.user.email}}</h3>
+            <p>Lead director</p>
+            <p>Proin metus justo, commodo in ultrices at, lobortis sit amet dui. Fusce dolor purus, adipiscing a tempus at,
+                gravida vel purus.</p>
+        </div>
     </div>
 </div>
-<hr>
 <div class="row">
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-5 col-md-5">
         <div class="card b">
             <div class="card-header bg-gray-lighter text-bold">Account</div>
             <div class="card-body">
-                <form action="">
-                    <div class="form-group">
-                        <label>Current password</label>
-                        <input class="form-control" type="password" />
+                <div class="form-group">
+                    <label>Current password</label>
+                    <input class="form-control" type="password" [(ngModel)]="ChangePass.OldPassword" />
+                </div>
+                <div class="form-group">
+                    <label>New password</label>
+                    <input class="form-control" type="password" [(ngModel)]="ChangePass.NewPassword" />
+                </div>
+                <div class="form-group">
+                    <label>Confirm new password</label>
+                    <input class="form-control" type="password" [(ngModel)]="ChangePass.ConfirmPassword" />
+                </div>
+                <button class="btn btn-info" type="button" (click)="ChangePassword()">Update password</button>
+                <div class="loader-demo d-flex align-items-center justify-content-center">
+                    <div class="ball-clip-rotate-pulse">
+                        <div></div>
+                        <div></div>
                     </div>
-                    <div class="form-group">
-                        <label>New password</label>
-                        <input class="form-control" type="password" />
-                    </div>
-                    <div class="form-group">
-                        <label>Confirm new password</label>
-                        <input class="form-control" type="password" />
-                    </div>
-                    <button class="btn btn-info" type="button">Update password</button>
-
-                </form>
+                </div>
             </div>
+
         </div>
         <div class="card b">
             <div class="card-header bg-danger text-bold">Delete account</div>
@@ -43,8 +48,10 @@
                 </p>
             </div>
         </div>
+
     </div>
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-5 col-md-5">
+
         <div class="card b">
             <div class="card-header bg-gray-lighter text-bold">Profile</div>
             <div class="card-body">

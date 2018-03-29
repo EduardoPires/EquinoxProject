@@ -1,0 +1,30 @@
+/* ========================================================================
+   Component: form-tags
+ ========================================================================== */
+
+.ng2-tag-input.minimal {
+    height: 2.25rem !important;
+    border: 1px solid $input-border-color !important;
+    border-radius: $input-border-radius;
+    min-height: 0 !important;
+    padding: $input-padding-y $input-padding-x !important;
+    tag {
+        height: auto !important;
+        font-size: .75rem !important;
+        line-height: 1.4 !important;
+        padding: 4px 12px !important;
+        margin: 0 5px 0 0 !important;
+    }
+    &.ng2-tag-input--focused {
+        border: 1px solid $input-focus-border-color !important;
+    }
+    svg {
+        height: auto !important;
+    }
+    .ng2-tag-input__text-input {
+        height: auto !important;
+    }
+    delete-icon:hover {
+        transform: scale(1.25) translateY(0px) !important;
+    }
+}

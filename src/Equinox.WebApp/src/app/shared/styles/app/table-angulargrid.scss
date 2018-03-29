@@ -1,0 +1,222 @@
+/* ========================================================================
+   Component: table-angulargrid
+ ========================================================================== */
+.ag-angle {
+    .ag-root {
+        border: 1px solid $gray-light;
+        // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .ag-cell {
+        padding: 4px 15px;
+    }
+
+    .ag-cell-focus {
+        border: 1px solid darken($gray, 10%);
+    }
+
+    .ag-cell-no-focus {
+        border-right: 1px dotted $gray-light;
+        border-top: 1px solid transparent;
+        border-left: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+    }
+
+    .ag-pinned-header {
+        border-bottom: 1px solid $gray-light;
+    }
+
+    .ag-header-container {
+        border-bottom: 1px solid $gray-light;
+    }
+
+    .ag-header {
+        border-top: 2px solid $gray-light;
+        //height: auto !important;
+    }
+
+    .ag-header-cell {
+        border-right: 1px solid $gray-light;
+        background-color: #fff;
+    }
+
+    .ag-header-group-cell {
+        border-right: 1px solid $gray-light;
+    }
+
+    .ag-header-group-cell-with-group {
+        border-bottom: 1px solid $gray-light;
+    }
+
+    .ag-header-cell-label {
+        padding: 8px 15px;
+    }
+
+    .ag-header-cell-text {
+        padding-left: 2px;
+    }
+
+    .ag-header-group-cell-label {
+        padding: 4px;
+        font-weight: bold;
+    }
+
+    .ag-header-group-text {
+        margin-right: 2px;
+    }
+
+    .ag-header-cell-menu-button {
+        padding: 2px;
+        margin-top: 6px;
+        //border: 1px solid transparent;
+        border-radius: 2px;
+        cursor: pointer;
+
+        .ag-header-icon {
+            color: $gray-lighter;
+        }
+    }
+    .ag-header-cell-menu-button:hover {
+        //border: 1px solid $gray;
+
+        .ag-header-icon {
+            color: $gray;
+        }
+    }
+
+    .ag-header-icon {
+        color: #800000;
+    }
+
+    .ag-dark {
+        .ag-header-expand-icon:hover {
+            cursor: pointer;
+        }
+
+    }
+
+    .ag-header-row {
+        min-height: 35px;
+    }
+
+    .ag-row-odd {
+        background-color: $gray-lighter;
+    }
+
+    .ag-row-even {
+        background-color: #fff;
+    }
+
+    .ag-loading-panel {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .ag-loading-center {
+        background-color: #fff;
+        border: 1px solid $gray-light;
+        border-radius: 4px;
+        padding: 10px;
+    }
+
+    .ag-body {
+        // padding-top: 40px !important;
+        background-color: #fff;
+    }
+
+    .ag-row-selected {
+        background-color: #b0e0e6;
+    }
+
+    .ag-group-cell-entire-row {
+        background-color: #aaa;
+        padding: 4px;
+    }
+
+    .ag-footer-cell-entire-row {
+        background-color: #aaa;
+        padding: 4px;
+    }
+
+    .ag-group-cell {
+        font-style: italic;
+    }
+
+    .ag-footer-cell {
+        font-style: italic;
+    }
+
+    .ag-filter-checkbox {
+        position: relative;
+        top: 2px;
+        left: 2px;
+    }
+
+    .ag-filter-header-container {
+        border-bottom: 1px solid $gray;
+    }
+
+    .ag-filter {
+        border: 1px solid $gray-light;
+        background-color: #fff;
+
+        input[type="text"], select {
+            width: 95%;
+            height: $input-height-sm;
+            padding: $input-padding-y-sm $input-padding-x-sm;
+            font-size: $font-size-sm;
+            line-height: $input-line-height-sm;
+            color: $input-color;
+            background-color: $input-bg;
+            background-image: none;
+            border:1px solid $input-border-color;
+            border-radius: $input-border-radius;
+            &:focus {
+                border-color: $primary;
+            }
+        }
+    }
+
+    .ag-selection-checkbox {
+        margin-left: 4px;
+    }
+
+    .ag-paging-panel {
+        padding: 4px;
+    }
+
+    .ag-paging-button {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .ag-paging-row-summary-panel {
+        display: inline-block;
+        width: 300px;
+    }
+
+}
+
+// Grouping headings
+
+.ag-angle-grouped {
+    .ag-body {
+        padding-top: 60px !important;
+    }
+
+    .ag-header {
+        height: 60px !important;
+    }
+
+    .ag-header-group-cell {
+        border-right: 1px solid $gray-light;
+    }
+
+    .ag-header-cell-label {
+        padding: 4px;
+    }
+
+    .ag-header-group-text {
+        margin-right: 6px;
+    }
+
+}

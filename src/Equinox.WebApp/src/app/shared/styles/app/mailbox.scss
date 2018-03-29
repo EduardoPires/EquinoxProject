@@ -1,0 +1,126 @@
+/* ========================================================================
+     Component: mailbox
+ ========================================================================== */
+
+$mail-box-active-item : $primary;
+$mail-box-hover-item : #C0D0D3;
+$mail-mails-active : #f7f8f9;
+
+
+// Mail Navigation
+// -----------------------------------
+.mb-boxes {
+
+    // height: 0;
+    overflow: hidden;
+
+    .nav>li>a {
+        font-weight: 600;
+        color: $gray-dark;
+        margin: 5px 0;
+        @include transition(background-color .3s ease);
+
+        &:hover,
+        &:focus {
+            background-color: $mail-box-hover-item;
+        }
+    }
+
+    .nav>li.active>a {
+        background-color: $mail-box-active-item !important;
+        color: #fff;
+    }
+
+    @include media-breakpoint-up(lg) {
+        height: auto !important;
+        visibility: visible !important;
+        display: block;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .mb-compose-button {
+        // .btn-block
+        display: block;
+        width: 100%;
+    }
+
+    .mb-toggle-button {
+        display: none;
+    }
+}
+
+// Mails list
+// -----------------------------------
+.mb-mails {
+
+    >tbody>tr>td {
+        border-top-color: transparent;
+        cursor: pointer;
+    }
+
+    .mb-mail-active {
+        background-color: $mail-mails-active !important;
+    }
+
+    .mb-mail-avatar {
+        float: left;
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 3px;
+    }
+
+    .mb-mail-date {
+        display: block;
+        float: right;
+        color: $text-muted;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .mb-mail-from {
+        // display: block;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    .mb-mail-meta {
+        overflow: hidden;
+    }
+    .mb-mail-subject {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.1;
+        margin-bottom: 6px;
+    }
+
+    .mb-mail-preview {
+        clear: both;
+        margin-top: 10px;
+        color: $text-muted;
+        margin-top: 2px;
+    }
+
+    .mb-attachment {
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid $gray-light;
+    }
+}
+
+// Viewwing mails
+// -----------------------------------
+.mb-view {
+    >tbody>tr>td {
+        cursor: auto;
+    }
+
+    .mb-mail-to-list {
+        >a {
+            margin-right: 5px;
+            color: $text-muted;
+        }
+    }
+}

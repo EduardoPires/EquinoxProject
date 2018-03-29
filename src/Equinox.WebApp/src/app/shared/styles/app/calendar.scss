@@ -1,0 +1,103 @@
+/* ========================================================================
+     Component: calendar
+ ========================================================================== */
+
+.calendar-app {
+
+    .fc-button {
+        @extend .btn-sm;
+        @extend .btn-secondary;
+        height: auto;
+        background-image: none;
+        padding: 5px 10px;
+        &:active,
+        &.active,
+        &.fc-state-active {
+            outline: 0;
+            background-image: none;
+            @include box-shadow(inset 0 3px 5px rgba(0, 0, 0, .125));
+        }
+    }
+
+    .fc-button .fc-icon {
+        margin: 0 .1em;
+        font-size: inherit;
+        font-family: FontAwesome !important;
+        vertical-align: baseline;
+        color: #555;
+        line-height: 1.5; // Remove any icon predefined by FullCalendar
+        &:after {
+            display: none;
+        }
+    }
+
+    .fc-state-highlight,
+    .fc-day:hover {
+        background-color: #f7f8f9;
+    }
+
+    .fc-day-number {
+        font-size: 18px;
+        font-weight: bold;
+        color: #a1a2a3;
+    }
+
+    .fc-event {
+        color: #fff !important;
+    } // Allow to drag event outside the calendar
+    .fc-view {
+        overflow: visible;
+    } // Calendar app styles
+    // -----------------------
+    .external-events {
+        margin: 0;
+        >div {
+            // display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding: 6px 10px;
+            color: #fff;
+            font-size: 11px;
+            border-radius: 2px;
+            cursor: move;
+        }
+        &:empty {
+            content: "EMRTPUY";
+        }
+    } // Remove events drop area
+    .external-events-trash {
+        position: relative;
+        min-height: 120px;
+        &:after {
+            content: "\f00d"; // .fa-times
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: $inverse;
+            opacity: 0;
+            font-family: FontAwesome;
+            color: #fff;
+            text-align: center;
+            font-size: 50px;
+            padding: 8%;
+            max-height: 100%;
+            @include transition(all .3s ease);
+            z-index: -1;
+        }
+        &.active:after {
+            opacity: 1;
+            z-index: 1;
+        }
+        &.hovered:after {
+            background-color: #fb797e;
+        }
+    }
+
+    .external-event-color-selector {
+        .circle.selected {
+            border: 3px solid rgba(255, 255, 255, .5);
+        }
+    }
+}

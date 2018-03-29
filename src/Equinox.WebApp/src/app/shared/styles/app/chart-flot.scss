@@ -1,0 +1,59 @@
+/* ========================================================================
+     Component: chart-flot
+ ======================================================================== */
+
+
+[flot] {
+    display: block;
+    width: 100%;
+    height: 250px;
+    .legend {
+        >table tr td {
+            padding: 3px;
+        }
+        >table tr td:first-child {
+            padding-left: 3px;
+        }
+        >table tr td:last-child {
+            padding-right: 3px;
+        }
+        >table tr+tr td {
+            padding-top: 0;
+        }
+
+        >div:first-child {
+            border-color: rgba(0, 0, 0, .1) !important;
+        }
+
+        .legendColorBox>div,
+        .legendColorBox>div>div {
+            border-radius: 400px;
+        }
+    }
+}
+
+.flot-chart-content {
+    width: 100%;
+    height: 100%;
+}
+
+// Labels for PIE CHARTS
+.flot-pie-label {
+    padding: 3px 5px;
+    font-size: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+// Tooltip style
+// --------------------------------------
+#flotTip {
+    position: relative;
+    padding: 5px;
+    font-size: 12px !important;
+    border-radius: 2px !important;
+    border-color: transparent !important;
+    background-color: rgba(0, 0, 0, .75) !important;
+    color: #f1f1f1;
+    z-index: 5;
+}
