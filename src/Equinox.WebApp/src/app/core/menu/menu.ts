@@ -1,13 +1,13 @@
 
 const Home = {
     text: "Home",
-    link: "/panel/home",
+    link: "/home",
     icon: "icon-home"
 };
 
 const Settings = {
-    text: "Home",
-    link: "/panel/home",
+    text: "User Settings",
+    link: "/user-settings",
     icon: "icon-home"
 };
 
