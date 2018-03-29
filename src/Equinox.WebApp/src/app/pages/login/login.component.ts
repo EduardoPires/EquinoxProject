@@ -43,9 +43,9 @@ export class LoginComponent implements OnInit {
         let login = new LoginModel(this.valForm.get("email").value, this.valForm.get("password").value, rememberMe);
         this.authService.auth(login).subscribe(
             loginResult => {
-                if (loginResult.data.succeeded) {
+                if (loginResult.data.signInResult.succeeded) {
                     let returnUrl = this.route.snapshot.queryParams["returnUrl"];
-
+                    this.settings.user = loginResult.data.profile;
                     if (returnUrl != null)
                         this.router.navigateByUrl(returnUrl);
                     else

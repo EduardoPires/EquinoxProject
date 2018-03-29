@@ -7,6 +7,7 @@ import { RegisterModel } from "../viewModel/register.model";
 import { DefaultResponse } from "../viewModel/defaultResponse.model";
 import { LoginModel } from "../viewModel/login.model";
 import { SignInResult } from "../viewModel/signInResult.model";
+import { LoginResult } from "../viewModel/loginResult.model";
 
 @Injectable()
 export class AuthenticationService {
@@ -21,8 +22,8 @@ export class AuthenticationService {
         return this.http.post<DefaultResponse<RegisterModel>>(environment.API_URL + "v1/account/register", register);
     }
 
-    public auth(register: LoginModel): Observable<DefaultResponse<SignInResult>> {
-        return this.http.post<DefaultResponse<SignInResult>>(environment.API_URL + "v1/account/login", register);
+    public auth(register: LoginModel): Observable<DefaultResponse<LoginResult>> {
+        return this.http.post<DefaultResponse<LoginResult>>(environment.API_URL + "v1/account/login", register);
     }
 
     public checkUserName(userName: string): Observable<DefaultResponse<boolean>> {
