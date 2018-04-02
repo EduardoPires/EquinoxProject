@@ -1,23 +1,22 @@
 import { Injectable } from "@angular/core";
 import { UserProfile } from "../../shared/viewModel/userProfile.model";
+import { DefaultResponse } from "../../shared/viewModel/defaultResponse.model";
+import { environment } from "../../../environments/environment";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
+
 declare var $: any;
 
 @Injectable()
 export class SettingsService {
 
-    public user: UserProfile;
+    private user: UserProfile;
     public app: any;
     public layout: any;
 
-    constructor() {
+    constructor(private http: HttpClient) {
 
-        // User Settings
-        // -----------------------------------
-        this.user = {
-            name: "John",
-            job: "ng-developer",
-            picture: "assets/img/user/02.jpg"
-        };
 
         // App Settings
         // -----------------------------------
@@ -49,30 +48,55 @@ export class SettingsService {
 
     }
 
-    getAppSetting(name) {
+    public getProfile(): Observable<UserProfile> {
+
+        if (this.user == null)
+            return this.getUserFromApi().debounceTime(5000);
+        else
+            return of(this.user);
+    }
+
+    private getUserFromApi() {
+        return this.http.get<DefaultResponse<UserProfile>>(environment.API_URL + "v1/account-management/profile").map(a => {
+            if (a.success) {
+                if (a.data.picture == null)
+                    a.data.picture = "assets/img/user/13.jpg";
+                this.user = a.data;
+            }
+            return a.data;
+        });
+    }
+
+    public setProfile(user: UserProfile) {
+        if (user.picture == null)
+            user.picture = "assets/img/user/13.jpg";
+        this.user = user;
+    }
+
+    public getAppSetting(name) {
         return name ? this.app[name] : this.app;
     }
-    getUserSetting(name) {
+    public getUserSetting(name) {
         return name ? this.user[name] : this.user;
     }
-    getLayoutSetting(name) {
+    public getLayoutSetting(name) {
         return name ? this.layout[name] : this.layout;
     }
 
-    setAppSetting(name, value) {
+    public setAppSetting(name, value) {
         if (typeof this.app[name] !== "undefined")
             this.app[name] = value;
     }
-    setUserSetting(name, value) {
+    public setUserSetting(name, value) {
         if (typeof this.user[name] !== "undefined")
             this.user[name] = value;
     }
-    setLayoutSetting(name, value) {
+    public setLayoutSetting(name, value) {
         if (typeof this.layout[name] !== "undefined")
             return this.layout[name] = value;
     }
 
-    toggleLayoutSetting(name) {
+    public toggleLayoutSetting(name) {
         return this.setLayoutSetting(name, !this.getLayoutSetting(name));
     }
 

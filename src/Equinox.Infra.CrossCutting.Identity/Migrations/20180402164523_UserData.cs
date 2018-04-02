@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Equinox.Infra.CrossCutting.Identity.Migrations
 {
-    public partial class UserPicture : Migration
+    public partial class UserData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,37 @@ namespace Equinox.Infra.CrossCutting.Identity.Migrations
                 table: "AspNetRoles");
 
             migrationBuilder.AddColumn<string>(
+                name: "Bio",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Company",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "JobTitle",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Name",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
                 name: "Picture",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Url",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: true);
@@ -60,7 +90,27 @@ namespace Equinox.Infra.CrossCutting.Identity.Migrations
                 table: "AspNetRoles");
 
             migrationBuilder.DropColumn(
+                name: "Bio",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Company",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "JobTitle",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Name",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
                 name: "Picture",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Url",
                 table: "AspNetUsers");
 
             migrationBuilder.CreateIndex(

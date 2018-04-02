@@ -95,11 +95,13 @@ namespace Equinox.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            
             app.UseCors(c =>
             {
-                c.AllowAnyHeader();
                 c.AllowAnyMethod();
+                c.AllowAnyHeader();
                 c.AllowAnyOrigin();
+                c.AllowCredentials();
             });
 
             app.UseAuthentication();

@@ -9,6 +9,9 @@ import { TextMaskModule } from "angular2-text-mask";
 import { LayoutComponent } from "../shared/layout/layout.component";
 import { PitbullGuard } from "../core/guard/pitbull";
 import { AuthenticationService } from "../shared/services/authentication.service";
+import { AccountManagementService } from "../shared/services/account-management.service";
+import { BrowserModule } from "@angular/platform-browser";
+import { ToasterService } from "angular2-toaster";
 
 const routes: Routes = [
     {
@@ -33,7 +36,9 @@ const routes: Routes = [
     ],
     providers: [
         PitbullGuard,
-        AuthenticationService
+        AuthenticationService,
+        AccountManagementService,
+        ToasterService
     ],
     exports: [
         RouterModule

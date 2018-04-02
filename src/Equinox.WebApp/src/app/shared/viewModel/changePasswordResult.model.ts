@@ -1,4 +1,4 @@
-export class ChangePasswordResult {
+export class UserManagementResult {
     /// <summary>
     /// Flag indicating whether if the operation succeeded or not.
     /// </summary>
@@ -14,10 +14,10 @@ export class ChangePasswordResult {
     /// that occurred during the identity operation.
     /// </summary>
     /// <value>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:Microsoft.AspNetCore.Identity.IdentityError" />s.</value>
-    public Errors: Array<ChangePasswordError>;
+    public errors: Array<UserManagementError>;
 }
 
-export class ChangePasswordError {
+export class UserManagementError {
     /// <summary>Gets or sets the code for this error.</summary>
     /// <value>The code for this error.</value>
     public code: string;

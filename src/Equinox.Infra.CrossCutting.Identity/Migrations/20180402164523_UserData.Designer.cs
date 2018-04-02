@@ -11,8 +11,8 @@ using System;
 namespace Equinox.Infra.CrossCutting.Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180328192218_UserPicture")]
-    partial class UserPicture
+    [Migration("20180402164523_UserData")]
+    partial class UserData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,10 @@ namespace Equinox.Infra.CrossCutting.Identity.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("Bio");
+
+                    b.Property<string>("Company");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -36,9 +40,13 @@ namespace Equinox.Infra.CrossCutting.Identity.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("JobTitle");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -57,6 +65,8 @@ namespace Equinox.Infra.CrossCutting.Identity.Migrations
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("Url");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);

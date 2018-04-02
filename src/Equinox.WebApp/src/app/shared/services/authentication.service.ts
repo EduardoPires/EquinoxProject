@@ -32,4 +32,11 @@ export class AuthenticationService {
         };
         return this.http.get<DefaultResponse<boolean>>(environment.API_URL + "v1/account/checkUsername", { params: params });
     }
+
+    public checkEmail(email: string): Observable<DefaultResponse<boolean>> {
+        let params = {
+            email: email
+        };
+        return this.http.get<DefaultResponse<boolean>>(environment.API_URL + "v1/account/checkEmail", { params: params });
+    }
 }

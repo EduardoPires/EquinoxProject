@@ -2,13 +2,13 @@
     <!-- User picture-->
     <div class="user-block-picture">
         <div class="user-block-status">
-            <img class="img-thumbnail rounded-circle" [src]="user.picture" alt="Avatar" />
+            <img class="img-thumbnail rounded-circle" [src]="settings.user?.picture" alt="Avatar" />
             <div class="circle bg-success circle-lg"></div>
         </div>
     </div>
     <!-- Name and Job-->
     <div class="user-block-info">
-        <span class="user-block-name">{{ 'sidebar.WELCOME' | translate }}  John</span>
-        <span class="user-block-role">Programmer</span>
+        <span class="user-block-name">{{ 'sidebar.WELCOME' | translate }} {{settings.user?.name}}</span>
+        <span class="user-block-role" *ngIf="settings.user?.jobTitle" >{{settings.user?.jobTitle}}</span>
     </div>
 </div>
