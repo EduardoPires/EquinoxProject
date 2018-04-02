@@ -30,8 +30,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     public showButtonLoading: boolean;
     private externalAccessSubscription: Subscription;
 
-    private userExist: boolean;
     private userExistsSubject: Subject<string> = new Subject<string>();
+    private emailExistsSubject: Subject<string> = new Subject<string>();
 
     constructor(public settings: SettingsService,
         fb: FormBuilder,
@@ -54,6 +54,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
             "accountagreed": [null, Validators.required],
             "passwordGroup": this.passwordForm,
             "telephone": [null, Validators.required],
+            "username": [null, Validators.compose([Validators.required, CustomValidators.username])],
+            "name": [null, Validators.required]
         });
 
         this.googleForm = fb.group({
@@ -79,14 +81,32 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.showButtonLoading = false;
 
         this.userExistsSubject
-            .debounceTime(300)
+            .debounceTime(500)
             .switchMap(a => this.registerService.checkUserName(a))
             .subscribe((response: DefaultResponse<boolean>) => {
                 if (response.data)
                     this.valForm.controls["username"].setErrors({ "exists": "Username already taken" });
             });
 
+        this.emailExistsSubject
+            .debounceTime(500)
+            .switchMap(a => this.registerService.checkEmail(a))
+            .subscribe((response: DefaultResponse<boolean>) => {
+                if (response.data)
+                    this.valForm.controls["email"].setErrors({ "exists": "E-mail already taken" });
+            });
+
         this.errors = [];
+    }
+
+
+    public checkIfEmailExists() {
+        if (this.valForm.controls["email"].hasError("email"))
+            return;
+
+        let value = this.valForm.get("email").value;
+        if (value != null && value != "")
+            this.emailExistsSubject.next(value);
     }
 
     public checkIfUniquenameExists() {
@@ -140,6 +160,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
             this.newUser.password = this.valForm.get("passwordGroup.password").value;
             this.newUser.email = this.valForm.get("email").value;
             this.newUser.telephone = this.valForm.get("telephone").value;
+            this.newUser.username = this.valForm.get("username").value;
+            this.newUser.name = this.valForm.get("name").value;
 
             try {
 

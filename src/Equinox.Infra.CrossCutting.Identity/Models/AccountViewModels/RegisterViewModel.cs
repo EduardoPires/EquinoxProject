@@ -10,7 +10,7 @@ namespace Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -23,5 +23,11 @@ namespace Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels
         [Phone]
         [Display(Name = "Telephone")]
         public string Telephone { get; set; }
+
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
     }
 }

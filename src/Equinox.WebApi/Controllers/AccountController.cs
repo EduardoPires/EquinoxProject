@@ -9,10 +9,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Equinox.WebApi.Controllers
 {
-    [Authorize]
     public class AccountController : ApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -31,7 +31,6 @@ namespace Equinox.WebApi.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("account/login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
@@ -40,43 +39,34 @@ namespace Equinox.WebApi.Controllers
                 NotifyModelStateErrors();
                 return Response(model);
             }
+            SignInResult result = null;
+            ApplicationUser user = null;
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
+            if (model.IsUsernameEmail())
+            {
+                user = await _userManager.FindByEmailAsync(model.Username);
+                result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe,
+                    lockoutOnFailure: true);
+            }
+            else
+            {
+                user = await _userManager.FindByNameAsync(model.Username);
+                result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe,
+                    lockoutOnFailure: true);
+            }
+
             if (!result.Succeeded)
+
             {
                 NotifyError(result.ToString(), "Login failure");
                 return Response(result);
             }
 
-            var userProfile = await _userManager.FindByEmailAsync(model.Email);
-
-            return Response(new { SignInResult = result, Profile = new UserProfile(userProfile) });
-
-            //if (result.Succeeded)
-            //{
-            //    _logger.LogInformation("User logged in.");
-            //    return Response(model);
-            //}
-            //if (result.RequiresTwoFactor)
-            //{
-            //    return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
-            //}
-            //if (result.IsLockedOut)
-            //{
-            //    _logger.LogWarning("User account locked out.");
-            //    return RedirectToAction(nameof(Lockout));
-            //}
-            //else
-            //{
-            //    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            //    return View(model);
-            //}
-
+            return Response(new { SignInResult = result, Profile = new UserProfile(user) });
 
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("account/register")]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
@@ -86,7 +76,7 @@ namespace Equinox.WebApi.Controllers
                 return Response(model);
             }
 
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Telephone, };
+            var user = new ApplicationUser { UserName = model.Username, Email = model.Email, PhoneNumber = model.Telephone, Name = model.Name };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -105,12 +95,22 @@ namespace Equinox.WebApi.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("account/checkUsername")]
         public async Task<IActionResult> CheckUsername(string username)
         {
 
             var result = await _userManager.FindByNameAsync(username);
+
+            return Response(result != null);
+        }
+
+
+        [HttpGet]
+        [Route("account/checkEmail")]
+        public async Task<IActionResult> CheckEmail(string email)
+        {
+
+            var result = await _userManager.FindByEmailAsync(email);
 
             return Response(result != null);
         }

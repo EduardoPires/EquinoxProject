@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute) {
 
         this.valForm = fb.group({
-            "email": [null, Validators.compose([Validators.required, CustomValidators.email])],
+            "username": [null, Validators.required],
             "password": [null, Validators.required],
             "rememberMe": [null, Validators.required]
         });
@@ -40,12 +40,12 @@ export class LoginComponent implements OnInit {
             this.valForm.controls[c].markAsTouched();
         }
         let rememberMe = this.valForm.get("rememberMe").value == null ? false : this.valForm.get("rememberMe").value;
-        let login = new LoginModel(this.valForm.get("email").value, this.valForm.get("password").value, rememberMe);
+        let login = new LoginModel(this.valForm.get("username").value, this.valForm.get("password").value, rememberMe);
         this.authService.auth(login).subscribe(
             loginResult => {
                 if (loginResult.data.signInResult.succeeded) {
                     let returnUrl = this.route.snapshot.queryParams["returnUrl"];
-                    this.settings.user = loginResult.data.profile;
+                    this.settings.setProfile(loginResult.data.profile);
                     if (returnUrl != null)
                         this.router.navigateByUrl(returnUrl);
                     else

@@ -27,6 +27,10 @@ namespace Equinox.Infra.CrossCutting.Identity.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("Bio");
+
+                    b.Property<string>("Company");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -35,9 +39,13 @@ namespace Equinox.Infra.CrossCutting.Identity.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("JobTitle");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -56,6 +64,8 @@ namespace Equinox.Infra.CrossCutting.Identity.Migrations
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("Url");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);

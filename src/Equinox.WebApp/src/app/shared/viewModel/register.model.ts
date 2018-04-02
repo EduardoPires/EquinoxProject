@@ -6,5 +6,6 @@ export class RegisterModel {
     public email: string;
     public provider: string;
     public externalAccessToken: string;
-    public imagem: string;
+    public picture: string;
+    public username: string;
 }

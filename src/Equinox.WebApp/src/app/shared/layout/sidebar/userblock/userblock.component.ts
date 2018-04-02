@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { UserblockService } from './userblock.service';
+import { UserblockService } from "./userblock.service";
+import { SettingsService } from "../../../../core/settings/settings.service";
+import { UserProfile } from "../../../viewModel/userProfile.model";
 
 @Component({
-    selector: 'app-userblock',
-    templateUrl: './userblock.component.html',
-    styleUrls: ['./userblock.component.scss']
+    selector: "app-userblock",
+    templateUrl: "./userblock.component.html",
+    styleUrls: ["./userblock.component.scss"]
 })
 export class UserblockComponent implements OnInit {
-    user: any;
-    constructor(public userblockService: UserblockService) {
 
-        this.user = {
-            picture: 'assets/img/user/01.jpg'
-        };
+    public user: UserProfile;
+
+    constructor(public userblockService: UserblockService,
+        public settings: SettingsService) {
     }
 
     ngOnInit() {

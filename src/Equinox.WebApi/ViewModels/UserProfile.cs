@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Equinox.Domain.Core.Models;
-using Equinox.Infra.CrossCutting.Identity.Models;
+﻿using Equinox.Infra.CrossCutting.Identity.Models;
 
 namespace Equinox.WebApi.ViewModels
 {
@@ -12,11 +7,26 @@ namespace Equinox.WebApi.ViewModels
         public UserProfile() { }
         public UserProfile(ApplicationUser user)
         {
-            this.Email = user.Email;
-            this.PhoneNumber = user.PhoneNumber;
-            this.UserName = user.UserName;
-            this.Picture = user.Picture;
+            Email = user.Email;
+            PhoneNumber = user.PhoneNumber;
+            UserName = user.UserName;
+            Picture = user.Picture;
+            Name = user.Name;
+            Url = user.Url;
+            Company = user.Company;
+            JobTitle = user.JobTitle;
+            Bio = user.Bio;
         }
+
+        public string Bio { get; set; }
+
+        public string JobTitle { get; set; }
+
+        public string Company { get; set; }
+
+        public string Url { get; set; }
+
+        public string Name { get; set; }
 
         public string Picture { get; set; }
 
