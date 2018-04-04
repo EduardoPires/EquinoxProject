@@ -9,11 +9,18 @@ import { TextMaskModule } from "angular2-text-mask";
 import { LayoutComponent } from "../shared/layout/layout.component";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
 import { AuthenticationService } from "../shared/services/authentication.service";
 import { AccountManagementService } from "../shared/services/account-management.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { ToasterService } from "angular2-toaster";
 import { IsLoggedInGuard } from "../core/guard/IsLoggedInGuard";
+<<<<<<< HEAD
 =======
 import { PitbullGuard } from "../core/guard/pitbull";
 =======
@@ -28,8 +35,14 @@ import { ToasterService } from "angular2-toaster";
 <<<<<<< HEAD
 >>>>>>> 86e6256... Daily commit
 =======
+<<<<<<< HEAD
+>>>>>>> 86e6256... Daily commit
+=======
 import { IsLoggedInGuard } from "../core/guard/IsLoggedInGuard";
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
 
 const routes: Routes = [
     {
@@ -37,27 +50,18 @@ const routes: Routes = [
         canActivate: [
 <<<<<<< HEAD
 <<<<<<< HEAD
-            IsLoggedInGuard
-        ],
-        children: [
-            { path: "", redirectTo: "home", pathMatch: "full" },
-            { path: "home", loadChildren: "app/panel/home/home.module#HomeModule" },
-            { path: "user", loadChildren: "app/panel/user/user.module#UserModule" }
-=======
-            PitbullGuard
-=======
-            IsLoggedInGuard
->>>>>>> 383c77b... * Recover Password
-        ],
-        children: [
-            { path: "", redirectTo: "home", pathMatch: "full" },
 <<<<<<< HEAD
-            { path: "home", loadChildren: "app/panel/home/home.module#HomeModule" }
->>>>>>> fd1205c... Bug fix while creating new Db.
 =======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
+            IsLoggedInGuard
+        ],
+        children: [
+            { path: "", redirectTo: "home", pathMatch: "full" },
             { path: "home", loadChildren: "app/panel/home/home.module#HomeModule" },
             { path: "user", loadChildren: "app/panel/user/user.module#UserModule" }
->>>>>>> 226bd07... Daily commit
         ]
     },
 ];
@@ -72,6 +76,10 @@ const routes: Routes = [
     providers: [
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
         IsLoggedInGuard,
         AuthenticationService,
         AccountManagementService,
@@ -82,13 +90,18 @@ const routes: Routes = [
         AuthenticationService
 >>>>>>> fd1205c... Bug fix while creating new Db.
 =======
+<<<<<<< HEAD
+=======
 =======
         IsLoggedInGuard,
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+        IsLoggedInGuard,
+>>>>>>> c3e8855... Fixing rebase errors
         AuthenticationService,
         AccountManagementService,
         ToasterService
->>>>>>> 86e6256... Daily commit
     ],
     exports: [
         RouterModule

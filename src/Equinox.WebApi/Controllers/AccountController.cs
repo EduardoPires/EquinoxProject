@@ -6,7 +6,11 @@ using Equinox.Domain.Core.Notifications;
 using Equinox.Infra.CrossCutting.Identity.Extensions;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels;
+using Equinox.Infra.CrossCutting.Identity.Services;
 <<<<<<< HEAD
+=======
+>>>>>>> c0e4a03... adding some files
+=======
 <<<<<<< HEAD
 using Equinox.Infra.CrossCutting.Identity.Services;
 =======
@@ -14,6 +18,9 @@ using Equinox.Infra.CrossCutting.Identity.Services;
 =======
 using Equinox.Infra.CrossCutting.Identity.Services;
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
 using Equinox.WebApi.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -24,12 +31,22 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+using ServiceStack;
+=======
+>>>>>>> 86e6256... Daily commit
+=======
+<<<<<<< HEAD
 using ServiceStack;
 =======
 >>>>>>> 86e6256... Daily commit
 =======
 using ServiceStack;
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+using ServiceStack;
+>>>>>>> c3e8855... Fixing rebase errors
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Equinox.WebApi.Controllers
@@ -58,13 +75,6 @@ namespace Equinox.WebApi.Controllers
         }
 
         [HttpPost]
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        [AllowAnonymous]
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
->>>>>>> 86e6256... Daily commit
         [Route("account/login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
@@ -75,31 +85,6 @@ namespace Equinox.WebApi.Controllers
             }
             SignInResult result = null;
             ApplicationUser user = null;
-<<<<<<< HEAD
-
-            if (model.IsUsernameEmail())
-            {
-                user = await _userManager.FindByEmailAsync(model.Username);
-                result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe,
-                    lockoutOnFailure: true);
-            }
-            else
-            {
-                user = await _userManager.FindByNameAsync(model.Username);
-                result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe,
-                    lockoutOnFailure: true);
-            }
-
-<<<<<<< HEAD
-=======
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
->>>>>>> fd1205c... Bug fix while creating new Db.
-            if (!result.Succeeded)
-<<<<<<< HEAD
-
-=======
->>>>>>> c0e4a03... adding some files
-=======
 
             if (model.IsUsernameEmail())
             {
@@ -116,15 +101,11 @@ namespace Equinox.WebApi.Controllers
 
             if (!result.Succeeded)
 
->>>>>>> 86e6256... Daily commit
             {
                 NotifyError(result.ToString(), "Login failure");
                 return Response(result);
             }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             return Response(new { SignInResult = result, Profile = new UserProfile(user) });
         }
 
@@ -191,6 +172,7 @@ namespace Equinox.WebApi.Controllers
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             return Response(true);
+<<<<<<< HEAD
 =======
             return Response(result);
 =======
@@ -231,6 +213,16 @@ namespace Equinox.WebApi.Controllers
 =======
 >>>>>>> c0e4a03... adding some files
 =======
+<<<<<<< HEAD
+>>>>>>> 86e6256... Daily commit
+
+<<<<<<< HEAD
+            _logger.LogInformation(1, "User logged in.");
+            
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+>>>>>>> c0e4a03... adding some files
+=======
         }
 
         [HttpPost]
@@ -252,7 +244,9 @@ namespace Equinox.WebApi.Controllers
 
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             return Response(result);
+>>>>>>> f054a70... * Recover Password
         }
+
 
         [HttpPost]
         [Route("account/forgot-password")]
@@ -298,6 +292,8 @@ namespace Equinox.WebApi.Controllers
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             return Response(true);
+=======
+>>>>>>> c3e8855... Fixing rebase errors
         }
 
 
@@ -313,13 +309,26 @@ namespace Equinox.WebApi.Controllers
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
             var user = new ApplicationUser { UserName = model.Username, Email = model.Email, PhoneNumber = model.Telephone, Name = model.Name };
 =======
             var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Telephone, };
 >>>>>>> fd1205c... Bug fix while creating new Db.
 =======
             var user = new ApplicationUser { UserName = model.Username, Email = model.Email, PhoneNumber = model.Telephone, Name = model.Name };
+=======
+            var user = new ApplicationUser { UserName = model.Username, Email = model.Email, PhoneNumber = model.Telephone, Name = model.Name };
+=======
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.Telephone, };
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+            var user = new ApplicationUser { UserName = model.Username, Email = model.Email, PhoneNumber = model.Telephone, Name = model.Name };
+>>>>>>> f054a70... * Recover Password
 >>>>>>> 86e6256... Daily commit
+=======
+            var user = new ApplicationUser { UserName = model.Username, Email = model.Email, PhoneNumber = model.Telephone, Name = model.Name };
+>>>>>>> c3e8855... Fixing rebase errors
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -343,13 +352,6 @@ namespace Equinox.WebApi.Controllers
         }
 
         [HttpGet]
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        [AllowAnonymous]
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
->>>>>>> 86e6256... Daily commit
         [Route("account/checkUsername")]
         public async Task<IActionResult> CheckUsername(string username)
         {
@@ -358,10 +360,6 @@ namespace Equinox.WebApi.Controllers
 
             return Response(result != null);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 86e6256... Daily commit
 
 
         [HttpGet]
@@ -373,10 +371,5 @@ namespace Equinox.WebApi.Controllers
 
             return Response(result != null);
         }
-<<<<<<< HEAD
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
->>>>>>> 86e6256... Daily commit
     }
 }

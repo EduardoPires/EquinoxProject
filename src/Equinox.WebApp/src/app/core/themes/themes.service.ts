@@ -15,6 +15,12 @@ export class ThemesService {
     styleTag: any;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
     defaultTheme: string = "H";
 
     constructor() {
@@ -23,12 +29,15 @@ export class ThemesService {
         if (localStorage.getItem("Theme") != null)
             this.defaultTheme = localStorage.getItem("Theme");
 
+<<<<<<< HEAD
 =======
     defaultTheme: string = "A";
 
     constructor() {
         this.createStyle();
 >>>>>>> fd1205c... Bug fix while creating new Db.
+<<<<<<< HEAD
+=======
 =======
     defaultTheme: string = "H";
 
@@ -39,6 +48,9 @@ export class ThemesService {
             this.defaultTheme = localStorage.getItem("Theme");
 
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
         this.setTheme(this.defaultTheme);
     }
 
@@ -53,12 +65,22 @@ export class ThemesService {
     setTheme(name) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+        localStorage.setItem("Theme", name);
+=======
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+<<<<<<< HEAD
         localStorage.setItem("Theme", name);
 =======
 >>>>>>> fd1205c... Bug fix while creating new Db.
 =======
         localStorage.setItem("Theme", name);
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+        localStorage.setItem("Theme", name);
+>>>>>>> c3e8855... Fixing rebase errors
         switch (name) {
             case "A":
                 this.injectStylesheet(themeA);

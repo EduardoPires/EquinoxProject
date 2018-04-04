@@ -98,13 +98,23 @@ namespace Equinox.WebApi
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
 
 =======
             
 >>>>>>> 86e6256... Daily commit
+<<<<<<< HEAD
+=======
 =======
 
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+
+>>>>>>> c3e8855... Fixing rebase errors
             app.UseCors(c =>
             {
                 c.AllowAnyMethod();

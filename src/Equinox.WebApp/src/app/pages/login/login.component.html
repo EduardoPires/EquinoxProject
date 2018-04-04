@@ -17,29 +17,12 @@
                 <form [formGroup]="valForm" class="form-validate mb-3" role="form" name="loginForm" novalidate="" (submit)="submitForm($event, valForm.value)">
                     <div class="form-group">
                         <div class="input-group with-focus">
-<<<<<<< HEAD
-<<<<<<< HEAD
                             <input class="form-control border-right-0" type="username" name="username" placeholder="Enter username" autocomplete="off" formControlName="username" required="" />
-=======
-                            <input class="form-control border-right-0" type="email" name="email" placeholder="Enter email" autocomplete="off" formControlName="email" required="" />
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-                            <input class="form-control border-right-0" type="username" name="username" placeholder="Enter username" autocomplete="off" formControlName="username" required="" />
->>>>>>> 86e6256... Daily commit
                             <div class="input-group-append">
                                 <span class="input-group-text fa fa-envelope text-muted bg-transparent border-left-0"></span>
                             </div>
                         </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
                         <div class="text-danger" *ngIf="valForm.controls['username'].hasError('required') && (valForm.controls['username'].dirty || valForm.controls['username'].touched)">This field is required</div>
-=======
-                        <div class="text-danger" *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">This field is required</div>
-                        <div class="text-danger" *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">This field must be a valid email address</div>
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-                        <div class="text-danger" *ngIf="valForm.controls['username'].hasError('required') && (valForm.controls['username'].dirty || valForm.controls['username'].touched)">This field is required</div>
->>>>>>> 86e6256... Daily commit
                     </div>
                     <div class="form-group">
                         <div class="input-group with-focus">

@@ -1,15 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"; // this is needed!
 import { NgModule } from "@angular/core";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
-=======
-import { HttpClientModule, HttpClient } from "@angular/common/http";
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
->>>>>>> 86e6256... Daily commit
 import { TranslateService, TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
@@ -19,24 +11,13 @@ import { CoreModule } from "./core/core.module";
 import { LayoutModule } from "./shared/layout/layout.module";
 import { SharedModule } from "./shared/shared.module";
 import { RoutesModule } from "./app.routing.module";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { WithCredentialInterceptor } from "./core/interceptors/withCredential.interceptor";
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-import { WithCredentialInterceptor } from "./core/interceptors/withCredential.interceptor";
->>>>>>> 86e6256... Daily commit
 
 // https://github.com/ocombe/ng2-translate/issues/218
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 86e6256... Daily commit
 // import dev only modules
 let dev = [
     {
@@ -51,11 +32,6 @@ if (process.env.NODE_ENV === "production") {
     dev = [];
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
->>>>>>> 86e6256... Daily commit
 @NgModule({
     declarations: [
         AppComponent
@@ -76,14 +52,7 @@ if (process.env.NODE_ENV === "production") {
         })
     ],
     providers: [
-<<<<<<< HEAD
-<<<<<<< HEAD
         ...dev,
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-        ...dev,
->>>>>>> 86e6256... Daily commit
     ],
     bootstrap: [AppComponent]
 })

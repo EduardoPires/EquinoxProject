@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { ChangePasswordViewModel } from "../../../shared/viewModel/changePassword.model";
 import { SettingsService } from "../../../core/settings/settings.service";
 import { AccountManagementService } from "../../../shared/services/account-management.service";
@@ -8,6 +6,8 @@ import { ToasterService, ToasterConfig } from "angular2-toaster";
 import { UserProfile } from "../../../shared/viewModel/userProfile.model";
 import { FileUpload } from "../../../shared/viewModel/fileUpload";
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 
 @Component({
@@ -145,6 +145,10 @@ import { SettingsService } from "../../../core/settings/settings.service";
 >>>>>>> 48ff526... daily commit
 =======
 >>>>>>> 86e6256... Daily commit
+=======
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
 
 
 @Component({
@@ -173,9 +177,6 @@ export class ProfileComponent implements OnInit {
         private toasterService: ToasterService) { }
 
     ngOnInit() {
-<<<<<<< HEAD
->>>>>>> c0e4a03... adding some files
-=======
         this.ChangePass = new ChangePasswordViewModel();
         this.changingPassword = false;
         this.uploadingImage = false;
@@ -277,10 +278,6 @@ export class ProfileComponent implements OnInit {
         if (data == null)
             return "";
 
-<<<<<<< HEAD
->>>>>>> 48ff526... daily commit
-=======
         return data;
->>>>>>> 86e6256... Daily commit
     }
 }

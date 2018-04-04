@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { Component, OnInit } from "@angular/core";
 
 import { UserblockService } from "./userblock.service";
@@ -23,6 +21,10 @@ export class UserblockComponent implements OnInit {
     ngOnInit() {
         this.settings.getProfile().subscribe(a => this.user = a);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
 =======
 import { Component, OnInit } from '@angular/core';
 =======
@@ -48,8 +50,13 @@ export class UserblockComponent implements OnInit {
 
     ngOnInit() {
 >>>>>>> fd1205c... Bug fix while creating new Db.
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
     }
 
     userBlockIsVisible() {

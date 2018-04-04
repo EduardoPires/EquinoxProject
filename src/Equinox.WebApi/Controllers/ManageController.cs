@@ -1,24 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
-<<<<<<< HEAD
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
-=======
-using System.Linq;
->>>>>>> 48ff526... daily commit
-=======
-using System.IO;
-using System.Linq;
-using System.Security.Claims;
->>>>>>> 86e6256... Daily commit
 using System.Threading.Tasks;
 using Equinox.Domain.Core.Notifications;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.ManageViewModels;
-<<<<<<< HEAD
-<<<<<<< HEAD
 using Equinox.WebApi.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -34,28 +22,6 @@ using Microsoft.WindowsAzure.Storage.Blob;
 namespace Equinox.WebApi.Controllers
 {
     [Authorize]
-=======
-=======
-using Equinox.WebApi.ViewModels;
->>>>>>> 86e6256... Daily commit
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.Blob;
-
-namespace Equinox.WebApi.Controllers
-{
-<<<<<<< HEAD
->>>>>>> 48ff526... daily commit
-=======
-    [Authorize]
->>>>>>> 86e6256... Daily commit
     public class ManageController : ApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -63,34 +29,43 @@ namespace Equinox.WebApi.Controllers
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
         private readonly IConfiguration _configuration;
 =======
 >>>>>>> 48ff526... daily commit
 =======
         private readonly IHostingEnvironment _hostingEnvironment;
 >>>>>>> 86e6256... Daily commit
+<<<<<<< HEAD
+=======
 =======
         private readonly IConfiguration _configuration;
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+        private readonly IConfiguration _configuration;
+>>>>>>> c3e8855... Fixing rebase errors
 
         public ManageController(
             INotificationHandler<DomainNotification> notifications,
             UserManager<ApplicationUser> userManager,
-<<<<<<< HEAD
-<<<<<<< HEAD
             SignInManager<ApplicationUser> signInManager,
-            IConfiguration configuration
-=======
-            SignInManager<ApplicationUser> signInManager
->>>>>>> 48ff526... daily commit
-=======
-            SignInManager<ApplicationUser> signInManager,
+<<<<<<< HEAD
 <<<<<<< HEAD
             IHostingEnvironment hostingEnvironment
 >>>>>>> 86e6256... Daily commit
+<<<<<<< HEAD
+=======
 =======
             IConfiguration configuration
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+            IConfiguration configuration
+>>>>>>> c3e8855... Fixing rebase errors
             ) : base(notifications)
         {
             _userManager = userManager;
@@ -98,30 +73,18 @@ namespace Equinox.WebApi.Controllers
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
             _configuration = configuration;
         }
 
         [HttpPost]
         [Route("account-management/change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordViewModel model)
-=======
-        }
-
-        [HttpPost]
-        [Route("user-management/change-password")]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
->>>>>>> 48ff526... daily commit
-=======
-            _hostingEnvironment = hostingEnvironment;
-=======
-            _configuration = configuration;
->>>>>>> 383c77b... * Recover Password
-        }
-
-        [HttpPost]
-        [Route("account-management/change-password")]
-        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordViewModel model)
->>>>>>> 86e6256... Daily commit
         {
             if (!ModelState.IsValid)
             {
@@ -143,10 +106,6 @@ namespace Equinox.WebApi.Controllers
 
             return Response(changePasswordResult);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 86e6256... Daily commit
 
 
         [HttpPost]
@@ -176,8 +135,14 @@ namespace Equinox.WebApi.Controllers
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 =======
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
             if (!file.fileType.Contains("image"))
             {
                 NotifyError("Type", "Invalid filetype");
@@ -187,6 +152,10 @@ namespace Equinox.WebApi.Controllers
             var user = await _userManager.GetUserAsync(User);
             var container = await GetBlobContainer();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
 
             await RemovePreviousImage(user, container);
 
@@ -237,6 +206,8 @@ namespace Equinox.WebApi.Controllers
             //await UpdatePictureLocation(user, dbPath);
 =======
 >>>>>>> 383c77b... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
 
             await RemovePreviousImage(user, container);
 
@@ -281,10 +252,18 @@ namespace Equinox.WebApi.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 86e6256... Daily commit
+=======
+<<<<<<< HEAD
 >>>>>>> 86e6256... Daily commit
 =======
 
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+
+>>>>>>> c3e8855... Fixing rebase errors
         [HttpGet]
         [Route("account-management/profile")]
         public async Task<IActionResult> GetProfile()
@@ -293,10 +272,5 @@ namespace Equinox.WebApi.Controllers
             return Response(new UserProfile(user));
         }
 
-<<<<<<< HEAD
-=======
->>>>>>> 48ff526... daily commit
-=======
->>>>>>> 86e6256... Daily commit
     }
 }

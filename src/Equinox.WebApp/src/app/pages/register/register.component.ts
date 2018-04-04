@@ -30,18 +30,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     public showButtonLoading: boolean;
     private externalAccessSubscription: Subscription;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     private userExistsSubject: Subject<string> = new Subject<string>();
     private emailExistsSubject: Subject<string> = new Subject<string>();
-=======
-    private userExist: boolean;
-    private userExistsSubject: Subject<string> = new Subject<string>();
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-    private userExistsSubject: Subject<string> = new Subject<string>();
-    private emailExistsSubject: Subject<string> = new Subject<string>();
->>>>>>> 86e6256... Daily commit
 
     constructor(public settings: SettingsService,
         fb: FormBuilder,
@@ -64,16 +54,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
             "accountagreed": [null, Validators.required],
             "passwordGroup": this.passwordForm,
             "telephone": [null, Validators.required],
-<<<<<<< HEAD
-<<<<<<< HEAD
             "username": [null, Validators.compose([Validators.required, CustomValidators.username])],
             "name": [null, Validators.required]
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-            "username": [null, Validators.compose([Validators.required, CustomValidators.username])],
-            "name": [null, Validators.required]
->>>>>>> 86e6256... Daily commit
         });
 
         this.googleForm = fb.group({
@@ -99,25 +81,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.showButtonLoading = false;
 
         this.userExistsSubject
-<<<<<<< HEAD
-<<<<<<< HEAD
             .debounceTime(500)
-=======
-            .debounceTime(300)
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-            .debounceTime(500)
->>>>>>> 86e6256... Daily commit
             .switchMap(a => this.registerService.checkUserName(a))
             .subscribe((response: DefaultResponse<boolean>) => {
                 if (response.data)
                     this.valForm.controls["username"].setErrors({ "exists": "Username already taken" });
             });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 86e6256... Daily commit
         this.emailExistsSubject
             .debounceTime(500)
             .switchMap(a => this.registerService.checkEmail(a))
@@ -126,7 +96,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
                     this.valForm.controls["email"].setErrors({ "exists": "E-mail already taken" });
             });
 
-<<<<<<< HEAD
         this.errors = [];
     }
 
@@ -140,26 +109,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
             this.emailExistsSubject.next(value);
     }
 
-=======
-        this.errors = [];
-    }
-
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-        this.errors = [];
-    }
-
-
-    public checkIfEmailExists() {
-        if (this.valForm.controls["email"].hasError("email"))
-            return;
-
-        let value = this.valForm.get("email").value;
-        if (value != null && value != "")
-            this.emailExistsSubject.next(value);
-    }
-
->>>>>>> 86e6256... Daily commit
     public checkIfUniquenameExists() {
         let value = this.valForm.get("username").value;
         if (value != null && value != "")
@@ -211,16 +160,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
             this.newUser.password = this.valForm.get("passwordGroup.password").value;
             this.newUser.email = this.valForm.get("email").value;
             this.newUser.telephone = this.valForm.get("telephone").value;
-<<<<<<< HEAD
-<<<<<<< HEAD
             this.newUser.username = this.valForm.get("username").value;
             this.newUser.name = this.valForm.get("name").value;
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-            this.newUser.username = this.valForm.get("username").value;
-            this.newUser.name = this.valForm.get("name").value;
->>>>>>> 86e6256... Daily commit
 
             try {
 

@@ -23,20 +23,11 @@ namespace Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels
         [Phone]
         [Display(Name = "Telephone")]
         public string Telephone { get; set; }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 86e6256... Daily commit
 
         public string Name { get; set; }
 
         [Required]
         [Display(Name = "Username")]
         public string Username { get; set; }
-<<<<<<< HEAD
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
->>>>>>> 86e6256... Daily commit
     }
 }

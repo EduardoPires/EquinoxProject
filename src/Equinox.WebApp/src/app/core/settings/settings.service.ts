@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { UserProfile } from "../../shared/viewModel/userProfile.model";
 import { DefaultResponse } from "../../shared/viewModel/defaultResponse.model";
 import { environment } from "../../../environments/environment";
@@ -8,52 +6,17 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
 
-<<<<<<< HEAD
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-import { UserProfile } from "../../shared/viewModel/userProfile.model";
->>>>>>> c0e4a03... adding some files
-=======
->>>>>>> 86e6256... Daily commit
 declare var $: any;
 
 @Injectable()
 export class SettingsService {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     private user: UserProfile;
     public app: any;
     public layout: any;
 
     constructor(private http: HttpClient) {
 
-=======
-    public user: any;
-=======
-    public user: UserProfile;
->>>>>>> c0e4a03... adding some files
-=======
-    private user: UserProfile;
->>>>>>> 86e6256... Daily commit
-    public app: any;
-    public layout: any;
-
-    constructor(private http: HttpClient) {
-
-<<<<<<< HEAD
-        // User Settings
-        // -----------------------------------
-        this.user = {
-            name: "John",
-            job: "ng-developer",
-            picture: "assets/img/user/02.jpg"
-        };
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
->>>>>>> 86e6256... Daily commit
 
         // App Settings
         // -----------------------------------
@@ -67,8 +30,14 @@ export class SettingsService {
         // -----------------------------------
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 =======
 >>>>>>> 383c77b... * Recover Password
+>>>>>>> f054a70... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
         let savedLayout = localStorage.getItem("LayoutSettings");
         if (savedLayout == null)
             this.layout = {
@@ -94,6 +63,10 @@ export class SettingsService {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f054a70... * Recover Password
 
     public saveLayout($event) {
         localStorage.setItem("LayoutSettings", JSON.stringify(this.layout));
@@ -163,6 +136,8 @@ export class SettingsService {
         };
 =======
 >>>>>>> 383c77b... * Recover Password
+=======
+>>>>>>> c3e8855... Fixing rebase errors
 
     public saveLayout($event) {
         localStorage.setItem("LayoutSettings", JSON.stringify(this.layout));
@@ -211,25 +186,12 @@ export class SettingsService {
         if (typeof this.user[name] !== "undefined")
             this.user[name] = value;
     }
-<<<<<<< HEAD
-    setLayoutSetting(name, value) {
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
     public setLayoutSetting(name, value) {
->>>>>>> 86e6256... Daily commit
         if (typeof this.layout[name] !== "undefined")
             return this.layout[name] = value;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public toggleLayoutSetting(name) {
-=======
-    toggleLayoutSetting(name) {
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-    public toggleLayoutSetting(name) {
->>>>>>> 86e6256... Daily commit
         return this.setLayoutSetting(name, !this.getLayoutSetting(name));
     }
 
