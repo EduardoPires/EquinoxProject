@@ -10,57 +10,14 @@ import { SignInResult } from "../viewModel/signInResult.model";
 import { LoginResult } from "../viewModel/loginResult.model";
 import { ResetPasswordModel } from "../viewModel/reset-password.model";
 import { UserManagementResult } from "../viewModel/userManagementResult.model";
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f054a70... * Recover Password
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-import { LoginResult } from "../viewModel/loginResult.model";
->>>>>>> 35c7771... daily commit
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
->>>>>>> c3e8855... Fixing rebase errors
 
 @Injectable()
 export class AuthenticationService {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
->>>>>>> c3e8855... Fixing rebase errors
     constructor(private http: HttpClient) {
         // set token if saved in local storage
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
->>>>>>> c3e8855... Fixing rebase errors
     public resetPassword(resetPass: ResetPasswordModel): Observable<DefaultResponse<UserManagementResult>> {
         return this.http.post<DefaultResponse<UserManagementResult>>(environment.API_URL + "v1/account/reset-password", resetPass);
     }
@@ -74,19 +31,6 @@ export class AuthenticationService {
     public logout(): Observable<DefaultResponse<boolean>> {
         return this.http.post<DefaultResponse<boolean>>(environment.API_URL + "v1/account/logout", null);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-<<<<<<< HEAD
-=======
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
->>>>>>> c3e8855... Fixing rebase errors
 
     public register(register: RegisterModel): Observable<DefaultResponse<RegisterModel>> {
         return this.http.post<DefaultResponse<RegisterModel>>(environment.API_URL + "v1/account/register", register);

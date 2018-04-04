@@ -1,68 +1,14 @@
 <div class="item user-block" *ngIf="userBlockIsVisible()">
     <!-- User picture-->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f054a70... * Recover Password
     <div class="user-block-picture" [routerLink]="'/user/profile'">
         <div class="user-block-status">
             <img class="img-thumbnail rounded-circle" *ngIf="user" [src]="user?.picture" alt="Avatar" />
-=======
-    <div class="user-block-picture">
-        <div class="user-block-status">
-<<<<<<< HEAD
-            <img class="img-thumbnail rounded-circle" [src]="user.picture" alt="Avatar" />
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-            <img class="img-thumbnail rounded-circle" [src]="settings.user?.picture" alt="Avatar" />
->>>>>>> 86e6256... Daily commit
-<<<<<<< HEAD
-=======
-=======
-    <div class="user-block-picture" [routerLink]="'/user/profile'">
-        <div class="user-block-status">
-            <img class="img-thumbnail rounded-circle" *ngIf="user" [src]="user?.picture" alt="Avatar" />
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
-    <div class="user-block-picture" [routerLink]="'/user/profile'">
-        <div class="user-block-status">
-            <img class="img-thumbnail rounded-circle" *ngIf="user" [src]="user?.picture" alt="Avatar" />
->>>>>>> c3e8855... Fixing rebase errors
             <div class="circle bg-success circle-lg"></div>
         </div>
     </div>
     <!-- Name and Job-->
     <div class="user-block-info">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f054a70... * Recover Password
         <span class="user-block-name">{{ 'sidebar.WELCOME' | translate }} {{user?.name}}</span>
         <span class="user-block-role" *ngIf="settings.user?.jobTitle" >{{user?.jobTitle}}</span>
-=======
-        <span class="user-block-name">{{ 'sidebar.WELCOME' | translate }}  John</span>
-        <span class="user-block-role">Programmer</span>
->>>>>>> fd1205c... Bug fix while creating new Db.
-=======
-        <span class="user-block-name">{{ 'sidebar.WELCOME' | translate }} {{settings.user?.name}}</span>
-        <span class="user-block-role" *ngIf="settings.user?.jobTitle" >{{settings.user?.jobTitle}}</span>
->>>>>>> 86e6256... Daily commit
-<<<<<<< HEAD
-=======
-=======
-        <span class="user-block-name">{{ 'sidebar.WELCOME' | translate }} {{user?.name}}</span>
-        <span class="user-block-role" *ngIf="settings.user?.jobTitle" >{{user?.jobTitle}}</span>
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
-        <span class="user-block-name">{{ 'sidebar.WELCOME' | translate }} {{user?.name}}</span>
-        <span class="user-block-role" *ngIf="settings.user?.jobTitle" >{{user?.jobTitle}}</span>
->>>>>>> c3e8855... Fixing rebase errors
     </div>
 </div>
