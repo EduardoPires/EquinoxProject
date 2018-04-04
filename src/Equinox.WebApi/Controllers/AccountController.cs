@@ -165,7 +165,7 @@ namespace Equinox.WebApi.Controllers
                 _logger.LogInformation("User created a new account with password.");
 
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = $"{_configuration.GetSection("WebAppUrl").Value}/confirm-email?userId={user.Id.UrlEncode()}&code={code.UrlEncode()}";
+                var callbackUrl = $"{_configuration.GetSection("WebAppUrl").Value}/confirm-email?user={user.Email.UrlEncode()}&code={code.UrlEncode()}";
                 await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                 await _signInManager.SignInAsync(user, false);
@@ -175,6 +175,24 @@ namespace Equinox.WebApi.Controllers
 
             AddIdentityErrors(result);
             return Response(model);
+        }
+        [HttpPost]
+        [Route("account/confirm-email")]
+        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return Response(false);
+            }
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                NotifyError("Email", $"Unable to load user with ID '{model.Email}'.");
+                return Response(false);
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, model.Code);
+            return Response(result);
         }
 
         [HttpGet]
