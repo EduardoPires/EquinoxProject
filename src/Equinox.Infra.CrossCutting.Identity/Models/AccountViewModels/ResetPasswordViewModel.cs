@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels
 {
@@ -18,6 +19,7 @@ namespace Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         public string Code { get; set; }
     }
 }

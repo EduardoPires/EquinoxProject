@@ -6,12 +6,32 @@ declare var $: any;
 import { UserblockService } from "../sidebar/userblock/userblock.service";
 import { SettingsService } from "../../../core/settings/settings.service";
 import { MenuService } from "../../../core/menu/menu.service";
+<<<<<<< HEAD
+<<<<<<< HEAD
+import { AuthenticationService } from "../../services/authentication.service";
+import { Router } from "@angular/router";
+=======
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+import { AuthenticationService } from "../../services/authentication.service";
+import { Router } from "@angular/router";
+>>>>>>> 383c77b... * Recover Password
 
 
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html",
+<<<<<<< HEAD
+<<<<<<< HEAD
+    styleUrls: ["./header.component.scss"],
+    providers: [AuthenticationService]
+=======
     styleUrls: ["./header.component.scss"]
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+    styleUrls: ["./header.component.scss"],
+    providers: [AuthenticationService]
+>>>>>>> 383c77b... * Recover Password
 })
 export class HeaderComponent implements OnInit {
 
@@ -21,7 +41,22 @@ export class HeaderComponent implements OnInit {
     isNavSearchVisible: boolean;
     @ViewChild("fsbutton") fsbutton;  // the fullscreen button
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 383c77b... * Recover Password
+    constructor(
+        public menu: MenuService,
+        public userblockService: UserblockService,
+        public settings: SettingsService,
+        public authService: AuthenticationService,
+        private router: Router) {
+<<<<<<< HEAD
+=======
     constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService) {
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+>>>>>>> 383c77b... * Recover Password
 
         // show only a few items on demo
         this.menuItems = menu.getMenu().slice(0, 4); // for horizontal layout
@@ -35,6 +70,22 @@ export class HeaderComponent implements OnInit {
         }
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 383c77b... * Recover Password
+    public async logout() {
+        let result = await this.authService.logout().toPromise();
+        if (result.data) {
+            this.router.navigate(["/"]);
+        }
+    }
+
+<<<<<<< HEAD
+=======
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+>>>>>>> 383c77b... * Recover Password
     toggleUserBlock(event) {
         event.preventDefault();
         this.userblockService.toggleVisibility();

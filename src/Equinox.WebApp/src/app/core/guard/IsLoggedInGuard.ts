@@ -7,14 +7,24 @@ import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
 
 @Injectable()
-export class PitbullGuard implements CanActivate {
+export class IsLoggedInGuard implements CanActivate {
 
-  constructor(public settings: SettingsService,
-    private accountManagementService: AccountManagementService,
+  constructor(
+    private authService: AuthenticationService,
     private router: Router) { }
 
-  canActivate() {
-    return this.settings.getProfile().flatMap(a => of(true));
+  async canActivate() {
+    try {
+      let canAccess = await this.authService.isLoggedIn().flatMap(a => of(a.data)).toPromise();
+      if (!canAccess) {
+        this.router.navigate(["/"]);
+      }
+      return canAccess;
+    } catch (error) {
+      this.router.navigate(["/"]);
+      return false;
+    }
+
   }
 
 }

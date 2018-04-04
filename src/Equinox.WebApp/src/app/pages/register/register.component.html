@@ -23,13 +23,25 @@
                         <label class="text-muted">E-mail</label>
                         <div class="input-group with-focus">
                             <input class="form-control border-right-0" type="email" name="account_email" placeholder="Type your e-mail" autocomplete="off"
+<<<<<<< HEAD
+<<<<<<< HEAD
                                 formControlName="email" required="" (keyup)="checkIfEmailExists()" (blur)="checkIfEmailExists()" />
+=======
+                                formControlName="email" required="" />
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+                                formControlName="email" required="" (keyup)="checkIfEmailExists()" (blur)="checkIfEmailExists()" />
+>>>>>>> 86e6256... Daily commit
                             <div class="input-group-append">
                                 <span class="fa fa-envelope input-group-text text-muted bg-transparent border-left-0"></span>
                             </div>
                         </div>
                         <span class="text-danger" *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">Required field</span>
                         <span class="text-danger" *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">Invalid E-mail</span>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 86e6256... Daily commit
                         <span class="text-danger" *ngIf="valForm.controls['email'].hasError('exists')">{{ valForm.controls["email"].getError("exists") }}</span>
                     </div>
                     <div class="form-group has-feedback">
@@ -53,13 +65,28 @@
                         </div>
                         <span class="text-danger" *ngIf="valForm.controls['username'].hasError('required') && (valForm.controls['username'].dirty || valForm.controls['username'].touched)">Required field</span>
                         <span class="text-danger" *ngIf="valForm.controls['username'].hasError('username')">{{ valForm.controls["username"].getError("exists") }}</span>
+<<<<<<< HEAD
+=======
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+>>>>>>> 86e6256... Daily commit
                     </div>
                     <div formGroupName="passwordGroup">
                         <div class="form-group has-feedback">
                             <label class="text-muted">Pass</label>
                             <div class="input-group with-focus">
+<<<<<<< HEAD
+<<<<<<< HEAD
                                 <input class="form-control border-right-0" type="password" name="password" placeholder="Type your password" formControlName="password"
                                     [formControl]="valForm.get('passwordGroup.password')" />
+=======
+                                <input class="form-control border-right-0" type="password" name="password"  placeholder="Type your pass"  formControlName="password" [formControl]="valForm.get('passwordGroup.password')"
+                                />
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+                                <input class="form-control border-right-0" type="password" name="password" placeholder="Type your password" formControlName="password"
+                                    [formControl]="valForm.get('passwordGroup.password')" />
+>>>>>>> 86e6256... Daily commit
                                 <div class="input-group-append">
                                     <span class="fa fa-lock input-group-text text-muted bg-transparent border-left-0"></span>
                                 </div>
@@ -70,8 +97,18 @@
                         <div class="form-group has-feedback">
                             <label class="text-muted">Retype Pass</label>
                             <div class="input-group with-focus">
+<<<<<<< HEAD
+<<<<<<< HEAD
                                 <input class="form-control border-right-0" type="password" placeholder="Retype your password" name="confirmPassword" formControlName="confirmPassword"
                                     [formControl]="valForm.get('passwordGroup.confirmPassword')" />
+=======
+                                <input class="form-control border-right-0" type="password"  placeholder="Retype your e-mail"  name="confirmPassword" formControlName="confirmPassword" [formControl]="valForm.get('passwordGroup.confirmPassword')"
+                                />
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+                                <input class="form-control border-right-0" type="password" placeholder="Retype your password" name="confirmPassword" formControlName="confirmPassword"
+                                    [formControl]="valForm.get('passwordGroup.confirmPassword')" />
+>>>>>>> 86e6256... Daily commit
                                 <div class="input-group-append">
                                     <span class="fa fa-lock input-group-text text-muted bg-transparent border-left-0"></span>
                                 </div>
