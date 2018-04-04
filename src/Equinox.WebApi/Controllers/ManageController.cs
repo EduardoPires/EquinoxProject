@@ -26,59 +26,17 @@ namespace Equinox.WebApi.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f054a70... * Recover Password
         private readonly IConfiguration _configuration;
-=======
->>>>>>> 48ff526... daily commit
-=======
-        private readonly IHostingEnvironment _hostingEnvironment;
->>>>>>> 86e6256... Daily commit
-<<<<<<< HEAD
-=======
-=======
-        private readonly IConfiguration _configuration;
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
-        private readonly IConfiguration _configuration;
->>>>>>> c3e8855... Fixing rebase errors
 
         public ManageController(
             INotificationHandler<DomainNotification> notifications,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-<<<<<<< HEAD
-<<<<<<< HEAD
-            IHostingEnvironment hostingEnvironment
->>>>>>> 86e6256... Daily commit
-<<<<<<< HEAD
-=======
-=======
             IConfiguration configuration
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
-            IConfiguration configuration
->>>>>>> c3e8855... Fixing rebase errors
             ) : base(notifications)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f054a70... * Recover Password
-=======
->>>>>>> c3e8855... Fixing rebase errors
             _configuration = configuration;
         }
 
@@ -133,16 +91,6 @@ namespace Equinox.WebApi.Controllers
         [Route("account-management/update-picture")]
         public async Task<IActionResult> UploadFile([FromBody] FileUpload file)
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
->>>>>>> c3e8855... Fixing rebase errors
             if (!file.fileType.Contains("image"))
             {
                 NotifyError("Type", "Invalid filetype");
@@ -151,11 +99,6 @@ namespace Equinox.WebApi.Controllers
 
             var user = await _userManager.GetUserAsync(User);
             var container = await GetBlobContainer();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f054a70... * Recover Password
 
             await RemovePreviousImage(user, container);
 
@@ -200,70 +143,6 @@ namespace Equinox.WebApi.Controllers
         }
 
 
-=======
-            //var user = await _userManager.GetUserAsync(User);
-            //RemovePreviousImage(user);
-            //await UpdatePictureLocation(user, dbPath);
-=======
->>>>>>> 383c77b... * Recover Password
-=======
->>>>>>> c3e8855... Fixing rebase errors
-
-            await RemovePreviousImage(user, container);
-
-            var newPicture = await UploadNewOne(file, container);
-
-            user.Picture = newPicture.StorageUri.PrimaryUri.AbsoluteUri;
-            await _userManager.UpdateAsync(user);
-
-            return Response(user.Picture);
-        }
-
-        private async Task<CloudBlobContainer> GetBlobContainer()
-        {
-            var storageCredentials = new StorageCredentials(_configuration.GetSection("AzureBlob").GetSection("AccountName").Value, _configuration.GetSection("AzureBlob").GetSection("AccountKey").Value);
-            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
-            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-            var container = cloudBlobClient.GetContainerReference("images");
-            await container.CreateIfNotExistsAsync();
-            return container;
-        }
-
-        private static async Task<CloudBlockBlob> UploadNewOne(FileUpload file, CloudBlobContainer container)
-        {
-            // Upload the new one.
-            var newImageName = Guid.NewGuid() + file.fileType.Replace("image/", ".");
-            var newPicture = container.GetBlockBlobReference(newImageName);
-            byte[] imageBytes = Convert.FromBase64String(file.value);
-            newPicture.Properties.ContentType = file.fileType; //.Replace("image/", "");
-            await newPicture.UploadFromByteArrayAsync(imageBytes, 0, imageBytes.Length);
-            return newPicture;
-        }
-
-        private static async Task RemovePreviousImage(ApplicationUser user, CloudBlobContainer container)
-        {
-            // Remove previous image
-            if (!string.IsNullOrEmpty(user.Picture))
-            {
-                var pictureName = Path.GetFileName(user.Picture);
-                var oldImage = container.GetBlockBlobReference(pictureName);
-                await oldImage.DeleteIfExistsAsync();
-            }
-        }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 86e6256... Daily commit
-=======
-<<<<<<< HEAD
->>>>>>> 86e6256... Daily commit
-=======
-
->>>>>>> 383c77b... * Recover Password
->>>>>>> f054a70... * Recover Password
-=======
-
->>>>>>> c3e8855... Fixing rebase errors
         [HttpGet]
         [Route("account-management/profile")]
         public async Task<IActionResult> GetProfile()
