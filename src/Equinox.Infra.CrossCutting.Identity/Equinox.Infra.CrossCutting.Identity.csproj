@@ -11,10 +11,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\Class1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Equinox.Domain\Equinox.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />

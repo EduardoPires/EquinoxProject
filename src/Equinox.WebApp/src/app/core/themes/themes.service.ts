@@ -13,10 +13,32 @@ const themeH = require("../../shared/styles/themes/theme-h.scss");
 export class ThemesService {
 
     styleTag: any;
+<<<<<<< HEAD
+<<<<<<< HEAD
+    defaultTheme: string = "H";
+
+    constructor() {
+        this.createStyle();
+
+        if (localStorage.getItem("Theme") != null)
+            this.defaultTheme = localStorage.getItem("Theme");
+
+=======
     defaultTheme: string = "A";
 
     constructor() {
         this.createStyle();
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+    defaultTheme: string = "H";
+
+    constructor() {
+        this.createStyle();
+
+        if (localStorage.getItem("Theme") != null)
+            this.defaultTheme = localStorage.getItem("Theme");
+
+>>>>>>> 383c77b... * Recover Password
         this.setTheme(this.defaultTheme);
     }
 
@@ -29,6 +51,14 @@ export class ThemesService {
     }
 
     setTheme(name) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        localStorage.setItem("Theme", name);
+=======
+>>>>>>> fd1205c... Bug fix while creating new Db.
+=======
+        localStorage.setItem("Theme", name);
+>>>>>>> 383c77b... * Recover Password
         switch (name) {
             case "A":
                 this.injectStylesheet(themeA);

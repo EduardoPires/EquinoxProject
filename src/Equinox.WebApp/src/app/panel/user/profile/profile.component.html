@@ -1,3 +1,122 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 383c77b... * Recover Password
+<div class="profile-content">
+    <div class="unwrap">
+        <div class="bg-cover" style="background-image: url(assets/img/profile-bg.jpg);">
+            <div class="p-4 text-center text-white">
+                <img class="img-thumbnail rounded-circle thumb128" [src]="user?.picture" alt="Image" />
+                <h3 class="m-0">{{user?.name}}</h3>
+                <p>{{user?.jobTitle}} - {{user?.url}}</p>
+                <p>{{user?.bio}}</p>
+            </div>
+<<<<<<< HEAD
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-5">
+            <div class="card b">
+                <div class="card-header bg-gray-lighter text-bold">Account</div>
+                <div class="card-body">
+                    <div [hidden]="!errors.length">
+                        <alert *ngFor="let alert of errors;let i = index" [type]="'danger'" dismissible="true" (close)="closeAlert(i)">
+                            <span [innerHTML]="alert"></span>
+                        </alert>
+                    </div>
+                    <div class="form-group">
+                        <label>Current password</label>
+                        <input class="form-control" type="password" [(ngModel)]="ChangePass.OldPassword" />
+                    </div>
+                    <div class="form-group">
+                        <label>New password</label>
+                        <input class="form-control" type="password" [(ngModel)]="ChangePass.NewPassword" />
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm new password</label>
+                        <input class="form-control" type="password" [(ngModel)]="ChangePass.ConfirmPassword" />
+                    </div>
+                    <button class="btn btn-info" type="button" (click)="ChangePassword()" *ngIf="!changingPassword">Update password</button>
+                    <div class="profile-loader d-flex align-items-center justify-content-center" *ngIf="changingPassword">
+                        <div class="ball-clip-rotate-pulse">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+                </div>
+            </div>
+            <div class="card b">
+                <div class="card-header bg-danger text-bold">Delete account</div>
+                <div class="card-body bt">
+                    <p>You will be asked for confirmation before delete account.</p>
+                    <button class="btn btn-secondary" type="button">
+                        <span class="text-danger" (click)="DeleteAccount()">Delete account</span>
+                    </button>
+                    <p>
+                        <small class="text-muted">* Just grocery</small>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-5 col-md-5">
+
+            <div class="card b">
+                <div class="card-header bg-gray-lighter text-bold">Profile</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Picture</label>
+                        <label for="image-input" class="file-upload" *ngIf="!uploadingImage">
+                            <button class="btn btn-secondary">
+                                <em class="fa fa-upload mr"></em> Upload new picture</button>
+                            <input id="image-input" (change)="handleFileInput($event.target.files)" type="file">
+                        </label>
+                        <div class="profile-loader d-flex align-items-center justify-content-center" *ngIf="uploadingImage">
+                            <div class="ball-clip-rotate-pulse">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control" name="name" [(ngModel)]="user.name" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea class="form-control" name="bio" [(ngModel)]="user.bio" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>URL</label>
+                        <input class="form-control" name="url" [(ngModel)]="user.url" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input class="form-control" name="company" [(ngModel)]="user.company" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Job title</label>
+                        <input class="form-control" name="jobTitle" [(ngModel)]="user.jobTitle" type="text" />
+                    </div>
+                    <button class="btn btn-info" type="button" (click)="UpdateSettings()" *ngIf="!updatingProfile" >Update settings</button>
+                    <div class="profile-loader d-flex align-items-center justify-content-center" *ngIf="updatingProfile">
+                        <div class="ball-clip-rotate-pulse">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+=======
+<div class="bg-cover" style="background-image: url(assets/img/profile-bg.jpg);">
+    <div class="p-4 text-center text-white">
+        <img class="img-thumbnail rounded-circle thumb128" src="assets/img/user/09.jpg" alt="Image" />
+        <h3 class="m-0">Ted Berry</h3>
+        <p>Lead director</p>
+        <p>Proin metus justo, commodo in ultrices at, lobortis sit amet dui. Fusce dolor purus, adipiscing a tempus at, gravida
+            vel purus.</p>
+=======
 <div class="unwrap">
     <div class="bg-cover" style="background-image: url(assets/img/profile-bg.jpg);">
         <div class="p-4 text-center text-white">
@@ -5,60 +124,100 @@
             <h3 class="m-0">{{user?.name}}</h3>
             <p>{{user?.jobTitle}} - {{user?.url}}</p>
             <p>{{user?.bio}}</p>
+=======
+>>>>>>> 383c77b... * Recover Password
         </div>
+>>>>>>> 48ff526... daily commit
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-5 col-md-5">
-        <div class="card b">
-            <div class="card-header bg-gray-lighter text-bold">Account</div>
-            <div class="card-body">
-                <div [hidden]="!errors.length">
-                    <alert *ngFor="let alert of errors;let i = index" [type]="'danger'" dismissible="true" (close)="closeAlert(i)">
-                        <span [innerHTML]="alert"></span>
-                    </alert>
-                </div>
-                <div class="form-group">
-                    <label>Current password</label>
-                    <input class="form-control" type="password" [(ngModel)]="ChangePass.OldPassword" />
-                </div>
-                <div class="form-group">
-                    <label>New password</label>
-                    <input class="form-control" type="password" [(ngModel)]="ChangePass.NewPassword" />
-                </div>
-                <div class="form-group">
-                    <label>Confirm new password</label>
-                    <input class="form-control" type="password" [(ngModel)]="ChangePass.ConfirmPassword" />
-                </div>
-                <button class="btn btn-info" type="button" (click)="ChangePassword()" *ngIf="!changingPassword">Update password</button>
-                <div class="loader-demo d-flex align-items-center justify-content-center" *ngIf="changingPassword">
-                    <div class="ball-clip-rotate-pulse">
-                        <div></div>
-                        <div></div>
+    <div class="row">
+        <div class="col-lg-5 col-md-5">
+            <div class="card b">
+                <div class="card-header bg-gray-lighter text-bold">Account</div>
+                <div class="card-body">
+                    <div [hidden]="!errors.length">
+                        <alert *ngFor="let alert of errors;let i = index" [type]="'danger'" dismissible="true" (close)="closeAlert(i)">
+                            <span [innerHTML]="alert"></span>
+                        </alert>
                     </div>
+                    <div class="form-group">
+                        <label>Current password</label>
+                        <input class="form-control" type="password" [(ngModel)]="ChangePass.OldPassword" />
+                    </div>
+                    <div class="form-group">
+                        <label>New password</label>
+                        <input class="form-control" type="password" [(ngModel)]="ChangePass.NewPassword" />
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm new password</label>
+                        <input class="form-control" type="password" [(ngModel)]="ChangePass.ConfirmPassword" />
+                    </div>
+                    <button class="btn btn-info" type="button" (click)="ChangePassword()" *ngIf="!changingPassword">Update password</button>
+                    <div class="profile-loader d-flex align-items-center justify-content-center" *ngIf="changingPassword">
+                        <div class="ball-clip-rotate-pulse">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
                 </div>
-                <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
             </div>
-        </div>
-        <div class="card b">
-            <div class="card-header bg-danger text-bold">Delete account</div>
-            <div class="card-body bt">
-                <p>You will be asked for confirmation before delete account.</p>
-                <button class="btn btn-secondary" type="button">
-                    <span class="text-danger" (click)="DeleteAccount()">Delete account</span>
-                </button>
-                <p>
-                    <small class="text-muted">* Just grocery</small>
-                </p>
+            <div class="card b">
+                <div class="card-header bg-danger text-bold">Delete account</div>
+                <div class="card-body bt">
+                    <p>You will be asked for confirmation before delete account.</p>
+                    <button class="btn btn-secondary" type="button">
+                        <span class="text-danger" (click)="DeleteAccount()">Delete account</span>
+                    </button>
+                    <p>
+                        <small class="text-muted">* Just grocery</small>
+                    </p>
+                </div>
             </div>
+
         </div>
+        <div class="col-lg-5 col-md-5">
 
-    </div>
-    <div class="col-lg-5 col-md-5">
-
+<<<<<<< HEAD
         <div class="card b">
             <div class="card-header bg-gray-lighter text-bold">Profile</div>
             <div class="card-body">
+<<<<<<< HEAD
+                <form action="">
+                    <div class="form-group">
+                        <label>Picture</label>
+                        <label for="image-input" class="file-upload">
+                            <button class="btn btn-secondary">
+                                <em class="fa fa-upload mr"></em> Upload new picture</button>
+                            <input id="image-input" type="file">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>URL</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                    <button class="btn btn-info" type="button">Update settings</button>
+                    <p>
+                        <small class="text-muted">* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae</small>
+                    </p>
+                </form>
+>>>>>>> 226bd07... Daily commit
+=======
                 <div class="form-group">
                     <label>Picture</label>
                     <label for="image-input" class="file-upload">
@@ -91,6 +250,54 @@
                 <p>
                     <small class="text-muted">* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae</small>
                 </p>
+>>>>>>> 86e6256... Daily commit
+=======
+            <div class="card b">
+                <div class="card-header bg-gray-lighter text-bold">Profile</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Picture</label>
+                        <label for="image-input" class="file-upload" *ngIf="!uploadingImage">
+                            <button class="btn btn-secondary">
+                                <em class="fa fa-upload mr"></em> Upload new picture</button>
+                            <input id="image-input" (change)="handleFileInput($event.target.files)" type="file">
+                        </label>
+                        <div class="profile-loader d-flex align-items-center justify-content-center" *ngIf="uploadingImage">
+                            <div class="ball-clip-rotate-pulse">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control" name="name" [(ngModel)]="user.name" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea class="form-control" name="bio" [(ngModel)]="user.bio" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>URL</label>
+                        <input class="form-control" name="url" [(ngModel)]="user.url" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input class="form-control" name="company" [(ngModel)]="user.company" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Job title</label>
+                        <input class="form-control" name="jobTitle" [(ngModel)]="user.jobTitle" type="text" />
+                    </div>
+                    <button class="btn btn-info" type="button" (click)="UpdateSettings()" *ngIf="!updatingProfile" >Update settings</button>
+                    <div class="profile-loader d-flex align-items-center justify-content-center" *ngIf="updatingProfile">
+                        <div class="ball-clip-rotate-pulse">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> 383c77b... * Recover Password
             </div>
         </div>
     </div>

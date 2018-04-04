@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.IO;
+using Equinox.Infra.CrossCutting.Identity.Services;
 using Equinox.WebApi.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Equinox.WebApi
 {
-  public class Startup
+    public class Startup
     {
         public IConfigurationRoot Configuration { get; }
 
@@ -84,9 +85,9 @@ namespace Equinox.WebApi
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
-                              IHostingEnvironment env,
-                              ILoggerFactory loggerFactory,
-                              IHttpContextAccessor accessor)
+            IHostingEnvironment env,
+            ILoggerFactory loggerFactory,
+            IHttpContextAccessor accessor)
         {
             loggerFactory.AddConsole();
 
@@ -95,7 +96,15 @@ namespace Equinox.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
             
+>>>>>>> 86e6256... Daily commit
+=======
+
+>>>>>>> 383c77b... * Recover Password
             app.UseCors(c =>
             {
                 c.AllowAnyMethod();
@@ -114,8 +123,10 @@ namespace Equinox.WebApi
             });
         }
 
-        private static void RegisterServices(IServiceCollection services)
+
+        private void RegisterServices(IServiceCollection services)
         {
+            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
             // Adding dependencies from another layers (isolated from Presentation)
             NativeInjectorBootStrapper.RegisterServices(services);
         }
