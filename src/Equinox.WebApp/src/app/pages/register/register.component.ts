@@ -169,7 +169,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
                     registerResult => { if (registerResult.data) this.router.navigate(["/sign-in"]); },
                     response => {
                         this.errors = [];
-                        response.error.errors.forEach(element => this.errors.push(element));
+                        if (response.error.errors != null)
+                            response.error.errors.forEach(element => this.errors.push(element));
+                        else {
+                            this.errors.push("Unknown error while trying to register");
+                        }
                         this.showButtonLoading = false;
                     }
                 );

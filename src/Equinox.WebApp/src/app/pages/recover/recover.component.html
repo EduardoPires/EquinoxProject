@@ -27,9 +27,14 @@
                         <div class="text-danger" *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">This field is required</div>
                         <div class="text-danger" *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">This field must be a valid email address</div>
                     </div>
-                    <button class="btn btn-danger btn-block" type="submit">Reset</button>
+                    <button class="btn btn-danger btn-block" type="submit" *ngIf="!showButtonLoading">Reset</button>
+                    <button class="btn btn-block mt-lg" *ngIf="showButtonLoading" type="submit">
+                        <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                    </button>
                 </form>
-                <p class="text-success" *ngIf="emailSent">An e-mail has been sent, check your e-mail to reset your password</p>
+                <p class="pt-3 text-center" *ngIf="emailSent">An e-mail has been sent, check your e-mail to reset your password</p>
+                <p class="pt-3 text-center" *ngIf="!emailSent">Did you Remember?</p>
+                <a class="btn btn-block btn-secondary" [routerLink]="'/sign-in'">Go back</a>
             </div>
         </div>
         <!-- END card-->

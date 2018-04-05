@@ -105,11 +105,12 @@
                         <i class="fa fa-spinner fa-pulse fa-fw"></i>
                     </button>
                 </form>
-                <div *ngIf="!newUser.provider">
+                <!-- ASAP -->
+                <!-- <div *ngIf="!newUser.provider">
                     <p class="pt-lg text-center">Or register through your social network</p>
                     <button type="submit" value="Google" class="btn btn-default btn-danger" (click)="googleRegister($event)">Google</button>
                     <button type="submit" value="Facebook" class="btn btn-default btn-primary" (click)="facebookRegister($event)">Facebook</button>
-                </div>
+                </div> -->
                 <!-- <div class="alert alert-danger text-center"></div> -->
                 <p class="pt-lg text-center">Already have a login?</p>
                 <a class="btn btn-block btn-secondary" [routerLink]="'/sign-in'">Access</a>

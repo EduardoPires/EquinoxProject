@@ -12,6 +12,7 @@ import { Error404Component } from "./error404/error404.component";
 import { LockComponent } from "./lock/lock.component";
 import { RecoverComponent } from "./recover/recover.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { ConfirmEmailComponent } from "./confirm-email/confirm-email.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "sign-in", pathMatch: "full" },
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: "lock", component: LockComponent },
     { path: "recover", component: RecoverComponent },
     { path: "reset-password", component: ResetPasswordComponent },
+    { path: "confirm-email", component: ConfirmEmailComponent },
 ];
 
 @NgModule({
@@ -39,7 +41,8 @@ const routes: Routes = [
         Error404Component,
         LockComponent,
         RecoverComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        ConfirmEmailComponent
     ],
     exports: [
         RouterModule

@@ -30,7 +30,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
 
     public showButtonLoading: boolean;
     public passChanged: boolean;
-    private externalAccessSubscription: Subscription;
+    private resetPassSub: Subscription;
 
 
     constructor(public settings: SettingsService,
@@ -56,12 +56,12 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
 
 
     public ngOnDestroy() {
-        this.externalAccessSubscription.unsubscribe();
+        this.resetPassSub.unsubscribe();
     }
 
     public ngOnInit() {
         this.resetPass = new ResetPasswordModel();
-        this.externalAccessSubscription = this.route
+        this.resetPassSub = this.route
             .queryParams
             .subscribe(params => {
                 // Defaults to 0 if no query param provided.
