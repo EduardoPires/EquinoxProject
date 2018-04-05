@@ -54,7 +54,11 @@ export class LoginComponent implements OnInit {
             },
             response => {
                 this.errors = [];
-                response.error.errors.forEach(element => this.errors.push(element));
+                if (response.error.errors != null)
+                    response.error.errors.forEach(element => this.errors.push(element));
+                else {
+                    this.errors.push("Unknown error while trying to login");
+                }
             }
         );
     }

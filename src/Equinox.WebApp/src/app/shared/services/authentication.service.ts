@@ -10,12 +10,18 @@ import { SignInResult } from "../viewModel/signInResult.model";
 import { LoginResult } from "../viewModel/loginResult.model";
 import { ResetPasswordModel } from "../viewModel/reset-password.model";
 import { UserManagementResult } from "../viewModel/userManagementResult.model";
+import { ConfirmEmailViewModel } from "../viewModel/confirm-email.model";
 
 @Injectable()
 export class AuthenticationService {
 
+
     constructor(private http: HttpClient) {
         // set token if saved in local storage
+    }
+
+    confirmEmail(confirmEmail: ConfirmEmailViewModel): Observable<DefaultResponse<UserManagementResult>> {
+        return this.http.post<DefaultResponse<UserManagementResult>>(environment.API_URL + "v1/account/confirm-email", confirmEmail);
     }
 
     public resetPassword(resetPass: ResetPasswordModel): Observable<DefaultResponse<UserManagementResult>> {
@@ -23,7 +29,7 @@ export class AuthenticationService {
     }
 
     public recoverPassword(email: string): Observable<DefaultResponse<boolean>> {
-        return this.http.post<DefaultResponse<boolean>>(environment.API_URL + "v1/account/forgot-password", {email: email});
+        return this.http.post<DefaultResponse<boolean>>(environment.API_URL + "v1/account/forgot-password", { email: email });
     }
     public isLoggedIn(): Observable<DefaultResponse<boolean>> {
         return this.http.get<DefaultResponse<boolean>>(environment.API_URL + "v1/account/is-logged-in");

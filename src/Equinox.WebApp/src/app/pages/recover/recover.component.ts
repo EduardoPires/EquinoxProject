@@ -15,6 +15,7 @@ export class RecoverComponent implements OnInit {
     valForm: FormGroup;
     public errors: Array<string>;
     public emailSent: boolean;
+    public showButtonLoading: boolean;
 
     constructor(
         public settings: SettingsService,
@@ -28,6 +29,7 @@ export class RecoverComponent implements OnInit {
     submitForm($ev, value: any) {
         this.errors = [];
         $ev.preventDefault();
+        this.showButtonLoading = true;
         for (let c in this.valForm.controls) {
             this.valForm.controls[c].markAsTouched();
         }
@@ -39,10 +41,16 @@ export class RecoverComponent implements OnInit {
                     } else {
                         this.errors.push("E-mail not found");
                     }
+                    this.showButtonLoading = true;
                 },
                 response => {
                     this.errors = [];
-                    response.error.errors.forEach(element => this.errors.push(element));
+                    if (response.error.errors != null)
+                        response.error.errors.forEach(element => this.errors.push(element));
+                    else {
+                        this.errors.push("Unknown error while trying to reset password");
+                    }
+                    this.showButtonLoading = false;
                 }
             );
         }
