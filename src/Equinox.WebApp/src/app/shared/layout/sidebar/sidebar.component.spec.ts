@@ -5,6 +5,7 @@ import { RouterModule, Router } from "@angular/router";
 
 import { MenuService } from "../../../core/menu/menu.service";
 import { SettingsService } from "../../../core/settings/settings.service";
+import { HttpClientModule } from "@angular/common/http";
 
 describe("Component: Sidebar", () => {
     let mockRouter = {
@@ -12,6 +13,7 @@ describe("Component: Sidebar", () => {
     };
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [HttpClientModule],
             providers: [
                 MenuService,
                 SettingsService,

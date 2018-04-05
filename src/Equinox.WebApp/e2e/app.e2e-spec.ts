@@ -1,14 +1,18 @@
-import { Ng2anglePage } from './app.po';
+import { EquinoxWebAppPage } from "./app.po";
+import { TestBed } from "@angular/core/testing";
+import { AccountManagementService } from "../src/app/shared/services/account-management.service";
+import { HttpClientModule } from "@angular/common/http";
 
-describe('ng2angle App', function() {
-  let page: Ng2anglePage;
+describe("Equinox WebApp", function () {
+  let page: EquinoxWebAppPage;
 
   beforeEach(() => {
-    page = new Ng2anglePage();
+    page = new EquinoxWebAppPage();
   });
 
-  it('should display Angle in h1 tag', () => {
+  it("should display sign-in page", () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Angle');
+    expect(page.getParagraphText()).toEqual("SIGN IN TO CONTINUE.");
+    expect(page.getUrl()).toContain("/sign-in");
   });
 });

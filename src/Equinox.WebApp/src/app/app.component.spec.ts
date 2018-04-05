@@ -9,8 +9,9 @@ import { LayoutModule } from "./shared/layout/layout.module";
 import { SharedModule } from "./shared/shared.module";
 import { APP_BASE_HREF } from "@angular/common";
 import { RoutesModule } from "./app.routing.module";
+import { HttpClientModule } from "@angular/common/http";
 
-describe("App: Ng2angle", () => {
+describe("App: Equinox", () => {
     beforeEach(() => {
 
         jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
@@ -20,6 +21,7 @@ describe("App: Ng2angle", () => {
                 AppComponent
             ],
             imports: [
+                HttpClientModule,
                 TranslateModule.forRoot(),
                 CoreModule,
                 LayoutModule,

@@ -13,19 +13,16 @@ import { SettingsService } from "../../../core/settings/settings.service";
 export class SidebarComponent implements OnInit, OnDestroy {
 
     menuItems: Array<any>;
-    router: Router;
     sbclickEvent = "click.sidebar-toggle";
     $doc: any = null;
 
-    constructor(public menu: MenuService, public settings: SettingsService, public injector: Injector) {
+    constructor(public menu: MenuService, public settings: SettingsService, public router: Router) {
 
         this.menuItems = menu.getMenu();
 
     }
 
     ngOnInit() {
-
-        this.router = this.injector.get(Router);
 
         this.router.events.subscribe((val) => {
             // close any submenu opened when route changes
@@ -152,7 +149,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
             floatingNav
                 .on("mouseleave", () => { floatingNav.remove(); })
-                .find("a").on("click", function(e) {
+                .find("a").on("click", function (e) {
                     e.preventDefault(); // prevents page reload on click
                     // get the exact route path to navigate
                     let routeTo = $(this).attr("route");

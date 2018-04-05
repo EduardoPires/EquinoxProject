@@ -1,11 +1,15 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element } from "protractor";
 
-export class Ng2anglePage {
+export class EquinoxWebAppPage {
     navigateTo() {
-        return browser.get('/');
+        return browser.get("/");
+    }
+
+    getUrl() {
+        return browser.getCurrentUrl();
     }
 
     getParagraphText() {
-        return element(by.css('app-root h1')).getText();
+        return element(by.css("login-container text-center py-2")).getText();
     }
 }
