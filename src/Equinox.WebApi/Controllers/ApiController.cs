@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using System.Threading;
 
 namespace Equinox.WebApi.Controllers
 {
@@ -53,7 +54,7 @@ namespace Equinox.WebApi.Controllers
 
         protected void NotifyError(string code, string message)
         {
-            _notifications.Handle(new DomainNotification(code, message));
+            _notifications.Handle(new DomainNotification(code, message), default(CancellationToken));
         }
 
         protected void AddIdentityErrors(IdentityResult result)
