@@ -19,7 +19,7 @@ namespace Equinox.Infra.CrossCutting.Bus
 
         public Task SendCommand<T>(T command) where T : Command
         {
-            return Publish(command);
+            return _mediator.Send(command);
         }
 
         public Task RaiseEvent<T>(T @event) where T : Event

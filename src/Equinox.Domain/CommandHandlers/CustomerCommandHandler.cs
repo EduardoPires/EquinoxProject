@@ -10,9 +10,9 @@ using MediatR;
 namespace Equinox.Domain.CommandHandlers
 {
     public class CustomerCommandHandler : CommandHandler,
-        INotificationHandler<RegisterNewCustomerCommand>,
-        INotificationHandler<UpdateCustomerCommand>,
-        INotificationHandler<RemoveCustomerCommand>
+        IRequestHandler<RegisterNewCustomerCommand>,
+        IRequestHandler<UpdateCustomerCommand>,
+        IRequestHandler<RemoveCustomerCommand>
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMediatorHandler Bus;
