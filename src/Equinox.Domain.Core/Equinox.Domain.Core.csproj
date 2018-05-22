@@ -11,9 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="mediatr" Version="3.0.1" />
+    <PackageReference Include="mediatr" Version="4.1.0" />
     <PackageReference Include="System.ComponentModel" Version="4.3.0" />
-    <PackageReference Include="FluentValidation" Version="7.1.1" />
+    <PackageReference Include="FluentValidation" Version="7.5.2" />
   </ItemGroup>
 
 </Project>

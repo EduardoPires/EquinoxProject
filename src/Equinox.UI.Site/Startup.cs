@@ -7,9 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Equinox.Infra.CrossCutting.Identity.Models;
-using AutoMapper;
 using Equinox.Infra.CrossCutting.Identity.Authorization;
 using Equinox.Infra.CrossCutting.IoC;
+using Equinox.UI.Site.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -50,8 +50,8 @@ namespace Equinox.UI.Site
                     googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 });
 
+            services.AddAutoMapperSetup();
             services.AddMvc();
-            services.AddAutoMapper();
 
             services.AddAuthorization(options =>
             {

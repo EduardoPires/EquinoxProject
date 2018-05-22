@@ -19,7 +19,7 @@ namespace Equinox.Infra.CrossCutting.Bus
 
         public Task SendCommand<T>(T command) where T : Command
         {
-            return Publish(command);
+            return _mediator.Send(command);
         }
 
         public Task RaiseEvent<T>(T @event) where T : Event
@@ -27,12 +27,7 @@ namespace Equinox.Infra.CrossCutting.Bus
             if (!@event.MessageType.Equals("DomainNotification"))
                 _eventStore?.Save(@event);
 
-            return Publish(@event);
-        }
-
-        private Task Publish<T>(T message) where T : Message
-        {
-            return _mediator.Publish(message);
+            return _mediator.Publish(@event);
         }
     }
 }
