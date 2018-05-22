@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Equinox.Application.Interfaces;
+﻿using Equinox.Application.Interfaces;
 using Equinox.Application.Services;
 using Equinox.Domain.CommandHandlers;
 using Equinox.Domain.Commands;
@@ -39,8 +38,6 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
             // Application
-            //services.AddSingleton(Mapper.Configuration);
-            //services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
             services.AddScoped<ICustomerAppService, CustomerAppService>();
 
             // Domain - Events
