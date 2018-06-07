@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Equinox.Application.Interfaces;
+﻿using Equinox.Application.Interfaces;
 using Equinox.Application.Services;
 using Equinox.Domain.CommandHandlers;
 using Equinox.Domain.Commands;
@@ -36,11 +35,9 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             // ASP.NET Authorization Polices
-            services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>(); ;
+            services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
             // Application
-            services.AddSingleton(Mapper.Configuration);
-            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
             services.AddScoped<ICustomerAppService, CustomerAppService>();
 
             // Domain - Events
@@ -50,9 +47,9 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<INotificationHandler<CustomerRemovedEvent>, CustomerEventHandler>();
 
             // Domain - Commands
-            services.AddScoped<INotificationHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
-            services.AddScoped<INotificationHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
-            services.AddScoped<INotificationHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
 
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();

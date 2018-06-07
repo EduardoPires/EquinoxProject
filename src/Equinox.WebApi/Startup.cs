@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Equinox.Infra.CrossCutting.Identity.Authorization;
+﻿using Equinox.Infra.CrossCutting.Identity.Authorization;
 using Equinox.Infra.CrossCutting.Identity.Data;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.IoC;
@@ -56,7 +55,7 @@ namespace Equinox.WebApi
                 options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
             });
 
-            services.AddAutoMapper();
+            services.AddAutoMapperSetup();
 
             services.AddAuthorization(options =>
             {
@@ -105,6 +104,7 @@ namespace Equinox.WebApi
                 c.AllowCredentials();
             });
 
+            app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
 

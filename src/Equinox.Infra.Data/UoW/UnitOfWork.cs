@@ -1,5 +1,4 @@
-﻿using Equinox.Domain.Core.Commands;
-using Equinox.Domain.Interfaces;
+﻿using Equinox.Domain.Interfaces;
 using Equinox.Infra.Data.Context;
 
 namespace Equinox.Infra.Data.UoW
@@ -13,10 +12,9 @@ namespace Equinox.Infra.Data.UoW
             _context = context;
         }
 
-        public CommandResponse Commit()
+        public bool Commit()
         {
-            var rowsAffected = _context.SaveChanges();
-            return new CommandResponse(rowsAffected > 0);
+            return _context.SaveChanges() > 0;
         }
 
         public void Dispose()

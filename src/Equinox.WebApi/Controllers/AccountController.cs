@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Equinox.Domain.Core.Bus;
 using Equinox.Domain.Core.Notifications;
 using Equinox.Infra.CrossCutting.Identity.Extensions;
 using Equinox.Infra.CrossCutting.Identity.Models;
@@ -34,7 +35,8 @@ namespace Equinox.WebApi.Controllers
             INotificationHandler<DomainNotification> notifications,
             ILoggerFactory loggerFactory,
             IEmailSender emailSender,
-            IConfiguration configuration) : base(notifications)
+            IConfiguration configuration,
+			IMediatorHandler mediator) : base(notifications, mediator)
         {
             _userManager = userManager;
             _signInManager = signInManager;

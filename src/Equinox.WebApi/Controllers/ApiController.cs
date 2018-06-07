@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using Equinox.Domain.Core.Bus;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
@@ -10,10 +11,13 @@ namespace Equinox.WebApi.Controllers
     public abstract class ApiController : ControllerBase
     {
         private readonly DomainNotificationHandler _notifications;
+        private readonly IMediatorHandler _mediator;
 
-        protected ApiController(INotificationHandler<DomainNotification> notifications)
+        protected ApiController(INotificationHandler<DomainNotification> notifications, 
+                                IMediatorHandler mediator)
         {
             _notifications = (DomainNotificationHandler)notifications;
+            _mediator = mediator;
         }
 
         protected IEnumerable<DomainNotification> Notifications => _notifications.GetNotifications();
@@ -53,7 +57,7 @@ namespace Equinox.WebApi.Controllers
 
         protected void NotifyError(string code, string message)
         {
-            _notifications.Handle(new DomainNotification(code, message));
+            _mediator.RaiseEvent(new DomainNotification(code, message));
         }
 
         protected void AddIdentityErrors(IdentityResult result)

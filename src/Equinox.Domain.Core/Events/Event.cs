@@ -1,8 +1,9 @@
 ﻿using System;
+using MediatR;
 
 namespace Equinox.Domain.Core.Events
 {
-    public abstract class Event : Message
+    public abstract class Event : Message, INotification
     {
         public DateTime Timestamp { get; private set; }
 
