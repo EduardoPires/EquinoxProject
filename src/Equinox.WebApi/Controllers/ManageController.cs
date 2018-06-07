@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Equinox.Domain.Core.Bus;
 using Equinox.Domain.Core.Notifications;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.ManageViewModels;
@@ -32,8 +33,8 @@ namespace Equinox.WebApi.Controllers
             INotificationHandler<DomainNotification> notifications,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IConfiguration configuration
-            ) : base(notifications)
+            IConfiguration configuration,
+            IMediatorHandler mediator) : base(notifications, mediator)
         {
             _userManager = userManager;
             _signInManager = signInManager;

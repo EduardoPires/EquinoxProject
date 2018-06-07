@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Equinox.Domain.Core.Bus;
 using Equinox.Domain.Core.Notifications;
@@ -10,8 +8,6 @@ using Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels;
 using Equinox.Infra.CrossCutting.Identity.Services;
 using Equinox.WebApi.ViewModels;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
