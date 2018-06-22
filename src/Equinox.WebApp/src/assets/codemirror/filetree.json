@@ -1,0 +1,25 @@
+[{
+    "name": "ProjectX",
+    "expanded": true,
+    "children": [
+        {
+            "name": "css",
+            "expanded": true,
+            "children": [{
+                "name": "style.css",
+                "path": "source/css/style.css",
+                "hasChildren": false
+            }]
+        }, {
+            "name": "ts",
+            "children": [{
+                "name": "script.ts",
+                "path": "source/ts/script.ts",
+                "hasChildren": false
+            }]
+        }, {
+            "name": "index.html",
+            "path": "source/index.html"
+        }
+    ]
+}]

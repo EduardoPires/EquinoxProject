@@ -1,0 +1,68 @@
+// Used for theme swticher
+.setting-color {
+    padding: 0 5px;
+
+    >label {
+        display: block;
+        position: relative;
+        margin: 0 10px;
+        border-radius: 3px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, .1);
+        cursor: pointer;
+
+        &:first-child {
+            margin-left: 0
+        }
+        &:last-child {
+            margin-right: 0
+        }
+
+        $baseHg: 15px;
+        >.color {
+            display: block;
+            height: $baseHg * 1.2;
+        }
+
+        >.split {
+            @include clearfix();
+            display: block;
+            >.color {
+                display: block;
+                height: $baseHg * 2.5;
+                &:first-child {
+                    float: left;
+                    width: 70%;
+                }
+                &:last-child {
+                    float: right;
+                    width: 30%;
+                }
+            }
+        } // icon checked
+        >.icon-check {
+            position: absolute;
+            display: block;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -20px;
+            margin-left: -10px;
+            text-align: center;
+            font-size: 1.33333333em;
+            vertical-align: -15%;
+            color: #fff;
+            opacity: 0;
+        }
+
+        >input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+            &:checked+.icon-check {
+                opacity: 1 !important;
+            }
+        }
+    }
+}

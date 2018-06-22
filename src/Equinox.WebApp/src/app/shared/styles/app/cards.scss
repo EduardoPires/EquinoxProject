@@ -1,0 +1,76 @@
+/* ========================================================================
+     Component: cards
+ ========================================================================== */
+
+.card {
+    margin-bottom: 1.25rem; //20px
+}
+
+//
+// Adds support to use more components inside cards
+//
+.card {
+    .table {
+        margin-bottom: 0;
+        >thead>tr>th {
+            border-top: 0;
+        }
+    }
+    &.card-transparent {
+        border: 0;
+        background-color: transparent;
+        box-shadow: 0 0 0 #000;
+        .card-header,
+        .card-body {
+            background-color: transparent;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+
+.card-flat {
+    margin: 0 !important;
+    border: 0;
+}
+
+.card-columns-2 {
+    column-count: 1;
+    @include media-breakpoint-up(md) {
+        column-count: 2;
+    }
+}
+
+.card-header {
+    >a[data-tool] {
+        display: inline-block;
+        color: #fff;
+        width: 2em;
+        text-align: center;
+    }
+
+    .card-default & {
+        >a[data-tool] {
+            color: #c1c2c3;
+        }
+    } // right floated labels adjust position
+    >.badge.pull-right {
+        margin-top: 3px;
+        +.badge.pull-right {
+            margin-right: 10px;
+        }
+    }
+}
+
+.card-footer {
+    .pagination {
+        margin: 0;
+    }
+    .radial-bar {
+        margin-bottom: 0;
+    }
+    p {
+        margin-bottom: 0;
+    }
+}

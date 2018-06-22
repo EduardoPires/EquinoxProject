@@ -1,0 +1,11 @@
+/* ========================================================================
+   Component: typeahead
+  ========================================================================== */
+
+// Limits the typeahead list when it becomes too large
+.typeahead-ctrl {
+  .dropdown-menu {
+    max-height: 300px;
+    overflow: auto;
+  }
+}

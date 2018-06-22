@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <div class="abs-center wd-xl">
+        <!-- START card-->
+        <div class="text-center mb-4">
+            <div class="text-lg mb-3">
+                <em class="fa fa-wrench fa-2x text-muted"></em>
+            </div>
+            <div class="text-lg mb-3">500</div>
+            <p class="lead m-0">Oh! Something went wrong :(</p>
+            <p>Don't worry, we're now checking this.</p>
+            <p>In the meantime, please try one of those links below or come back in a moment</p>
+        </div>
+        <ul class="list-inline text-center text-sm mb-4">
+            <li class="list-inline-item">
+                <a class="text-muted" [routerLink]="'/home'">Go to App</a>
+            </li>
+            <li class="text-muted list-inline-item">|</li>
+            <li class="list-inline-item">
+                <a class="text-muted" [routerLink]="'/login'">Login</a>
+            </li>
+            <li class="text-muted list-inline-item">|</li>
+            <li class="list-inline-item">
+                <a class="text-muted" [routerLink]="'/register'">Register</a>
+            </li>
+        </ul>
+        <div class="p-3 text-center">
+            <span>&copy;</span>
+            <span>{{ settings.app.year }}</span>
+            <span class="mx-2">-</span>
+            <span>{{ settings.app.name }}</span>
+            <br/>
+            <span>{{ settings.app.description }}</span>
+        </div>
+    </div>
+</div>

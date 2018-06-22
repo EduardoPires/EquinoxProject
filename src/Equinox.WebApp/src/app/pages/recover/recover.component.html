@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <div class="block-center mt-4 wd-xl">
+        <!-- START card-->
+        <div class="card card-flat">
+            <div class="card-header text-center bg-dark">
+                <a href="#">
+                    <img class="block-center rounded" src="assets/img/logo.png" alt="Image" />
+                </a>
+            </div>
+            <div class="card-body">
+                <p class="text-center py-2">PASSWORD RESET</p>
+                <div [hidden]="!errors.length">
+                        <alert *ngFor="let alert of errors;let i = index" [type]="'danger'" dismissible="true" (close)="closeAlert(i)">
+                            <span [innerHTML]="alert"></span>
+                        </alert>
+                    </div>
+                <form [formGroup]="valForm" class="form-validate" role="form" name="recoverForm" novalidate="" (submit)="submitForm($event, valForm.value)" *ngIf="!emailSent">
+                    <p class="text-center">Fill with your mail to receive instructions on how to reset your password.</p>
+                    <div class="form-group">
+                        <label class="text-muted">Email address</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" type="email" name="email" placeholder="Enter email" autocomplete="off" formControlName="email" />
+                            <div class="input-group-append">
+                                <span class="input-group-text fa fa-envelope text-muted bg-transparent border-left-0"></span>
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">This field is required</div>
+                        <div class="text-danger" *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">This field must be a valid email address</div>
+                    </div>
+                    <button class="btn btn-danger btn-block" type="submit" *ngIf="!showButtonLoading">Reset</button>
+                    <button class="btn btn-block mt-lg" *ngIf="showButtonLoading" type="submit">
+                        <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                    </button>
+                </form>
+                <p class="pt-3 text-center" *ngIf="emailSent">An e-mail has been sent, check your e-mail to reset your password</p>
+                <p class="pt-3 text-center" *ngIf="!emailSent">Did you Remember?</p>
+                <a class="btn btn-block btn-secondary" [routerLink]="'/sign-in'">Go back</a>
+            </div>
+        </div>
+        <!-- END card-->
+        <div class="p-3 text-center">
+            <span>&copy;</span>
+            <span>{{ settings.app.year }}</span>
+            <span class="mx-2">-</span>
+            <span>{{ settings.app.name }}</span>
+            <br/>
+            <span>{{ settings.app.description }}</span>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>Equinox.Infra.CrossCutting.Identity</AssemblyName>
     <PackageId>Equinox.Infra.CrossCutting.Identity</PackageId>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
@@ -9,6 +9,10 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\Class1.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Equinox.Domain\Equinox.Domain.csproj" />
@@ -26,10 +30,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="2.0.4" />
+    <PackageReference Include="MailKit" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
 

@@ -1,0 +1,131 @@
+/* ========================================================================
+     Component: bootstrap-custom
+ ========================================================================== */
+
+// Use this file to add custom css that may
+// depend on Bootstrap styles
+
+
+
+// Different container size to wrap content
+.container-sm {
+    max-width: map-get($container-max-widths, "sm");
+    width: auto;
+}
+
+.container-md {
+    max-width: map-get($container-max-widths, "md");
+    width: auto;
+}
+
+.container-lg {
+    max-width: map-get($container-max-widths, "lg");
+    width: auto;
+}
+
+// Remove padding and collapse columns
+.row-flush {
+    margin: 0;
+    >.col,
+    >[class*="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+// Breadcrumb variants
+
+.breadcrumb {
+    font-weight: normal;
+    border-radius: 0;
+    color: $text-muted;
+    padding: 10px 20px;
+}
+
+.content-heading {
+    // Breadcrumb below title
+    .breadcrumb {
+        font-size: 0.8125rem;
+        margin-bottom: 0;
+    }
+    // Breadcrumb next to view title
+    +.breadcrumb {
+        margin: -25px -25px 20px -20px;
+        background-color: $content-heading-bg;
+        border-top: 1px solid $content-heading-border;
+        border-bottom: 1px solid $content-heading-border;
+    }
+}
+
+// Different size of Progress bars
+$progress-height-sm: 15px;
+$progress-height-xs: 8px;
+
+.progress-sm {
+    height: $progress-height-sm;
+}
+
+.progress-xs {
+    height: $progress-height-xs;
+}
+
+
+// Extra badges
+
+.badge-inverse {
+    @include badge-variant($inverse);
+}
+
+.badge-green {
+    @include badge-variant($green);
+}
+
+.badge-pink {
+    @include badge-variant($pink);
+}
+
+.badge-purple {
+    @include badge-variant($purple);
+}
+
+
+// Extra alert
+
+.alert-purple {
+    @include alert-variant($purple, $purple, #fff);
+}
+.alert-green {
+    @include alert-variant($green, $green, #fff);
+}
+.alert-pink {
+    @include alert-variant($pink, $pink, #fff);
+}
+.alert-inverse {
+    @include alert-variant($inverse, $inverse, #fff);
+}
+
+// Form Rounded
+.form-control-rounded {
+    border-radius: 100px;
+}
+
+
+// Auto color validation of input group
+// Support only input-group-append
+.input-group.with-focus {
+    .form-control {
+        transition: none;
+        &:focus + .input-group-append > .input-group-text {
+            border-color: $input-focus-border-color;
+        }
+        &.ng-touched.ng-invalid,
+        &.ng-touched.ng-invalid + .input-group-append > .input-group-text {
+            border-color: $danger;
+        }
+        &.ng-touched.ng-valid,
+        &.ng-touched.ng-valid + .input-group-append > .input-group-text {
+            border-color: $success;
+        }
+    }
+}

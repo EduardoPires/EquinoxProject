@@ -1,0 +1,28 @@
+/* ========================================================================
+   Component: form-select2
+ ========================================================================== */
+
+.ngx-select__toggle {
+    border: 1px solid $input-border-color !important;
+    border-radius: $input-border-radius;
+    &:hover {
+        background-color: $input-bg !important;
+    }
+    .ngx-select__clear .ngx-select__clear-icon {
+        width: .65rem;
+        color: $body-color !important;
+    }
+}
+
+.ngx-select_multiple {
+    height: auto !important;
+    padding: 0 !important;
+    .ngx-select__search {
+        height: auto !important;
+        padding: $input-padding-y $input-padding-x !important;
+        margin: 0 !important;
+        &:focus {
+            border-color: $input-focus-border-color !important;
+        }
+    }
+}

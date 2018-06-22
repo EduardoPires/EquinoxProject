@@ -1,0 +1,27 @@
+@import "../../shared/styles/bootstrap/_functions.scss";
+@import "../../shared/styles/bootstrap/_variables.scss";
+@import "../../shared/styles/bootstrap/_mixins";
+@import '../../shared/styles/app/variables.scss';
+
+.home-container {
+    margin: 0 auto;
+    max-width: map-get($container-max-widths, "lg");
+
+    .home-logo {
+        width: 240px;
+    }
+
+    .home-text {
+        text-align: center;
+        @include media-breakpoint-up(lg) {
+            text-align: left;
+        }
+    }
+    .home-text-big {
+        font-size: 3.9375rem;
+    }
+
+    .img-angular {
+        width: 120px;
+    }
+}

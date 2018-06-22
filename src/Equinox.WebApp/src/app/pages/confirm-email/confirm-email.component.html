@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <div class="block-center mt-4 wd-xl">
+        <!-- START card-->
+        <div class="card card-flat">
+            <div class="card-header text-center bg-dark">
+                <a href="#">
+                    <img class="block-center rounded" src="assets/img/logo.png" alt="Image" />
+                </a>
+            </div>
+            <div class="card-body">
+                <div [hidden]="!errors.length">
+                    <alert *ngFor="let alert of errors;let i = index" [type]="'danger'" dismissible="true" (close)="closeAlert(i)">
+                        <span [innerHTML]="alert"></span>
+                    </alert>
+                </div>
+                <p class="text-center py-2" *ngIf="emailConfirmed">Your your has been confirmed, please
+                    <a [routerLink]="'/sign-in'">do login</a> to continue.
+                </p>
+                <div class="progress" *ngIf="showButtonLoading">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 100%"></div>
+                </div>
+            </div>
+        </div>
+        <!-- END card-->
+        <div class="p-3 text-center">
+            <span>&copy;</span>
+            <span>{{ settings.app.year }}</span>
+            <span class="mx-2">-</span>
+            <span>{{ settings.app.name }}</span>
+            <br/>
+            <span>{{ settings.app.description }}</span>
+        </div>
+    </div>
+</div>

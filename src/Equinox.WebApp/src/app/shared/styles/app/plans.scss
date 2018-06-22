@@ -1,0 +1,69 @@
+/* ========================================================================
+   Component: Plan table
+ ========================================================================== */
+
+.plan {
+    background-color: $gray-lighter;
+    overflow: auto;
+    border-radius: $border-radius; // margin-bottom: 60px;
+    padding-bottom: 30px;
+
+    .plan-header {
+        background-color: $info;
+        color: #fff;
+        margin: 0;
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    .plan-price {
+        background: #fff;
+        padding: 16px 8px;
+        text-align: center;
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .plan-period {
+        font-size: 16px;
+    }
+
+    hr {
+        display: block;
+        margin: 24px;
+        border-top: 1px solid rgba(0, 0, 0, .05);
+        height: 0;
+    }
+
+    .plan-description {
+        padding: 0 24px;
+        text-align: center;
+    }
+
+    .plan-features {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        text-align: left;
+
+        >li {
+            padding: 8px 24px;
+
+            >em {
+                color: $info;
+                margin-right: 7px;
+            }
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    .plan-feature-disable {
+        color: $danger !important;
+    }
+}

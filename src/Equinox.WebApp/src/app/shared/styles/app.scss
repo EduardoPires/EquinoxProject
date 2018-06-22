@@ -1,0 +1,65 @@
+/*!
+ *
+ * Angle - Bootstrap Admin App + AngularJS
+ *
+ * Version: 3.8.7
+ * Author: @themicon_co
+ * Website: http://themicon.co
+ * License: https://wrapbootstrap.com/help/licenses
+ *
+ */
+
+// Bootstrap
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+// Variables
+@import "app/variables";
+// Layout
+@import "app/layout";
+@import "app/layout-extra";
+@import "app/layout-animation";
+@import "app/top-navbar";
+@import "app/sidebar";
+@import "app/offsidebar";
+@import "app/user-block";
+@import "app/settings";
+// Common
+@import "app/typo";
+@import "app/bootstrap-reset";
+@import "app/bootstrap-custom";
+@import "app/button-extra";
+@import "app/placeholder";
+@import "app/cards";
+@import "app/circles";
+@import "app/dropdown-extra";
+@import "app/half-float";
+@import "app/animate";
+@import "app/slim-scroll";
+@import "app/inputs";
+@import "app/utils";
+@import "app/print";
+// Elements
+@import "app/spinner";
+// Charts
+@import "app/radial-bar";
+@import "app/chart-flot";
+@import "app/chart-easypie";
+// Form elements
+@import "app/form-select2";
+@import "app/form-tags-input";
+@import "app/file-upload";
+@import "app/summernote";
+@import "app/typeahead";
+// Tables
+@import "app/table-extras";
+@import "app/table-angulargrid";
+// Maps
+@import "app/gmap";
+@import "app/vector-map";
+// Extras
+@import "app/timeline";
+@import "app/todo";
+@import "app/calendar";
+@import "app/mailbox";
+@import "app/plans";

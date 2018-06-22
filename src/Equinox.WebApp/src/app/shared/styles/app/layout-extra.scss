@@ -1,0 +1,178 @@
+/* ========================================================================
+   Component: layout-extra
+ ========================================================================== */
+
+// Hide footer and expand content to the bottom
+.hidden-footer {
+    .wrapper .footer-container {
+        display: none;
+    }
+    .wrapper .section-container {
+        margin-bottom: 0 !important;
+    }
+}
+
+// Layout full size
+.layout-fs {
+    .wrapper .section-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: $footer-hg;
+        top: $navbar-hg;
+        height: auto;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        @include media-breakpoint-up(xs) {
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            > * {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    &.hidden-footer {
+        .wrapper .section-container {
+            bottom: 0;
+        }
+    }
+}
+
+// Layout Horizontal Nav
+// -----------------------------------
+.layout-h {
+    .wrapper {
+        .section-container {
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+            .content-wrapper .content-heading {
+                display: none;
+            }
+        }
+        .section-container {
+            margin-top: 0;
+        }
+        .offsidebar {
+            margin-top: $navbar-hg;
+        }
+        .footer-container {
+            margin: 0;
+        }
+    }
+    &.layout-fixed .wrapper {
+        .section-container,
+        .offsidebar {
+            margin-top: $navbar-hg;
+        }
+    }
+}
+
+
+// Aside float
+// -----------------------------------
+$float-space: 15px;
+.aside-float {
+
+    .wrapper {
+        box-shadow: 0 0 0 #000; // removes
+        .footer-container {
+            border: 0;
+        }
+        .aside-container {
+            padding: $float-space 0;
+            background: transparent;
+            .aside-inner {
+                height: 100%;
+                top: $float-space;
+                bottom: $float-space;
+                left: inherit;
+            }
+            .sidebar {
+                border: 1px solid $gray-light;
+            }
+            .sidebar:after {
+                display: none;
+            }
+        }
+        @include media-breakpoint-up(md) {
+            .section-container {
+                padding-left: $float-space;
+            }
+            .footer-container {
+                left: $float-space;
+            }
+        }
+        .content-wrapper {
+            border: 0;
+            .content-heading {
+                padding-top: 30px;
+                border: 0;
+                background-color: transparent;
+            }
+            .unwrap {
+                // disables unwrap
+                margin: 0 !important;
+            }
+        }
+    }
+
+    &.aside-toggled .wrapper {
+        // small delay to add some effect to sidebar slide
+        .aside-container {
+            transition: delay(0.05s);
+            .aside-inner {
+                margin-left: $float-space;
+            }
+        }
+        .section-container {
+            padding-left: $float-space;
+        }
+        .footer-container {
+            left: $float-space;
+        }
+    } // adapt header logo
+    @include media-breakpoint-up(md) {
+        &.aside-collapsed .topnavbar .navbar-header {
+            width: $aside-wd-collapsed + ($float-space * 2);
+        }
+        &.aside-collapsed-text .topnavbar .navbar-header {
+            width: $aside-wd-collapsed-text + ($float-space * 2);
+        }
+        &.layout-fs {
+            .wrapper .section-container .content-wrapper {
+                padding: 0 0 0 20px;
+            }
+        }
+        .wrapper .aside-container .aside-inner {
+            margin-left: $float-space;
+        }
+    } // boxed behavior
+    @include media-breakpoint-up(lg) {
+        &.layout-boxed {
+            .wrapper .aside-container .aside-inner {
+                margin-left: 0;
+            }
+            .wrapper .section-container {
+                padding-left: 0;
+            }
+        }
+    } // toggle state
+    &.aside-toggled {
+        &.layout-fs {
+            .wrapper .section-container .content-wrapper {
+                padding: 0 0 0 20px;
+            }
+        }
+    }
+}

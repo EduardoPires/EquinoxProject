@@ -1,0 +1,60 @@
+/* ========================================================================
+     Component: dropdown-extras
+ ========================================================================== */
+
+
+// Allows to mix list group inside dropdowns
+.dropdown-list {
+
+    .dropdown-item {
+        padding: 0;
+    }
+
+    >.dropdown-menu {
+        padding: 0;
+        min-width: 220px;
+    }
+
+    .list-group {
+        margin: 0;
+    }
+
+    .list-group-item {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        &:first-child {
+            border-top: 0;
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}
+
+// Labels inside dropdowns
+.dropdown {
+    >a {
+        position: relative;
+        >.badge {
+            position: absolute;
+            top: 10px;
+            right: 0;
+            padding: 2px 5px;
+        }
+    }
+}
+
+// Popper doesnt place correctly dropdowns
+// we can use forced class to place them
+.dropdown-menu-right-forced {
+    right: 0 !important;
+    left: auto !important;
+}
+
+// Remove default icon from dropdowns
+.dropdown-toggle-nocaret {
+    &:after {
+        display: none;
+    }
+}

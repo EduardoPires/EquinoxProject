@@ -19,6 +19,19 @@ If you liked the project or if Equinox helped you, please give a star ;)
 - Please check if you have installed the same runtime version (SDK) described in global.json
 - The latest SDK and tools can be downloaded from https://dot.net/core.
 
+### Creating database
+- Open Package Manager, target the Default Project: Equinox.Infra.Crosscuting.Identity
+- run command: update-database
+- At Package Manager, target the project: Equinox.Infra.Data
+- run command: update-database -context **EquinoxContext**
+- run command: update-database -context **EventStoreSQLContext**
+
+### Running Angular WebApp
+The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1. You can open the folder Equinox.WebApp with Vs Code then
+- Open terminal (CTRL + \`)
+- run command: npm install
+- run command: npm start
+
 Also you can run the Equinox Project in Visual Studio Code (Windows, Linux or MacOS).
 
 To know more about how to setup your enviroment visit the [Microsoft .NET Download Guide](https://www.microsoft.com/net/download)
@@ -35,6 +48,7 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - FluentValidator
 - MediatR
 - Swagger UI
+- Angular 5 WebApp
 
 ## Architecture:
 
@@ -49,6 +63,13 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## News
 
+**v1.4 - 06/07/2018**
+- Adding WebApi Identity Authentication and authorization features
+- Adding a Angular5 WebApp
+ - guard
+ - services
+ - lazy loaded routes
+
 **v1.3 - 05/22/2018**
 - Migrated for .NET Core 2.1.2
 - All dependencies is up to date
@@ -60,7 +81,7 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Migrated for .NET Core 2.0 and ASP.NET Core 2.0
 - Adaptations for the new Identity Authentication Model
 
-**v1.1 - 08/09/2017**
+**v1.1 - 2017/08/09**
 - Adding WebAPI service exposing the application features
 - Adding Swagger UI for better viewing and testing
 - Adding MediatR for Memory Bus Messaging

@@ -1,0 +1,118 @@
+<div class="home-container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4">
+                <div class="text-center">
+                    <img alt="Equinox" class="img-fluid home-logo" src="assets/img/logo-single.png" />
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 home-text">
+                <h1 class="home-text-big">
+                    <img alt="Equinox" class="img-fluid home-logo" src="assets/img/logo_partial_text.png" />
+                </h1>
+                <p class="lead">The Equinox Project is a open-source project written in .NET Core, now integrated with
+                    <strong>Angular5</strong>
+                    <br>
+                    <small>Built in Angle Bootstrap 4 Admin layout, One framework. Mobile & desktop.</small><br>
+                    <a href="https://angular.io/" target="_blank"><img class="img-angular" src="https://angular.io/assets/images/logos/angular/angular.svg" /></a>
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="https://github.com/EduardoPires/EquinoxProject/" target="_blank">Equinox - Learn more</a>
+                    <a class="btn btn-success" href="https://wrapbootstrap.com/theme/angle-bootstrap-admin-template-WB04HF123/" target="_blank">Angle - Learn more</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card b">
+                <div class="card-header">
+                    <h3>Angular-cli</h3>
+                </div>
+                <div class="card-body">
+                    A Webpack powered command line interface with tons of utilities. Serve and build your project with a single command.
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card b">
+                <div class="card-header">
+                    <h3>Router</h3>
+                </div>
+                <div class="card-body">
+                    Powerful and modern routes definitions. Easily declare routes and nested routes with components association.
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card b">
+                <div class="card-header">
+                    <h3>Generators</h3>
+                </div>
+                <div class="card-body">
+                    Angular-CLI tool provides generators to create components, services, directives and pipe from the command line.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card b">
+                <div class="card-header">
+                    <h3>Modularized</h3>
+                </div>
+                <div class="card-body">
+                    This project has been carefully designed to provide modules for Core, Layout, Shared and Routed components.
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card b">
+                <div class="card-header">
+                    <h3>Environments</h3>
+                </div>
+                <div class="card-body">
+                    Ready to work with multiple environments, from first stage development through test and production.
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card b">
+                <div class="card-header">
+                    <h3>Style Guide</h3>
+                </div>
+                <div class="card-body">
+                    Better practices for Code organization and Project structure based on the official Angular style guide.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card b">
+                <div class="card-header">
+                    <h3>Technologies</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group" dnd-sortable-container [sortableData]="techs">
+                        <li *ngFor="let item of techs; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card b">
+                <div class="card-header">
+                    <h3>Design</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group" dnd-sortable-container [sortableData]="design">
+                        <li *ngFor="let item of design; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

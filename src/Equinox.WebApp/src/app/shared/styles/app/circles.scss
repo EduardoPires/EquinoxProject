@@ -1,0 +1,42 @@
+/* ========================================================================
+     Component: circles
+ ========================================================================== */
+
+// Colored circle for indication purposes
+$point-sz-sm : 5px;
+$point-sz : 7px;
+$point-sz-lg : 11px;
+$point-sz-xl : 18px;
+
+.circle {
+    display: inline-block;
+    width: $point-sz;
+    height: $point-sz;
+    border-radius: 500px;
+    margin: 0 .5em;
+    background-color: #ddd;
+    vertical-align: baseline;
+    border: 2px solid transparent;
+    &.text-left {
+        margin-left: 0;
+    }
+    &.text-right {
+        margin-right: 0;
+    }
+}
+
+// Sizes
+.circle-sm {
+    width: $point-sz-sm;
+    height: $point-sz-sm;
+}
+
+.circle-lg {
+    width: $point-sz-lg;
+    height: $point-sz-lg;
+}
+
+.circle-xl {
+    width: $point-sz-xl;
+    height: $point-sz-xl;
+}

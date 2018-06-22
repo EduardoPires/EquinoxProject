@@ -1,0 +1,9 @@
+<!-- START Search form-->
+<form class="navbar-form" role="search" action="search.html" [class.open]="visible" (submit)="handleForm()">
+    <div class="form-group">
+        <input [(ngModel)]="term" name="term" class="form-control" type="text" placeholder="{{'header.search.PLACEHOLDER' | translate}}" />
+        <div class="fa fa-times navbar-form-close" (click)="closeNavSearch()"></div>
+    </div>
+    <button class="d-none" type="submit">Submit</button>
+</form>
+<!-- END Search form-->
