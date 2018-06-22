@@ -32,7 +32,7 @@ namespace Equinox.WebApi.Controllers
             ILoggerFactory loggerFactory,
             IEmailSender emailSender,
             IConfiguration configuration,
-			IMediatorHandler mediator) : base(notifications, mediator)
+            IMediatorHandler mediator) : base(notifications, mediator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -56,12 +56,16 @@ namespace Equinox.WebApi.Controllers
             if (model.IsUsernameEmail())
             {
                 user = await _userManager.FindByEmailAsync(model.Username);
+                if (user == null)
+                    return UserDoesntExist();
                 result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe,
                     lockoutOnFailure: true);
             }
             else
             {
                 user = await _userManager.FindByNameAsync(model.Username);
+                if (user == null)
+                    return UserDoesntExist();
                 result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe,
                     lockoutOnFailure: true);
             }
@@ -74,6 +78,12 @@ namespace Equinox.WebApi.Controllers
             }
 
             return Response(new { SignInResult = result, Profile = new UserProfile(user) });
+        }
+
+        private IActionResult UserDoesntExist()
+        {
+            NotifyError("500", "User or Password error");
+            return Response(new { Succeeded = false });
         }
 
         [HttpPost]
