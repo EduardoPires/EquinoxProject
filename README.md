@@ -11,10 +11,13 @@ The goal of this project is implement the most common used technologies and shar
 [![License](https://img.shields.io/github/license/eduardopires/equinoxproject.svg)](LICENSE)
 [![Issues open](https://img.shields.io/github/issues/eduardopires/equinoxproject.svg)](https://huboard.com/EduardoPires/EquinoxProject/)
 
+## Give a Star! :star:
+If you liked the project or if Equinox helped you, please give a star ;)
+
 ## How to use:
-- You will need Visual Studio 2017 (preview 15.3) and the .NET Core SDK (released in August 14, 2017).
-- The latest SDK and tools can be downloaded from https://dot.net/core. 
-- Read the .NET Core 2.0 [release announcement](https://blogs.msdn.microsoft.com/dotnet/2017/08/14/announcing-net-core-2-0/) for more information.
+- You will need Visual Studio 2017 (15.7) and the .NET Core SDK (2.1.2).
+- Please check if you have installed the same runtime version (SDK) described in global.json
+- The latest SDK and tools can be downloaded from https://dot.net/core.
 
 Also you can run the Equinox Project in Visual Studio Code (Windows, Linux or MacOS).
 
@@ -46,6 +49,13 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## News
 
+**v1.3 - 05/22/2018**
+- Migrated for .NET Core 2.1.2
+- All dependencies is up to date
+- Improvements in Automapper Setup
+- Improvements for last version of MediatR (Notifications and Request)
+- Code improvements in general
+
 **v1.2 - 08/15/2017**
 - Migrated for .NET Core 2.0 and ASP.NET Core 2.0
 - Adaptations for the new Identity Authentication Model
@@ -63,7 +73,8 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 ## About the next versions
 Watch our [RoadMap](https://github.com/EduardoPires/EquinoxProject/wiki/RoadMap) to know the new changes
 
-Pull-Requests are welcome!
+## Pull-Requests 
+Make a contact! Don't submit PRs for extra features, all new features is coming in V2
 
 ## Why Equinox?
 The Equinox is an astronomical event in which the plane of Earth's equator passes through the center of the Sun, which occurs twice each year, around 20 March and 23 September. [Wikipedia](https://en.wikipedia.org/wiki/Equinox)
