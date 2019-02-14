@@ -14,7 +14,7 @@ The goal of this project is implement the most common used technologies and shar
 If you liked the project or if Equinox helped you, please give a star ;)
 
 ## How to use:
-- You will need Visual Studio 2017 (15.7) and the latest .NET Core SDK.
+- You will need the latest Visual Studio 2017 and the latest .NET Core SDK.
 - **Please check if you have installed the same runtime version (SDK) described in global.json**
 - The latest SDK and tools can be downloaded from https://dot.net/core.
 
