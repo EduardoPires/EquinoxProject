@@ -47,9 +47,9 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<INotificationHandler<CustomerRemovedEvent>, CustomerEventHandler>();
 
             // Domain - Commands
-            services.AddScoped<IRequestHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
-            services.AddScoped<IRequestHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, bool>, CustomerCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateCustomerCommand, bool>, CustomerCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveCustomerCommand, bool>, CustomerCommandHandler>();
 
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();

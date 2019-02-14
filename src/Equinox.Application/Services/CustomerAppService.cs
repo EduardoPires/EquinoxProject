@@ -32,7 +32,7 @@ namespace Equinox.Application.Services
 
         public IEnumerable<CustomerViewModel> GetAll()
         {
-            return _customerRepository.GetAll().ProjectTo<CustomerViewModel>();
+            return _customerRepository.GetAll().ProjectTo<CustomerViewModel>(_mapper.ConfigurationProvider);
         }
 
         public CustomerViewModel GetById(Guid id)
