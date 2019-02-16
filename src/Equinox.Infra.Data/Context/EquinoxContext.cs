@@ -1,13 +1,20 @@
-﻿using System.IO;
-using Equinox.Domain.Models;
+﻿using Equinox.Domain.Models;
 using Equinox.Infra.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace Equinox.Infra.Data.Context
 {
     public class EquinoxContext : DbContext
     {
+        private readonly IHostingEnvironment _env;
+
+        public EquinoxContext(IHostingEnvironment env)
+        {
+            _env = env;
+        }
+
         public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -21,7 +28,7 @@ namespace Equinox.Infra.Data.Context
         {
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(_env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .Build();
             

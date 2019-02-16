@@ -12,9 +12,9 @@ using MediatR;
 namespace Equinox.Domain.CommandHandlers
 {
     public class CustomerCommandHandler : CommandHandler,
-        IRequestHandler<RegisterNewCustomerCommand>,
-        IRequestHandler<UpdateCustomerCommand>,
-        IRequestHandler<RemoveCustomerCommand>
+        IRequestHandler<RegisterNewCustomerCommand, bool>,
+        IRequestHandler<UpdateCustomerCommand, bool>,
+        IRequestHandler<RemoveCustomerCommand, bool>
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMediatorHandler Bus;
@@ -28,12 +28,12 @@ namespace Equinox.Domain.CommandHandlers
             Bus = bus;
         }
 
-        public Task Handle(RegisterNewCustomerCommand message, CancellationToken cancellationToken)
+        public Task<bool> Handle(RegisterNewCustomerCommand message, CancellationToken cancellationToken)
         {
             if (!message.IsValid())
             {
                 NotifyValidationErrors(message);
-                return Task.CompletedTask;
+                return Task.FromResult(false);
             }
 
             var customer = new Customer(Guid.NewGuid(), message.Name, message.Email, message.BirthDate);
@@ -41,7 +41,7 @@ namespace Equinox.Domain.CommandHandlers
             if (_customerRepository.GetByEmail(customer.Email) != null)
             {
                 Bus.RaiseEvent(new DomainNotification(message.MessageType, "The customer e-mail has already been taken."));
-                return Task.CompletedTask;
+                return Task.FromResult(false);
             }
             
             _customerRepository.Add(customer);
@@ -51,15 +51,15 @@ namespace Equinox.Domain.CommandHandlers
                 Bus.RaiseEvent(new CustomerRegisteredEvent(customer.Id, customer.Name, customer.Email, customer.BirthDate));
             }
 
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
-        public Task Handle(UpdateCustomerCommand message, CancellationToken cancellationToken)
+        public Task<bool> Handle(UpdateCustomerCommand message, CancellationToken cancellationToken)
         {
             if (!message.IsValid())
             {
                 NotifyValidationErrors(message);
-                return Task.CompletedTask;
+                return Task.FromResult(false);
             }
 
             var customer = new Customer(message.Id, message.Name, message.Email, message.BirthDate);
@@ -70,7 +70,7 @@ namespace Equinox.Domain.CommandHandlers
                 if (!existingCustomer.Equals(customer))
                 {
                     Bus.RaiseEvent(new DomainNotification(message.MessageType,"The customer e-mail has already been taken."));
-                    return Task.CompletedTask;
+                    return Task.FromResult(false);
                 }
             }
 
@@ -81,15 +81,15 @@ namespace Equinox.Domain.CommandHandlers
                 Bus.RaiseEvent(new CustomerUpdatedEvent(customer.Id, customer.Name, customer.Email, customer.BirthDate));
             }
 
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
-        public Task Handle(RemoveCustomerCommand message, CancellationToken cancellationToken)
+        public Task<bool> Handle(RemoveCustomerCommand message, CancellationToken cancellationToken)
         {
             if (!message.IsValid())
             {
                 NotifyValidationErrors(message);
-                return Task.CompletedTask;
+                return Task.FromResult(false);
             }
 
             _customerRepository.Remove(message.Id);
@@ -99,7 +99,7 @@ namespace Equinox.Domain.CommandHandlers
                 Bus.RaiseEvent(new CustomerRemovedEvent(message.Id));
             }
 
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public void Dispose()

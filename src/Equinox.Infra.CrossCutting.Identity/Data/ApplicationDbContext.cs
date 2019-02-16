@@ -1,23 +1,27 @@
-﻿using System.IO;
-using Equinox.Infra.CrossCutting.Identity.Models;
+﻿using Equinox.Infra.CrossCutting.Identity.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace Equinox.Infra.CrossCutting.Identity.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        private readonly IHostingEnvironment _env;
+
+        public ApplicationDbContext(
+                    DbContextOptions<ApplicationDbContext> options, 
+                    IHostingEnvironment env) : base(options)
         {
+            _env = env;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(_env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .Build();
 
