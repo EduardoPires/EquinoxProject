@@ -7,7 +7,6 @@ The Equinox Project is a open-source project written in .NET Core
 
 The goal of this project is implement the most common used technologies and share with the technical community the best way to develop great applications with .NET
 
-[![Build status](https://ci.appveyor.com/api/projects/status/rl2ja69994rt3ei6?svg=true)](https://ci.appveyor.com/project/EduardoPires/EquinoxProject)
 [![License](https://img.shields.io/github/license/eduardopires/equinoxproject.svg)](LICENSE)
 [![Issues open](https://img.shields.io/github/issues/eduardopires/equinoxproject.svg)](https://huboard.com/EduardoPires/EquinoxProject/)
 
@@ -15,8 +14,8 @@ The goal of this project is implement the most common used technologies and shar
 If you liked the project or if Equinox helped you, please give a star ;)
 
 ## How to use:
-- You will need Visual Studio 2017 (15.7) and the .NET Core SDK (2.1.2).
-- Please check if you have installed the same runtime version (SDK) described in global.json
+- You will need the latest Visual Studio 2017 and the latest .NET Core SDK.
+- **Please check if you have installed the same runtime version (SDK) described in global.json**
 - The latest SDK and tools can be downloaded from https://dot.net/core.
 
 Also you can run the Equinox Project in Visual Studio Code (Windows, Linux or MacOS).
@@ -25,11 +24,11 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## Technologies implemented:
 
-- ASP.NET Core 2.0 (with .NET Core)
+- ASP.NET Core 2.2 (with .NET Core 2.2)
  - ASP.NET MVC Core 
  - ASP.NET WebApi Core
  - ASP.NET Identity Core
-- Entity Framework Core 2.0
+- Entity Framework Core 2.2
 - .NET Core Native DI
 - AutoMapper
 - FluentValidator
@@ -48,6 +47,11 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Repository and Generic Repository
 
 ## News
+
+**v1.4 - 02/14/2019**
+- Migrated for .NET Core 2.2.1
+- All dependencies is up to date
+- Improvements for last version of MediatR (Notifications and Request)
 
 **v1.3 - 05/22/2018**
 - Migrated for .NET Core 2.1.2
