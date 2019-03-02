@@ -1,16 +1,15 @@
-﻿using System.IO;
-using Equinox.Domain.Core.Events;
+﻿using Equinox.Domain.Core.Events;
 using Equinox.Infra.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-
 
 namespace Equinox.Infra.Data.Context
 {
     public class EventStoreSQLContext : DbContext
     {
         public DbSet<StoredEvent> StoredEvent { get; set; }
+
         private readonly IHostingEnvironment _env;
 
         public EventStoreSQLContext(IHostingEnvironment env)
