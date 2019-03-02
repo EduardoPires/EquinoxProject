@@ -2,7 +2,7 @@
 
 namespace Equinox.UI.Web.Controllers
 {
-    [Route("home")]
+    [Route("[controller]")]
     public class HomeController : Controller
     {
         [Route("welcome")]
@@ -13,7 +13,7 @@ namespace Equinox.UI.Web.Controllers
             return View();
         }
 
-        [Route("about")]
+        [Route("[action]")]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -21,7 +21,7 @@ namespace Equinox.UI.Web.Controllers
             return View();
         }
 
-        [Route("contact")]
+        [Route("[action]")]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
@@ -29,7 +29,7 @@ namespace Equinox.UI.Web.Controllers
             return View();
         }
 
-        [Route("error")]
+        [Route("[action]")]
         public IActionResult Error()
         {
             return View();

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Equinox.Infra.CrossCutting.Identity.Extensions;
+﻿using Equinox.Infra.CrossCutting.Identity.Extensions;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.ManageViewModels;
 using Equinox.Infra.CrossCutting.Identity.Services;
@@ -13,10 +8,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace Equinox.UI.Web.Controllers
 {
     [Authorize]
+    [Route("account-management")]
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -45,7 +46,6 @@ namespace Equinox.UI.Web.Controllers
         public string StatusMessage { get; set; }
 
         [HttpGet]
-        [Route("account-management")]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -67,7 +67,6 @@ namespace Equinox.UI.Web.Controllers
         }
 
         [HttpPost]
-        [Route("account-management")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(IndexViewModel model)
         {
@@ -130,8 +129,7 @@ namespace Equinox.UI.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet]
-        [Route("account-management/change-password")]
+        [HttpGet("change-password")]
         public async Task<IActionResult> ChangePassword()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -150,8 +148,7 @@ namespace Equinox.UI.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [Route("account-management/change-password")]
+        [HttpPost("change-password")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
@@ -180,8 +177,7 @@ namespace Equinox.UI.Web.Controllers
             return RedirectToAction(nameof(ChangePassword));
         }
 
-        [HttpGet]
-        [Route("account-management/set-password")]
+        [HttpGet("set-password")]
         public async Task<IActionResult> SetPassword()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -201,8 +197,7 @@ namespace Equinox.UI.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [Route("account-management/set-password")]
+        [HttpPost("set-password")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
         {
@@ -230,8 +225,7 @@ namespace Equinox.UI.Web.Controllers
             return RedirectToAction(nameof(SetPassword));
         }
 
-        [HttpGet]
-        [Route("account-management/external-logins")]
+        [HttpGet("external-logins")]
         public async Task<IActionResult> ExternalLogins()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -250,8 +244,7 @@ namespace Equinox.UI.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [Route("account-management/link-logins")]
+        [HttpPost("link-logins")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LinkLogin(string provider)
         {
@@ -292,8 +285,7 @@ namespace Equinox.UI.Web.Controllers
             return RedirectToAction(nameof(ExternalLogins));
         }
 
-        [HttpPost]
-        [Route("account-management/remove-login")]
+        [HttpPost("remove-login")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel model)
         {
@@ -314,8 +306,7 @@ namespace Equinox.UI.Web.Controllers
             return RedirectToAction(nameof(ExternalLogins));
         }
 
-        [HttpGet]
-        [Route("account-management/two-factor")]
+        [HttpGet("two-factor")]
         public async Task<IActionResult> TwoFactorAuthentication()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -371,8 +362,7 @@ namespace Equinox.UI.Web.Controllers
             return RedirectToAction(nameof(TwoFactorAuthentication));
         }
 
-        [HttpGet]
-        [Route("account-management/enable-authenticator")]
+        [HttpGet("enable-authenticator")]
         public async Task<IActionResult> EnableAuthenticator()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -397,8 +387,7 @@ namespace Equinox.UI.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [Route("account-management/enable-authenticator")]
+        [HttpPost("enable-authenticator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableAuthenticator(EnableAuthenticatorViewModel model)
         {
@@ -430,15 +419,13 @@ namespace Equinox.UI.Web.Controllers
             return RedirectToAction(nameof(GenerateRecoveryCodes));
         }
 
-        [HttpGet]
-        [Route("account-management/reset-authenticator")]
+        [HttpGet("reset-authenticator")]
         public IActionResult ResetAuthenticatorWarning()
         {
             return View(nameof(ResetAuthenticator));
         }
 
-        [HttpPost]
-        [Route("account-management/reset-authenticator")]
+        [HttpPost("reset-authenticator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetAuthenticator()
         {
@@ -513,6 +500,6 @@ namespace Equinox.UI.Web.Controllers
                 unformattedKey);
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

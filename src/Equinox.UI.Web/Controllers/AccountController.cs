@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Equinox.Infra.CrossCutting.Identity.Extensions;
+﻿using Equinox.Infra.CrossCutting.Identity.Extensions;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels;
 using Equinox.Infra.CrossCutting.Identity.Services;
@@ -11,10 +8,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Equinox.UI.Web.Controllers
 {
     [Authorize]
+    [Route("[controller]")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -37,8 +38,7 @@ namespace Equinox.UI.Web.Controllers
         [TempData]
         public string ErrorMessage { get; set; }
 
-        [HttpGet]
-        [Route("account/login")]
+        [HttpGet("[action]")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
@@ -49,8 +49,7 @@ namespace Equinox.UI.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Route("account/login")]
+        [HttpPost("[action]")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
@@ -204,8 +203,7 @@ namespace Equinox.UI.Web.Controllers
             return View();
         }
 
-        [HttpGet]
-        [Route("account/register")]
+        [HttpGet("[action]")]
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
@@ -213,8 +211,7 @@ namespace Equinox.UI.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Route("account/register")]
+        [HttpPost("[action]")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
@@ -248,8 +245,7 @@ namespace Equinox.UI.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [Route("account/logout")]
+        [HttpPost("[action]")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
@@ -258,8 +254,7 @@ namespace Equinox.UI.Web.Controllers
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-        [HttpPost]
-        [Route("account/external-login")]
+        [HttpPost("external-login")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
@@ -306,8 +301,7 @@ namespace Equinox.UI.Web.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("account/external-login-confirmation")]
+        [HttpPost("external-login-confirmation")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginViewModel model, string returnUrl = null)
@@ -342,8 +336,7 @@ namespace Equinox.UI.Web.Controllers
             return View(nameof(ExternalLogin), model);
         }
 
-        [HttpGet]
-        [Route("account/confirm-email")]
+        [HttpGet("confirm-email")]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
@@ -360,16 +353,14 @@ namespace Equinox.UI.Web.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        [HttpGet]
-        [Route("account/forgot-password")]
+        [HttpGet("forgot-password")]
         [AllowAnonymous]
         public IActionResult ForgotPassword()
         {
             return View();
         }
 
-        [HttpPost]
-        [Route("account/forgot-password")]
+        [HttpPost("forgot-password")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
@@ -396,16 +387,14 @@ namespace Equinox.UI.Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        [Route("account/forgot-password-confirmation")]
+        [HttpGet("forgot-password-confirmation")]
         [AllowAnonymous]
         public IActionResult ForgotPasswordConfirmation()
         {
             return View();
         }
 
-        [HttpGet]
-        [Route("account/reset-password")]
+        [HttpGet("reset-password")]
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
         {
@@ -417,8 +406,7 @@ namespace Equinox.UI.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [Route("account/reset-password")]
+        [HttpPost("reset-password")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
@@ -442,17 +430,14 @@ namespace Equinox.UI.Web.Controllers
             return View();
         }
 
-        [HttpGet]
-        [Route("account/reset-password-confirmation")]
+        [HttpGet("reset-password-confirmation")]
         [AllowAnonymous]
         public IActionResult ResetPasswordConfirmation()
         {
             return View();
         }
 
-
-        [HttpGet]
-        //[Route("account/access-denied")]
+        [HttpGet("access-denied")]
         public IActionResult AccessDenied()
         {
             return View();
@@ -480,6 +465,6 @@ namespace Equinox.UI.Web.Controllers
             }
         }
 
-        #endregion
+        #endregion Helpers
     }
 }
