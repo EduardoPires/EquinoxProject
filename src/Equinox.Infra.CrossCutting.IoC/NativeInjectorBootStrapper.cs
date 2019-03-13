@@ -54,12 +54,12 @@ namespace Equinox.Infra.CrossCutting.IoC
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<EquinoxContext>();
+            services.AddDbContext<EquinoxContext>();
 
             // Infra - Data EventSourcing
             services.AddScoped<IEventStoreRepository, EventStoreSQLRepository>();
             services.AddScoped<IEventStore, SqlEventStore>();
-            services.AddScoped<EventStoreSQLContext>();
+            services.AddDbContext<EventStoreSQLContext>();
 
             // Infra - Identity Services
             services.AddTransient<IEmailSender, AuthEmailMessageSender>();
