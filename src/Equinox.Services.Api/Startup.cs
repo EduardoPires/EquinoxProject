@@ -1,9 +1,13 @@
 ﻿using Equinox.Infra.CrossCutting.Identity.Authorization;
+using Equinox.Infra.CrossCutting.Identity.Authorization.Jwt;
+using Equinox.Infra.CrossCutting.Identity.Authorization.Jwt.Interfaces;
+using Equinox.Infra.CrossCutting.Identity.Authorization.Jwt.Services;
 using Equinox.Infra.CrossCutting.Identity.Data;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.IoC;
 using Equinox.Services.Api.Configurations;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +16,9 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
 
 namespace Equinox.Services.Api
 {
@@ -41,10 +47,32 @@ namespace Equinox.Services.Api
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IJwtAdapter, JwtAdapter>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication(option => {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                var tokenConf = Configuration.GetTokenConfigurations("Jwt");
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ValidAudience = tokenConf.Audience,
+                    ValidIssuer = tokenConf.Issuer,
+                    IssuerSigningKey = tokenConf.Signing.Key,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
 
             services.AddMvc(options =>
             {

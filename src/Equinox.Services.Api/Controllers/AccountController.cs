@@ -1,7 +1,10 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Equinox.Domain.Core.Bus;
 using Equinox.Domain.Core.Notifications;
+using Equinox.Infra.CrossCutting.Identity.Authorization.Jwt.Interfaces;
 using Equinox.Infra.CrossCutting.Identity.Models;
 using Equinox.Infra.CrossCutting.Identity.Models.AccountViewModels;
 using MediatR;
@@ -9,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Equinox.Services.Api.Controllers
 {
@@ -18,17 +22,20 @@ namespace Equinox.Services.Api.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
+        private readonly IJwtAdapter _jwtAdapter;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             INotificationHandler<DomainNotification> notifications,
             ILoggerFactory loggerFactory,
+            IJwtAdapter jwtAdapter,
             IMediatorHandler mediator) : base(notifications, mediator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _jwtAdapter = jwtAdapter;
         }
 
         [HttpPost]
@@ -41,12 +48,29 @@ namespace Equinox.Services.Api.Controllers
                 NotifyModelStateErrors();
                 return Response(model);
             }
+            
 
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
-            if (!result.Succeeded)
-                NotifyError(result.ToString(), "Login failure");
+            if (result.Succeeded)
+            {
+                var jwt = _jwtAdapter.GetConfigurations("Jwt");
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                
+                var principal = await _signInManager.CreateUserPrincipalAsync(user);
+                ClaimsIdentity identity = principal.Identity as ClaimsIdentity;
+                var jwtSecurity = new JwtSecurityTokenHandler();
+                var token = jwtSecurity.CreateToken(new SecurityTokenDescriptor {
+                     Issuer = jwt.Issuer,
+                     Audience = jwt.Audience,
+                     Expires = DateTime.UtcNow.AddMinutes(jwt.Seconds),
+                     SigningCredentials = jwt.Signing.Credentials,
+                     Subject = identity
+                });
+                _logger.LogInformation(1, "User logged in.");
+                return Response(new TokenViewModel(model.Email, jwtSecurity.WriteToken(token),token.ValidTo));
+            }
 
-            _logger.LogInformation(1, "User logged in.");
+            NotifyError(result.ToString(), "Login failure");
             return Response(model);
         }
 
