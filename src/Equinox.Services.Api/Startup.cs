@@ -61,7 +61,7 @@ namespace Equinox.Services.Api
                 var tokenConf = Configuration.GetTokenConfigurations("Jwt");
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = true;
-                options.TokenValidationParameters = new TokenValidationParameters()
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
