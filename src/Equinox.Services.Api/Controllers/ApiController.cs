@@ -39,7 +39,7 @@ namespace Equinox.Services.Api.Controllers
             }
 
             // https://tools.ietf.org/html/rfc7807
-            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>()
+            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
             {
                 { nameof(DomainNotification), _notifications.GetNotifications().Select(n => n.Value).ToArray() }
             }));
