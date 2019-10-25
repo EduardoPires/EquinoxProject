@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Equinox.Domain.Core.Bus;
+﻿using Equinox.Domain.Core.Bus;
 using Equinox.Domain.Core.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Equinox.Services.Api.Controllers
 {
@@ -13,7 +13,7 @@ namespace Equinox.Services.Api.Controllers
         private readonly DomainNotificationHandler _notifications;
         private readonly IMediatorHandler _mediator;
 
-        protected ApiController(INotificationHandler<DomainNotification> notifications, 
+        protected ApiController(INotificationHandler<DomainNotification> notifications,
                                 IMediatorHandler mediator)
         {
             _notifications = (DomainNotificationHandler)notifications;
@@ -38,11 +38,11 @@ namespace Equinox.Services.Api.Controllers
                 });
             }
 
-            return BadRequest(new
+            // https://tools.ietf.org/html/rfc7807
+            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>()
             {
-                success = false,
-                errors = _notifications.GetNotifications().Select(n => n.Value)
-            });
+                { nameof(DomainNotification), _notifications.GetNotifications().Select(n => n.Value).ToArray() }
+            }));
         }
 
         protected void NotifyModelStateErrors()
