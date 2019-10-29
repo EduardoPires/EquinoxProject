@@ -4,7 +4,6 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Equinox.Services.Api.Controllers
 {
@@ -39,19 +38,19 @@ namespace Equinox.Services.Api.Controllers
             }
 
             // https://tools.ietf.org/html/rfc7807
-            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
-            {
-                { nameof(DomainNotification), _notifications.GetNotifications().Select(n => n.Value).ToArray() }
-            }));
+            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsByKey()));
         }
 
         protected void NotifyModelStateErrors()
         {
-            var erros = ModelState.Values.SelectMany(v => v.Errors);
-            foreach (var erro in erros)
+            foreach (var key in ModelState)
             {
-                var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
-                NotifyError(string.Empty, erroMsg);
+                foreach (var error in key.Value.Errors)
+                {
+                    var erroMsg = error.Exception == null ? error.ErrorMessage : error.Exception.Message;
+                    NotifyError(key.Key, erroMsg);
+
+                }
             }
         }
 

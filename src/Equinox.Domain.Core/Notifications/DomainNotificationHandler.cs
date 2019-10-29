@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using MediatR;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
 
 namespace Equinox.Domain.Core.Notifications
 {
@@ -25,6 +25,18 @@ namespace Equinox.Domain.Core.Notifications
         public virtual List<DomainNotification> GetNotifications()
         {
             return _notifications;
+        }
+
+        public virtual Dictionary<string, string[]> GetNotificationsByKey()
+        {
+            var keys = _notifications.Select(s => s.Key).Distinct();
+            var problemDetails = new Dictionary<string, string[]>();
+            foreach (var key in keys)
+            {
+                problemDetails[key] = _notifications.Where(w => w.Key.Equals(key)).Select(s => s.Value).ToArray();
+            }
+
+            return problemDetails;
         }
 
         public virtual bool HasNotifications()
