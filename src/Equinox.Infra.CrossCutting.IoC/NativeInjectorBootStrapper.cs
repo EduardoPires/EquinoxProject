@@ -11,7 +11,6 @@ using Equinox.Domain.Interfaces;
 using Equinox.Infra.CrossCutting.Bus;
 using Equinox.Infra.CrossCutting.Identity.Authorization;
 using Equinox.Infra.CrossCutting.Identity.Models;
-using Equinox.Infra.CrossCutting.Identity.Services;
 using Equinox.Infra.Data.Context;
 using Equinox.Infra.Data.EventSourcing;
 using Equinox.Infra.Data.Repository;
@@ -28,9 +27,6 @@ namespace Equinox.Infra.CrossCutting.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            // ASP.NET HttpContext dependency
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
             // Domain Bus (Mediator)
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
@@ -57,13 +53,9 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<EquinoxContext>();
 
             // Infra - Data EventSourcing
-            services.AddScoped<IEventStoreRepository, EventStoreSQLRepository>();
+            services.AddScoped<IEventStoreRepository, EventStoreSqlRepository>();
             services.AddScoped<IEventStore, SqlEventStore>();
-            services.AddScoped<EventStoreSQLContext>();
-
-            // Infra - Identity Services
-            services.AddTransient<IEmailSender, AuthEmailMessageSender>();
-            services.AddTransient<ISmsSender, AuthSMSMessageSender>();
+            services.AddScoped<EventStoreSqlContext>();
 
             // Infra - Identity
             services.AddScoped<IUser, AspNetUser>();

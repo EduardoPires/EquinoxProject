@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using Equinox.Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +15,13 @@ namespace Equinox.Infra.CrossCutting.Identity.Models
             _accessor = accessor;
         }
 
-        public string Name => _accessor.HttpContext.User.Identity.Name;
+        public string Name => GetName();
+
+        private string GetName()
+        {
+            return _accessor.HttpContext.User.Identity.Name ?? 
+                   _accessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        }
 
         public bool IsAuthenticated()
         {

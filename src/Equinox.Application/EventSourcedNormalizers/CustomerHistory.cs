@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using Equinox.Domain.Core.Events;
-using Newtonsoft.Json;
 
 namespace Equinox.Application.EventSourcedNormalizers
 {
@@ -15,7 +15,7 @@ namespace Equinox.Application.EventSourcedNormalizers
             HistoryData = new List<CustomerHistoryData>();
             CustomerHistoryDeserializer(storedEvents);
 
-            var sorted = HistoryData.OrderBy(c => c.When);
+            var sorted = HistoryData.OrderBy(c => c.Timestamp);
             var list = new List<CustomerHistoryData>();
             var last = new CustomerHistoryData();
 
@@ -36,7 +36,7 @@ namespace Equinox.Application.EventSourcedNormalizers
                         ? ""
                         : change.BirthDate.Substring(0,10),
                     Action = string.IsNullOrWhiteSpace(change.Action) ? "" : change.Action,
-                    When = change.When,
+                    Timestamp = change.Timestamp,
                     Who = change.Who
                 };
 
@@ -50,40 +50,25 @@ namespace Equinox.Application.EventSourcedNormalizers
         {
             foreach (var e in storedEvents)
             {
-                var slot = new CustomerHistoryData();
-                dynamic values;
+                var historyData = JsonSerializer.Deserialize<CustomerHistoryData>(e.Data);
+                historyData.Timestamp = DateTime.Parse(historyData.Timestamp).ToString("yyyy'-'MM'-'dd' - 'HH':'mm':'ss");
 
                 switch (e.MessageType)
                 {
                     case "CustomerRegisteredEvent":
-                        values = JsonConvert.DeserializeObject<dynamic>(e.Data);
-                        slot.BirthDate = values["BirthDate"];
-                        slot.Email = values["Email"];
-                        slot.Name = values["Name"];
-                        slot.Action = "Registered";
-                        slot.When = values["Timestamp"];
-                        slot.Id = values["Id"];
-                        slot.Who = e.User;
+                        historyData.Action = "Registered";
+                        historyData.Who = e.User;
                         break;
                     case "CustomerUpdatedEvent":
-                        values = JsonConvert.DeserializeObject<dynamic>(e.Data);
-                        slot.BirthDate = values["BirthDate"];
-                        slot.Email = values["Email"];
-                        slot.Name = values["Name"];
-                        slot.Action = "Updated";
-                        slot.When = values["Timestamp"];
-                        slot.Id = values["Id"];
-                        slot.Who = e.User;
+                        historyData.Action = "Updated";
+                        historyData.Who = e.User;
                         break;
                     case "CustomerRemovedEvent":
-                        values = JsonConvert.DeserializeObject<dynamic>(e.Data);
-                        slot.Action = "Removed";
-                        slot.When = values["Timestamp"];
-                        slot.Id = values["Id"];
-                        slot.Who = e.User;
+                        historyData.Action = "Removed";
+                        historyData.Who = e.User;
                         break;
                 }
-                HistoryData.Add(slot);
+                HistoryData.Add(historyData);
             }
         }
     }

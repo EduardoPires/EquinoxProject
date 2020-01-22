@@ -4,6 +4,12 @@
     ViewData["Title"] = "Customer Management";
 }
 
+<style>
+    .modal-lg {
+        max-width: 80%;
+    }
+</style>
+
 <div>
     <h2>@ViewData["Title"]</h2>
 </div>
@@ -14,7 +20,7 @@
         <div>
             <div class="pull-left">
                 <a asp-action="Create" class="btn btn-primary">
-                    <span title="Register New" class="glyphicon glyphicon-plus-sign"></span> Register New
+                    <span title="Register New" class="fas fa-plus"></span> Register New
                 </a>
             </div>
         </div>
@@ -53,19 +59,19 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">
-                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="fas fa-edit"></span>
                     </a>
                         
                     <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-search"></span>
+                        <span class="fas fa-search"></span>
                     </a>
                         
                     <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-trash"></span>
+                        <span class="fas fa-trash-alt"></span>
                     </a>
                     
-                    <button type="button" class="btn btn-purple viewbutton" title="History" data-id="@item.Id" data-toggle="modal" data-target="#customerHistory">
-                        <span class="glyphicon glyphicon-time"></span>
+                    <button type="button" class="btn btn-info viewbutton" title="History" data-id="@item.Id" data-toggle="modal" data-target="#customerHistory">
+                        <span class="fas fa-clock"></span>
                     </button>
                 </td>
             </tr>
@@ -74,7 +80,7 @@
     </table>
 </div>
 
-<div class="modal fade" id="customerHistory" role="dialog">
+@*<div class="modal fade" id="customerHistory" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -89,6 +95,26 @@
             </div>
         </div>
     </div>
+</div>*@
+
+
+<div class="modal fade" id="customerHistory" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="historyModalLabel">Customer Data History</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="customerHistoryData"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section scripts
@@ -97,7 +123,7 @@
         $(".viewbutton").on("click", function() {
             var customerId = $(this).data('id');
             $.ajax({
-                url: "https://localhost:44366/customer-management/customer-history/" + customerId,
+                url: "https://localhost:44314/customer-management/customer-history/" + customerId,
                 //url: "http://equinoxproject.azurewebsites.net/customer-management/customer-history/" + customerId,
                 cache: false
             }).done(function(data) {
@@ -108,7 +134,7 @@
                     var change = data[i];
                     formatHtml += "<tr>";
                     formatHtml += "<td>" + change.action + "</td>";
-                    formatHtml += "<td>" + change.when + "</td>";
+                    formatHtml += "<td>" + change.timestamp + "</td>";
                     formatHtml += "<td>" + change.id + "</td>";
                     formatHtml += "<td>" + change.name + "</td>";
                     formatHtml += "<td>" + change.email + "</td>";

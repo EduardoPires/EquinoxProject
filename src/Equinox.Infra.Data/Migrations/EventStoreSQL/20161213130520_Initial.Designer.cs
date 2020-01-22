@@ -7,7 +7,7 @@ using Equinox.Infra.Data.Context;
 
 namespace Equinox.Infra.Data.Migrations.EventStoreSQL
 {
-    [DbContext(typeof(EventStoreSQLContext))]
+    [DbContext(typeof(EventStoreSqlContext))]
     [Migration("20161213130520_Initial")]
     partial class Initial
     {

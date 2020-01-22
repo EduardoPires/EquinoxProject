@@ -1,7 +1,8 @@
 ﻿using Equinox.Domain.Core.Events;
 using Equinox.Domain.Interfaces;
 using Equinox.Infra.Data.Repository.EventSourcing;
-using Newtonsoft.Json;
+using System.Text.Json;
+
 
 namespace Equinox.Infra.Data.EventSourcing
 {
@@ -18,7 +19,7 @@ namespace Equinox.Infra.Data.EventSourcing
 
         public void Save<T>(T theEvent) where T : Event
         {
-            var serializedData = JsonConvert.SerializeObject(theEvent);
+            var serializedData = JsonSerializer.Serialize(theEvent);
 
             var storedEvent = new StoredEvent(
                 theEvent,

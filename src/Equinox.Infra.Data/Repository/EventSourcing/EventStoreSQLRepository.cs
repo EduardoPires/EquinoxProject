@@ -6,11 +6,11 @@ using Equinox.Infra.Data.Context;
 
 namespace Equinox.Infra.Data.Repository.EventSourcing
 {
-    public class EventStoreSQLRepository : IEventStoreRepository
+    public class EventStoreSqlRepository : IEventStoreRepository
     {
-        private readonly EventStoreSQLContext _context;
+        private readonly EventStoreSqlContext _context;
 
-        public EventStoreSQLRepository(EventStoreSQLContext context)
+        public EventStoreSqlRepository(EventStoreSqlContext context)
         {
             _context = context;
         }

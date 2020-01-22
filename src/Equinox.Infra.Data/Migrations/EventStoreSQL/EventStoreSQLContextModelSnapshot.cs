@@ -6,7 +6,7 @@ using Equinox.Infra.Data.Context;
 
 namespace Equinox.Infra.Data.Migrations.EventStoreSQL
 {
-    [DbContext(typeof(EventStoreSQLContext))]
+    [DbContext(typeof(EventStoreSqlContext))]
     partial class EventStoreSQLContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
