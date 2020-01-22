@@ -27,14 +27,14 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 - ASP.NET Core 3.1 (with .NET Core 3.1)
  - ASP.NET MVC Core 
- - ASP.NET WebApi Core
+ - ASP.NET WebApi Core with JWT Bearer Authentication
  - ASP.NET Identity Core
 - Entity Framework Core 3.1
 - .NET Core Native DI
 - AutoMapper
 - FluentValidator
 - MediatR
-- Swagger UI
+- Swagger UI with JWT support
 
 ## Architecture:
 
