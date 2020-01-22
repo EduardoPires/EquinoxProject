@@ -1,5 +1,5 @@
 title: The Equinox Project
-description: Full ASP.NET Core 2.0 application with DDD, CQRS and Event Sourcing
+description: Full ASP.NET Core 3.1 application with DDD, CQRS and Event Sourcing
 google_analytics: 
 show_downloads: true
 theme: jekyll-theme-cayman
