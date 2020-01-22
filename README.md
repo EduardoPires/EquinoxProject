@@ -13,6 +13,9 @@ The goal of this project is implement the most common used technologies and shar
 ## Give a Star! :star:
 If you liked the project or if Equinox helped you, please give a star ;)
 
+## Want to learn everything?  :mortar_board:
+Check my online courses at [desenvolvedor.io](https://desenvolvedor.io)
+
 ## How to use:
 - You will need the latest Visual Studio 2019 and the latest .NET Core SDK.
 - ***Please check if you have installed the same runtime version (SDK) described in global.json***
