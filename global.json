@@ -1,6 +1,7 @@
-{
-  "projects": [ "src", "test" ],
-  "sdk": {
-    "version": "3.1.101"
-  }
-}
+//// Uncomment below if you want to fix some specific .NET Runtime
+//{
+//  "projects": [ "src", "test" ],
+//  "sdk": {
+//    "version": "3.1.101"
+//  }
+//}
