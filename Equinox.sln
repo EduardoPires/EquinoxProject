@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - CrossCutting", "5.2 -
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.UI.Web", "src\Equinox.UI.Web\Equinox.UI.Web.csproj", "{CC21316A-B83C-4F11-846D-01C9DB64C812}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Services.API", "src\Equinox.Services.API\Equinox.Services.API.csproj", "{38B73B74-F039-4826-80B7-94773287E64D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Services.Api", "src\Equinox.Services.Api\Equinox.Services.Api.csproj", "{38B73B74-F039-4826-80B7-94773287E64D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Domain", "src\Equinox.Domain\Equinox.Domain.csproj", "{A3BCC6A4-608E-4D01-90A7-0061A1E4580E}"
 EndProject
@@ -98,3 +98,4 @@ Global
 		SolutionGuid = {EA4494CB-C2E9-4618-9E01-F8073BC388C7}
 	EndGlobalSection
 EndGlobal
+
