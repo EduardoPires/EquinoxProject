@@ -21,6 +21,7 @@ namespace Equinox.Services.Api.Configurations
 
             services.AddDbContext<EventStoreSqlContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
         }
     }
 }
