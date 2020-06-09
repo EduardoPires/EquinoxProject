@@ -8,6 +8,7 @@ The Equinox Project is a open-source project written in .NET Core
 The goal of this project is implement the most common used technologies and share with the technical community the best way to develop great applications with .NET
 
 [![Build status](https://ci.appveyor.com/api/projects/status/rl2ja69994rt3ei6?svg=true)](https://ci.appveyor.com/project/EduardoPires/equinoxproject)
+![.NET Core](https://github.com/EduardoPires/EquinoxProject/workflows/.NET%20Core/badge.svg)
 [![License](https://img.shields.io/github/license/eduardopires/equinoxproject.svg)](LICENSE)
 [![Issues open](https://img.shields.io/github/issues/eduardopires/equinoxproject.svg)](https://huboard.com/EduardoPires/EquinoxProject/)
 
