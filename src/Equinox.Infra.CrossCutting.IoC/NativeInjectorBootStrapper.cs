@@ -2,7 +2,6 @@
 using Equinox.Application.Services;
 using Equinox.Domain.Commands;
 using Equinox.Domain.Core.Events;
-using Equinox.Domain.Core.Notifications;
 using Equinox.Domain.Events;
 using Equinox.Domain.Interfaces;
 using Equinox.Infra.CrossCutting.Bus;
@@ -28,7 +27,6 @@ namespace Equinox.Infra.CrossCutting.IoC
             services.AddScoped<ICustomerAppService, CustomerAppService>();
 
             // Domain - Events
-            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
             services.AddScoped<INotificationHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
             services.AddScoped<INotificationHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
             services.AddScoped<INotificationHandler<CustomerRemovedEvent>, CustomerEventHandler>();
