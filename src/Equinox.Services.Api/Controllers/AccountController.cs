@@ -1,17 +1,9 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Equinox.Domain.Core.Bus;
-using Equinox.Domain.Core.Notifications;
-using Equinox.Infra.CrossCutting.Identity.Models;
-using Equinox.Services.Api.Configurations;
-using MediatR;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+using NetDevPack.Identity.Jwt;
+using NetDevPack.Identity.Model;
 
 namespace Equinox.Services.Api.Controllers
 {
@@ -21,100 +13,80 @@ namespace Equinox.Services.Api.Controllers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly AppSettings _appSettings;
+        private readonly AppJwtSettings _appJwtSettings;
 
         public AccountController(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
-            IOptions<AppSettings> appSettings,
-            INotificationHandler<DomainNotification> notifications,
-            IMediatorHandler mediator) : base(notifications, mediator)
+            IOptions<AppJwtSettings> appJwtSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _appSettings = appSettings.Value;
+            _appJwtSettings = appJwtSettings.Value;
         }
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register(UserRegistration userRegistration)
+        public async Task<ActionResult> Register(RegisterUser registerUser)
         {
-            if (!ModelState.IsValid)
-            {
-                NotifyModelStateErrors();
-                return Response(userRegistration);
-            }
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             var user = new IdentityUser
             {
-                UserName = userRegistration.Email,
-                Email = userRegistration.Email,
+                UserName = registerUser.Email,
+                Email = registerUser.Email,
                 EmailConfirmed = true
             };
 
-            var result = await _userManager.CreateAsync(user, userRegistration.Password);
+            var result = await _userManager.CreateAsync(user, registerUser.Password);
 
-            if (!result.Succeeded)
+            if (result.Succeeded)
             {
-                foreach (var error in result.Errors)
-                {
-                    NotifyError(error.Code, error.Description);
-                }
-
-                return Response(userRegistration);
+                return CustomResponse(GetFullJwt(user.Email));
             }
 
-            await _signInManager.SignInAsync(user, false);
-            var token = await GenerateJwt(userRegistration.Email);
+            foreach (var error in result.Errors)
+            {
+                AddError(error.Description);
+            }
 
-            return Response(token);
+            return CustomResponse();
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(UserLogin userLogin)
+        public async Task<IActionResult> Login(LoginUser loginUser)
         {
-            if (!ModelState.IsValid)
-            {
-                NotifyModelStateErrors();
-                return Response(userLogin);
-            }
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-            var result = await _signInManager.PasswordSignInAsync(userLogin.Email, userLogin.Password, false, true);
+            var result = await _signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
 
             if (result.Succeeded)
             {
-                var token = await GenerateJwt(userLogin.Email);
-                return Response(token);
+                var fullJwt = GetFullJwt(loginUser.Email);
+                return CustomResponse(fullJwt);
             }
 
-            NotifyError("Login", result.ToString());
-            return Response(userLogin);
+            if (result.IsLockedOut)
+            {
+                AddError("This user is temporarily blocked");
+                return CustomResponse();
+            }
+
+            AddError("Incorrect user or password");
+            return CustomResponse();
         }
 
-        private async Task<string> GenerateJwt(string email)
+        private string GetFullJwt(string email)
         {
-            var user = await _userManager.FindByEmailAsync(email);
-            var claims = await _userManager.GetClaimsAsync(user);
-
-            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
-
-            var identityClaims = new ClaimsIdentity();
-            identityClaims.AddClaims(claims);
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = identityClaims,
-                Issuer = _appSettings.Issuer,
-                Audience = _appSettings.ValidAt,
-                Expires = DateTime.UtcNow.AddHours(_appSettings.Expiration),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            return tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
+            return new JwtBuilder()
+                .WithUserManager(_userManager)
+                .WithJwtSettings(_appJwtSettings)
+                .WithEmail(email)
+                .WithJwtClaims()
+                .WithUserClaims()
+                .WithUserRoles()
+                .BuildToken();
         }
     }
 }

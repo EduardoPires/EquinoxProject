@@ -1,10 +1,10 @@
 using System;
+using System.Threading.Tasks;
 using Equinox.Application.Interfaces;
 using Equinox.Application.ViewModels;
-using Equinox.Domain.Core.Notifications;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NetDevPack.Identity.Authorization;
 
 namespace Equinox.UI.Web.Controllers
 {
@@ -13,138 +13,107 @@ namespace Equinox.UI.Web.Controllers
     {
         private readonly ICustomerAppService _customerAppService;
 
-        public CustomerController(ICustomerAppService customerAppService, 
-                                  INotificationHandler<DomainNotification> notifications) : base(notifications)
+        public CustomerController(ICustomerAppService customerAppService)
         {
             _customerAppService = customerAppService;
         }
-
-        [HttpGet]
         [AllowAnonymous]
-        [Route("customer-management/list-all")]
-        public IActionResult Index()
+        [HttpGet("customer-management/list-all")]
+        public async Task<IActionResult> Index()
         {
-            return View(_customerAppService.GetAll());
+            return View(await _customerAppService.GetAll());
         }
 
-        [HttpGet]
         [AllowAnonymous]
-        [Route("customer-management/customer-details/{id:guid}")]
-        public IActionResult Details(Guid? id)
+        [HttpGet("customer-management/customer-details/{id:guid}")]
+        public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var customerViewModel = _customerAppService.GetById(id.Value);
+            var customerViewModel = await _customerAppService.GetById(id.Value);
 
-            if (customerViewModel == null)
-            {
-                return NotFound();
-            }
+            if (customerViewModel == null) return NotFound();
 
             return View(customerViewModel);
         }
 
-        [HttpGet]
-        [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management/register-new")]
+        [CustomAuthorize("Customers", "Write")]
+        [HttpGet("customer-management/register-new")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management/register-new")]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(CustomerViewModel customerViewModel)
+        [CustomAuthorize("Customers", "Write")]
+        [HttpPost("customer-management/register-new")]
+        public async Task<IActionResult> Create(CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid) return View(customerViewModel);
-            _customerAppService.Register(customerViewModel);
+            
+            if (ResponseHasErrors(await _customerAppService.Register(customerViewModel)))
+                return View(customerViewModel);
 
-            if (IsValidOperation())
-                ViewBag.Sucesso = "Customer Registered!";
+            ViewBag.Sucesso = "Customer Registered!";
 
             return View(customerViewModel);
         }
-        
-        [HttpGet]
-        [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management/edit-customer/{id:guid}")]
-        public IActionResult Edit(Guid? id)
+
+        [CustomAuthorize("Customers", "Write")]
+        [HttpGet("customer-management/edit-customer/{id:guid}")]
+        public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var customerViewModel = _customerAppService.GetById(id.Value);
+            var customerViewModel = await _customerAppService.GetById(id.Value);
 
-            if (customerViewModel == null)
-            {
-                return NotFound();
-            }
+            if (customerViewModel == null) return NotFound();
 
             return View(customerViewModel);
         }
 
-        [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management/edit-customer/{id:guid}")]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(CustomerViewModel customerViewModel)
+        [CustomAuthorize("Customers", "Write")]
+        [HttpPost("customer-management/edit-customer/{id:guid}")]
+        public async Task<IActionResult> Edit(CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid) return View(customerViewModel);
+            
+            if (ResponseHasErrors(await _customerAppService.Update(customerViewModel)))
+                return View(customerViewModel);
 
-            _customerAppService.Update(customerViewModel);
-
-            if (IsValidOperation())
-                ViewBag.Sucesso = "Customer Updated!";
-
-            return View(customerViewModel);
-        }
-
-        [HttpGet]
-        [Authorize(Policy = "CanRemoveCustomerData")]
-        [Route("customer-management/remove-customer/{id:guid}")]
-        public IActionResult Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var customerViewModel = _customerAppService.GetById(id.Value);
-
-            if (customerViewModel == null)
-            {
-                return NotFound();
-            }
+            ViewBag.Sucesso = "Customer Updated!";
 
             return View(customerViewModel);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [Authorize(Policy = "CanRemoveCustomerData")]
-        [Route("customer-management/remove-customer/{id:guid}")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(Guid id)
+        [CustomAuthorize("Customers", "Remove")]
+        [HttpGet("customer-management/remove-customer/{id:guid}")]
+        public async Task<IActionResult> Delete(Guid? id)
         {
-            _customerAppService.Remove(id);
+            if (id == null) return NotFound();
 
-            if (!IsValidOperation()) return View(_customerAppService.GetById(id));
+            var customerViewModel = await _customerAppService.GetById(id.Value);
+
+            if (customerViewModel == null) return NotFound();
+
+            return View(customerViewModel);
+        }
+
+        [CustomAuthorize("Customers", "Remove")]
+        [HttpPost("customer-management/remove-customer/{id:guid}"), ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        {
+            if (ResponseHasErrors(await _customerAppService.Remove(id)))
+                return View(await _customerAppService.GetById(id));
 
             ViewBag.Sucesso = "Customer Removed!";
             return RedirectToAction("Index");
         }
 
         [AllowAnonymous]
-        [Route("customer-management/customer-history/{id:guid}")]
-        public JsonResult History(Guid id)
+        [HttpGet("customer-management/customer-history/{id:guid}")]
+        public async Task<JsonResult> History(Guid id)
         {
-            var customerHistoryData = _customerAppService.GetAllHistory(id);
+            var customerHistoryData = await _customerAppService.GetAllHistory(id);
             return Json(customerHistoryData);
         }
     }

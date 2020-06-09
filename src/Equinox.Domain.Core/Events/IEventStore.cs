@@ -1,4 +1,6 @@
-﻿namespace Equinox.Domain.Core.Events
+﻿using NetDevPack.Messaging;
+
+namespace Equinox.Domain.Core.Events
 {
     public interface IEventStore
     {

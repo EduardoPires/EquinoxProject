@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Equinox.Domain.Core.Bus;
-using Equinox.Domain.Core.Commands;
 using Equinox.Domain.Core.Events;
+using FluentValidation.Results;
 using MediatR;
+using NetDevPack.Mediator;
+using NetDevPack.Messaging;
 
 namespace Equinox.Infra.CrossCutting.Bus
 {
@@ -17,17 +18,17 @@ namespace Equinox.Infra.CrossCutting.Bus
             _mediator = mediator;
         }
 
-        public Task SendCommand<T>(T command) where T : Command
-        {
-            return _mediator.Send(command);
-        }
-
-        public Task RaiseEvent<T>(T @event) where T : Event
+        public async Task PublishEvent<T>(T @event) where T : Event
         {
             if (!@event.MessageType.Equals("DomainNotification"))
                 _eventStore?.Save(@event);
 
-            return _mediator.Publish(@event);
+            await _mediator.Publish(@event);
+        }
+
+        public async Task<ValidationResult> SendCommand<T>(T command) where T : Command
+        {
+            return await _mediator.Send(command);
         }
     }
 }

@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Equinox.Application.EventSourcedNormalizers;
 using Equinox.Application.Interfaces;
 using Equinox.Application.ViewModels;
-using Equinox.Domain.Core.Bus;
-using Equinox.Domain.Core.Notifications;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NetDevPack.Identity.Authorization;
 
 namespace Equinox.Services.Api.Controllers
 {
@@ -14,81 +15,51 @@ namespace Equinox.Services.Api.Controllers
     {
         private readonly ICustomerAppService _customerAppService;
 
-        public CustomerController(
-            ICustomerAppService customerAppService,
-            INotificationHandler<DomainNotification> notifications,
-            IMediatorHandler mediator) : base(notifications, mediator)
+        public CustomerController(ICustomerAppService customerAppService)
         {
             _customerAppService = customerAppService;
         }
 
-        [HttpGet]
         [AllowAnonymous]
-        [Route("customer-management")]
-        public IActionResult Get()
+        [HttpGet("customer-management")]
+        public async Task<IEnumerable<CustomerViewModel>> Get()
         {
-            return Response(_customerAppService.GetAll());
+            return await _customerAppService.GetAll();
         }
 
-        [HttpGet]
         [AllowAnonymous]
-        [Route("customer-management/{id:guid}")]
-        public IActionResult Get(Guid id)
+        [HttpGet("customer-management/{id:guid}")]
+        public async Task<CustomerViewModel> Get(Guid id)
         {
-            var customerViewModel = _customerAppService.GetById(id);
-
-            return Response(customerViewModel);
-        }     
-
-        [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management")]
-        public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                NotifyModelStateErrors();
-                return Response(customerViewModel);
-            }
-
-            _customerAppService.Register(customerViewModel);
-
-            return Response(customerViewModel);
-        }
-        
-        [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management")]
-        public IActionResult Put([FromBody]CustomerViewModel customerViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                NotifyModelStateErrors();
-                return Response(customerViewModel);
-            }
-
-            _customerAppService.Update(customerViewModel);
-
-            return Response(customerViewModel);
+            return await _customerAppService.GetById(id);
         }
 
-        [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData")]
-        [Route("customer-management")]
-        public IActionResult Delete(Guid id)
+        [CustomAuthorize("Customers", "Write")]
+        [HttpPost("customer-management")]
+        public async Task<IActionResult> Post([FromBody]CustomerViewModel customerViewModel)
         {
-            _customerAppService.Remove(id);
-            
-            return Response();
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _customerAppService.Register(customerViewModel));
         }
 
-        [HttpGet]
+        [CustomAuthorize("Customers", "Write")]
+        [HttpPut("customer-management")]
+        public async Task<IActionResult> Put([FromBody]CustomerViewModel customerViewModel)
+        {
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _customerAppService.Update(customerViewModel));
+        }
+
+        [CustomAuthorize("Customers", "Remove")]
+        [HttpDelete("customer-management")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            return CustomResponse(await _customerAppService.Remove(id));
+        }
+
         [AllowAnonymous]
-        [Route("customer-management/history/{id:guid}")]
-        public IActionResult History(Guid id)
+        [HttpGet("customer-management/history/{id:guid}")]
+        public async Task<IList<CustomerHistoryData>> History(Guid id)
         {
-            var customerHistoryData = _customerAppService.GetAllHistory(id);
-            return Response(customerHistoryData);
+            return await _customerAppService.GetAllHistory(id);
         }
     }
 }

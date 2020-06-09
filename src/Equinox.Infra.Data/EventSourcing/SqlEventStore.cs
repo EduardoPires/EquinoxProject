@@ -1,7 +1,8 @@
 ﻿using Equinox.Domain.Core.Events;
-using Equinox.Domain.Interfaces;
 using Equinox.Infra.Data.Repository.EventSourcing;
-using System.Text.Json;
+using NetDevPack.Identity.User;
+using NetDevPack.Messaging;
+using Newtonsoft.Json;
 
 
 namespace Equinox.Infra.Data.EventSourcing
@@ -9,9 +10,9 @@ namespace Equinox.Infra.Data.EventSourcing
     public class SqlEventStore : IEventStore
     {
         private readonly IEventStoreRepository _eventStoreRepository;
-        private readonly IUser _user;
+        private readonly IAspNetUser _user;
 
-        public SqlEventStore(IEventStoreRepository eventStoreRepository, IUser user)
+        public SqlEventStore(IEventStoreRepository eventStoreRepository, IAspNetUser user)
         {
             _eventStoreRepository = eventStoreRepository;
             _user = user;
@@ -19,12 +20,14 @@ namespace Equinox.Infra.Data.EventSourcing
 
         public void Save<T>(T theEvent) where T : Event
         {
-            var serializedData = JsonSerializer.Serialize(theEvent);
+            // Using Newtonsoft.Json because System.Text.Json
+            // is a sad joke and far to be considered "Done"
+            var serializedData = JsonConvert.SerializeObject(theEvent);
 
             var storedEvent = new StoredEvent(
                 theEvent,
                 serializedData,
-                _user.Name);
+                _user.Name ?? _user.GetUserEmail());
 
             _eventStoreRepository.Store(storedEvent);
         }

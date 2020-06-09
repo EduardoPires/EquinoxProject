@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="mediatr" Version="8.0.0" />
-    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
-    <PackageReference Include="FluentValidation" Version="8.6.1" />
+    <PackageReference Include="NetDevPack" Version="1.0.4" />
   </ItemGroup>
 
   <ItemGroup>

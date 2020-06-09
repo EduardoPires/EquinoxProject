@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Equinox.Domain.Core.Events;
 using Equinox.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Equinox.Infra.Data.Repository.EventSourcing
 {
@@ -15,9 +17,9 @@ namespace Equinox.Infra.Data.Repository.EventSourcing
             _context = context;
         }
 
-        public IList<StoredEvent> All(Guid aggregateId)
+        public async Task<IList<StoredEvent>> All(Guid aggregateId)
         {
-            return (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToList();
+            return await (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToListAsync();
         }
 
         public void Store(StoredEvent theEvent)

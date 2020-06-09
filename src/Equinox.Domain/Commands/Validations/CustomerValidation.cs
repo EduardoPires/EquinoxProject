@@ -1,8 +1,7 @@
 ﻿using System;
-using Equinox.Domain.Commands;
 using FluentValidation;
 
-namespace Equinox.Domain.Validations
+namespace Equinox.Domain.Commands.Validations
 {
     public abstract class CustomerValidation<T> : AbstractValidator<T> where T : CustomerCommand
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using Equinox.Domain.Core.Commands;
+using NetDevPack.Messaging;
 
 namespace Equinox.Domain.Commands
 {

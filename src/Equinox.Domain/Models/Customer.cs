@@ -1,9 +1,9 @@
 ﻿using System;
-using Equinox.Domain.Core.Models;
+using NetDevPack.Domain;
 
 namespace Equinox.Domain.Models
 {
-    public class Customer : Entity
+    public class Customer : Entity, IAggregateRoot
     {
         public Customer(Guid id, string name, string email, DateTime birthDate)
         {

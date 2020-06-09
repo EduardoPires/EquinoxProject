@@ -3,11 +3,11 @@ using AutoMapper;
 using Equinox.Application.AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Equinox.UI.Web.Extensions
+namespace Equinox.UI.Web.Configurations
 {
-    public static class AutoMapperSetup
+    public static class AutoMapperConfig
     {
-        public static void AddAutoMapperSetup(this IServiceCollection services)
+        public static void AddAutoMapperConfiguration(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 

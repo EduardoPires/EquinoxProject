@@ -1,21 +1,34 @@
-﻿using Equinox.Domain.Core.Notifications;
-using MediatR;
+﻿using System.Collections.Generic;
+using System.Linq;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Equinox.UI.Web.Controllers
 {
     public class BaseController : Controller
     {
-        private readonly DomainNotificationHandler _notifications;
+        public ICollection<string> Errors = new List<string>();
 
-        public BaseController(INotificationHandler<DomainNotification> notifications)
+        protected bool ResponseHasErrors(ValidationResult result)
         {
-            _notifications = (DomainNotificationHandler)notifications;
+            if (result == null || result.IsValid) return false;
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.ErrorMessage);
+            }
+
+            return true;
+        }
+
+        protected void AddProcessError(string erro)
+        {
+            Errors.Add(erro);
         }
 
         public bool IsValidOperation()
         {
-            return (!_notifications.HasNotifications());
+            return !Errors.Any();
         }
     }
 }

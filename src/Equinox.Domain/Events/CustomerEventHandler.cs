@@ -1,9 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Equinox.Domain.Events;
 using MediatR;
 
-namespace Equinox.Domain.EventHandlers
+namespace Equinox.Domain.Events
 {
     public class CustomerEventHandler :
         INotificationHandler<CustomerRegisteredEvent>,
