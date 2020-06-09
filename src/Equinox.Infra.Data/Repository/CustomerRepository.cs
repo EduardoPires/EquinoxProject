@@ -10,9 +10,7 @@ namespace Equinox.Infra.Data.Repository
     {
         public CustomerRepository(EquinoxContext context)
             : base(context)
-        {
-
-        }
+        { }
 
         public Customer GetByEmail(string email)
         {

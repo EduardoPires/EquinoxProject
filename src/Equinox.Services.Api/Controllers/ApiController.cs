@@ -47,11 +47,11 @@ namespace Equinox.Services.Api.Controllers
 
         protected void NotifyModelStateErrors()
         {
-            var erros = ModelState.Values.SelectMany(v => v.Errors);
-            foreach (var erro in erros)
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            foreach (var error in errors)
             {
-                var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
-                NotifyError(string.Empty, erroMsg);
+                var errorMsg = error.Exception == null ? error.ErrorMessage : error.Exception.Message;
+                NotifyError(string.Empty, errorMsg);
             }
         }
 

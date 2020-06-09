@@ -29,6 +29,5 @@ namespace Equinox.Services.Api.Configurations
 
             return builder;
         }
-
     }
 }

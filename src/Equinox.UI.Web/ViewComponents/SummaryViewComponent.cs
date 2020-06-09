@@ -16,8 +16,8 @@ namespace Equinox.UI.Web.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var notificacoes = await Task.FromResult((_notifications.GetNotifications()));
-            notificacoes.ForEach(c => ViewData.ModelState.AddModelError(string.Empty, c.Value));
+            var notifications = await Task.FromResult((_notifications.GetNotifications()));
+            notifications.ForEach(c => ViewData.ModelState.AddModelError(string.Empty, c.Value));
 
             return View();
         }

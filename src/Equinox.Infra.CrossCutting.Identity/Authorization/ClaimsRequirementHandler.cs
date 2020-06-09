@@ -6,7 +6,6 @@ namespace Equinox.Infra.CrossCutting.Identity.Authorization
 {
     public class ClaimsRequirementHandler : AuthorizationHandler<ClaimRequirement>
     {
-
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
                                                        ClaimRequirement requirement)
         {
