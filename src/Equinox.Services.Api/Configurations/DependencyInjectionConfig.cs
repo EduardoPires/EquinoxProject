@@ -2,11 +2,11 @@
 using Equinox.Infra.CrossCutting.IoC;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Equinox.UI.Web.Extensions
+namespace Equinox.Services.Api.Configurations
 {
-    public static class DependencyInjectionSetup
+    public static class DependencyInjectionConfig
     {
-        public static void AddDependencyInjectionSetup(this IServiceCollection services)
+        public static void AddDependencyInjectionConfiguration(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 

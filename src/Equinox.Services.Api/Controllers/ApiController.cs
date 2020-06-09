@@ -1,71 +1,63 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Equinox.Domain.Core.Bus;
-using Equinox.Domain.Core.Notifications;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Equinox.Services.Api.Controllers
 {
+    [ApiController]
     public abstract class ApiController : ControllerBase
     {
-        private readonly DomainNotificationHandler _notifications;
-        private readonly IMediatorHandler _mediator;
+        public ICollection<string> Errors = new List<string>();
 
-        protected ApiController(INotificationHandler<DomainNotification> notifications, 
-                                IMediatorHandler mediator)
+        protected ActionResult CustomResponse(object result = null)
         {
-            _notifications = (DomainNotificationHandler)notifications;
-            _mediator = mediator;
-        }
-
-        protected IEnumerable<DomainNotification> Notifications => _notifications.GetNotifications();
-
-        protected bool IsValidOperation()
-        {
-            return (!_notifications.HasNotifications());
-        }
-
-        protected new IActionResult Response(object result = null)
-        {
-            if (IsValidOperation())
+            if (IsOperationValid())
             {
-                return Ok(new
-                {
-                    success = true,
-                    data = result
-                });
+                return Ok(result);
             }
 
-            return BadRequest(new
+            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
             {
-                success = false,
-                errors = _notifications.GetNotifications().Select(n => n.Value)
-            });
+                { "Messages", Errors.ToArray() }
+            }));
         }
 
-        protected void NotifyModelStateErrors()
+        protected ActionResult CustomResponse(ModelStateDictionary modelState)
         {
-            var erros = ModelState.Values.SelectMany(v => v.Errors);
-            foreach (var erro in erros)
+            var errors = modelState.Values.SelectMany(e => e.Errors);
+            foreach (var error in errors)
             {
-                var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
-                NotifyError(string.Empty, erroMsg);
+                AddError(error.ErrorMessage);
             }
+
+            return CustomResponse();
         }
 
-        protected void NotifyError(string code, string message)
+        protected ActionResult CustomResponse(ValidationResult validationResult)
         {
-            _mediator.RaiseEvent(new DomainNotification(code, message));
-        }
-
-        protected void AddIdentityErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
+            foreach (var error in validationResult.Errors)
             {
-                NotifyError(result.ToString(), error.Description);
+                AddError(error.ErrorMessage);
             }
+
+            return CustomResponse();
+        }
+
+        protected bool IsOperationValid()
+        {
+            return !Errors.Any();
+        }
+
+        protected void AddError(string erro)
+        {
+            Errors.Add(erro);
+        }
+
+        protected void ClearErrors()
+        {
+            Errors.Clear();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Equinox.Domain.Commands;
-
-namespace Equinox.Domain.Validations
+﻿namespace Equinox.Domain.Commands.Validations
 {
     public class RemoveCustomerCommandValidation : CustomerValidation<RemoveCustomerCommand>
     {

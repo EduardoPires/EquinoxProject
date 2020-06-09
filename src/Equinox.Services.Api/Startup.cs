@@ -1,11 +1,13 @@
+using Equinox.Infra.CrossCutting.Identity;
 using Equinox.Services.Api.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NetDevPack.Identity;
+using NetDevPack.Identity.User;
 
 namespace Equinox.Services.API
 {
@@ -31,32 +33,29 @@ namespace Equinox.Services.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Setting DBContexts
-            services.AddDatabaseSetup(Configuration);
-
-            // ASP.NET Identity Settings & JWT
-            services.AddIdentitySetup(Configuration);
-
             // WebAPI Config
             services.AddControllers();
 
-            // AutoMapper Settings
-            services.AddAutoMapperSetup();
+            // Setting DBContexts
+            services.AddDatabaseConfiguration(Configuration);
 
-            // Authorization
-            services.AddAuthSetup(Configuration);
+            // ASP.NET Identity Settings & JWT
+            services.AddApiIdentityConfiguration(Configuration);
+
+            // Interactive AspNetUser (logged in)
+            services.AddAspNetUserConfiguration();
+
+            // AutoMapper Settings
+            services.AddAutoMapperConfiguration();
 
             // Swagger Config
-            services.AddSwaggerSetup();
+            services.AddSwaggerConfiguration();
 
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
 
-            // ASP.NET HttpContext dependency
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
             // .NET Native DI Abstraction
-            services.AddDependencyInjectionSetup();
+            services.AddDependencyInjectionConfiguration();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -77,8 +76,7 @@ namespace Equinox.Services.API
                 c.AllowAnyOrigin();
             });
 
-            app.UseAuthorization();
-            app.UseAuthentication();
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

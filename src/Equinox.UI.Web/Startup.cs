@@ -1,11 +1,14 @@
+using Equinox.Infra.CrossCutting.Identity;
+using Equinox.UI.Web.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Equinox.UI.Web.Extensions;
 using MediatR;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NetDevPack.Identity;
+using NetDevPack.Identity.User;
 
 namespace Equinox.UI.Web
 {
@@ -29,33 +32,36 @@ namespace Equinox.UI.Web
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
-            // Setting DBContexts
-            services.AddDatabaseSetup(Configuration);
-
-            // ASP.NET Identity Settings
-            services.AddIdentitySetup();
-
-            // AutoMapper Settings
-            services.AddAutoMapperSetup();
-
             // MVC Settings
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
             services.AddRazorPages();
 
+            // Setting DBContexts
+            services.AddDatabaseConfiguration(Configuration);
+
+            // ASP.NET Identity Settings
+            services.AddWebAppIdentityConfiguration(Configuration);
+
             // Authentication & Authorization
-            services.AddAuthSetup(Configuration);
+            services.AddSocialAuthenticationConfiguration(Configuration);
+
+            // Interactive AspNetUser (logged in)
+            services.AddAspNetUserConfiguration();
+
+            // AutoMapper Settings
+            services.AddAutoMapperConfiguration();
 
             // Adding MediatR for Domain Events and Notifications
             services.AddMediatR(typeof(Startup));
 
-            // ASP.NET HttpContext dependency
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
             // .NET Native DI Abstraction
-            services.AddDependencyInjectionSetup();
+            services.AddDependencyInjectionConfiguration();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -67,16 +73,17 @@ namespace Equinox.UI.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/error/500");
+                app.UseStatusCodePagesWithRedirects("/error/{0}");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

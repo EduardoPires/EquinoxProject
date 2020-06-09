@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace Equinox.Services.Api.Configurations
 {
-    public static class SwaggerSetup
+    public static class SwaggerConfig
     {
-        public static void AddSwaggerSetup(this IServiceCollection services)
+        public static void AddSwaggerConfiguration(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
@@ -25,11 +24,12 @@ namespace Equinox.Services.Api.Configurations
 
                 s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Description = "Input the JWT like: Bearer {your token}",
                     Name = "Authorization",
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
+                    Type = SecuritySchemeType.ApiKey
                 });
 
                 s.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -41,13 +41,9 @@ namespace Equinox.Services.Api.Configurations
                             {
                                 Type = ReferenceType.SecurityScheme,
                                 Id = "Bearer"
-                            },
-                            Scheme = "oauth2",
-                            Name = "Bearer",
-                            In = ParameterLocation.Header,
-
+                            }
                         },
-                        new List<string>()
+                        new string[] {}
                     }
                 });
 
@@ -61,7 +57,7 @@ namespace Equinox.Services.Api.Configurations
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Equinox Project");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
             });
         }
     }

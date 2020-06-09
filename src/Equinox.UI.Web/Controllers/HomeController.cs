@@ -1,44 +1,44 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Equinox.UI.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Equinox.UI.Web.Controllers
 {
-    [Route("home")]
     public class HomeController : Controller
     {
-        [Route("welcome")]
-        [Route("")]
-        [Route("/")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Route("about")]
-        public IActionResult About()
+        [Route("error/{id:length(3,3)}")]
+        public IActionResult Errors(int id)
         {
-            ViewData["Message"] = "Your application description page.";
+            var modelErro = new ErrorViewModel();
 
-            return View();
-        }
+            if (id == 500)
+            {
+                modelErro.Message = "An error has occurred! Please try again later or contact our support.";
+                modelErro.Title = "An error has occurred!";
+                modelErro.ErrorCode = id;
+            }
+            else if (id == 404)
+            {
+                modelErro.Message = "The page you are looking for does not exist! <br /> If you have any questions please contact our support";
+                modelErro.Title = "Oops! Page not found.";
+                modelErro.ErrorCode = id;
+            }
+            else if (id == 403)
+            {
+                modelErro.Message = "You are not allowed to do this.";
+                modelErro.Title = "Access Denied";
+                modelErro.ErrorCode = id;
+            }
+            else
+            {
+                return StatusCode(500);
+            }
 
-        [Route("contact")]
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        [Route("error")]
-        public IActionResult Error()
-        {
-            return View();
-        }
-
-        [Route("access-denied")]
-        public IActionResult AccessDenied()
-        {
-            return View();
+            return View("Error", modelErro);
         }
     }
 }

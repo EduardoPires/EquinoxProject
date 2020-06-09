@@ -1,6 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Error";
+﻿@model Equinox.UI.Web.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Oops! An error has occurred!";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+@{
+    if (Model == null)
+    {
+    <div>
+        <h2>Oops! An error has occurred, but don't worry. Our time will be reviewed and we will correct it soon!</h2>
+    </div>
+    }
+    else
+    {
+    <h1>@Html.Raw(Model.Title)</h1>
+    <h2 class="text-danger">@Html.Raw(Model.Message)</h2>
+    }
+}
