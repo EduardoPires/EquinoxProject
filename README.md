@@ -52,6 +52,11 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## News
 
+**v1.6 - 06/09/2020**
+- Full Refactoring (consistency, events, validation, identity)
+- Added [NetDevPack](https://github.com/NetDevPack) and saving a hundreds of code lines
+- All dependencies is up to date
+
 **v1.5 - 01/22/2020**
 - Migrated for .NET Core 3.1.1
 - All dependencies is up to date
