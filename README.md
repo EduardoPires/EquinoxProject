@@ -38,6 +38,8 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - FluentValidator
 - MediatR
 - Swagger UI with JWT support
+- .NET DevPack
+- .NET DevPack.Identity
 
 ## Architecture:
 
