@@ -16,7 +16,7 @@ using NetDevPack.Mediator;
 
 namespace Equinox.Infra.CrossCutting.IoC
 {
-    public class NativeInjectorBootStrapper
+    public static class NativeInjectorBootStrapper
     {
         public static void RegisterServices(IServiceCollection services)
         {

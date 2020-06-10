@@ -9,7 +9,7 @@ namespace Equinox.Services.Api.Controllers
     [ApiController]
     public abstract class ApiController : ControllerBase
     {
-        public ICollection<string> Errors = new List<string>();
+        private readonly ICollection<string> _errors = new List<string>();
 
         protected ActionResult CustomResponse(object result = null)
         {
@@ -20,7 +20,7 @@ namespace Equinox.Services.Api.Controllers
 
             return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
             {
-                { "Messages", Errors.ToArray() }
+                { "Messages", _errors.ToArray() }
             }));
         }
 
@@ -47,17 +47,17 @@ namespace Equinox.Services.Api.Controllers
 
         protected bool IsOperationValid()
         {
-            return !Errors.Any();
+            return !_errors.Any();
         }
 
         protected void AddError(string erro)
         {
-            Errors.Add(erro);
+            _errors.Add(erro);
         }
 
         protected void ClearErrors()
         {
-            Errors.Clear();
+            _errors.Clear();
         }
     }
 }

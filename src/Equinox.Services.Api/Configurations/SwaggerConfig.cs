@@ -19,7 +19,7 @@ namespace Equinox.Services.Api.Configurations
                     Title = "Equinox Project",
                     Description = "Equinox API Swagger surface",
                     Contact = new OpenApiContact { Name = "Eduardo Pires", Email = "contato@eduardopires.net.br", Url = new Uri("http://www.eduardopires.net.br") },
-                    License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://github.com/EduardoPires/EquinoxProject/blob/master/LICENSE") }
+                    License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://github.com/EduardoPires/EquinoxProject/blob/master/LICENSE") }
                 });
 
                 s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
