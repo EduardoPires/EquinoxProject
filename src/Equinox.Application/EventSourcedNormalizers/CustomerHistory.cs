@@ -6,7 +6,7 @@ using Equinox.Domain.Core.Events;
 
 namespace Equinox.Application.EventSourcedNormalizers
 {
-    public class CustomerHistory
+    public static class CustomerHistory
     {
         public static IList<CustomerHistoryData> HistoryData { get; set; }
 
@@ -67,6 +67,11 @@ namespace Equinox.Application.EventSourcedNormalizers
                         historyData.Action = "Removed";
                         historyData.Who = e.User;
                         break;
+                    default:
+                        historyData.Action = "Unrecognized";
+                        historyData.Who = e.User ?? "Anonymous";
+                        break;
+
                 }
                 HistoryData.Add(historyData);
             }

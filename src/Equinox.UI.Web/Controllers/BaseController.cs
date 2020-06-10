@@ -7,7 +7,7 @@ namespace Equinox.UI.Web.Controllers
 {
     public class BaseController : Controller
     {
-        public ICollection<string> Errors = new List<string>();
+        private readonly ICollection<string> _errors = new List<string>();
 
         protected bool ResponseHasErrors(ValidationResult result)
         {
@@ -23,12 +23,12 @@ namespace Equinox.UI.Web.Controllers
 
         protected void AddProcessError(string erro)
         {
-            Errors.Add(erro);
+            _errors.Add(erro);
         }
 
         public bool IsValidOperation()
         {
-            return !Errors.Any();
+            return !_errors.Any();
         }
     }
 }
