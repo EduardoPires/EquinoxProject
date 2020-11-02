@@ -17,6 +17,9 @@ namespace Equinox.UI.Web
         public IConfiguration Configuration { get; }
 
 
+
+
+
         public Startup(IHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
