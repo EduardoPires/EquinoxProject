@@ -1,5 +1,4 @@
 ﻿using System;
-using AutoMapper;
 using Equinox.Application.AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
