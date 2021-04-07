@@ -9,12 +9,10 @@ using Microsoft.Extensions.Hosting;
 using NetDevPack.Identity;
 using NetDevPack.Identity.User;
 
-namespace Equinox.Services.API
+namespace Equinox.Services.Api
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
         public Startup(IHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -31,6 +29,8 @@ namespace Equinox.Services.API
             Configuration = builder.Build();
         }
 
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             // WebAPI Config
@@ -43,6 +43,7 @@ namespace Equinox.Services.API
             services.AddApiIdentityConfiguration(Configuration);
 
             // Interactive AspNetUser (logged in)
+            // NetDevPack.Identity dependency
             services.AddAspNetUserConfiguration();
 
             // AutoMapper Settings
@@ -57,8 +58,8 @@ namespace Equinox.Services.API
             // .NET Native DI Abstraction
             services.AddDependencyInjectionConfiguration();
         }
-
-        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -76,6 +77,7 @@ namespace Equinox.Services.API
                 c.AllowAnyOrigin();
             });
 
+            // NetDevPack.Identity dependency
             app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>

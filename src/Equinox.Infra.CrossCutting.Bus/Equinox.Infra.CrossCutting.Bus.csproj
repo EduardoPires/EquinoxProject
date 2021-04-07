@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="mediatr" Version="8.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="mediatr" Version="9.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Equinox.Domain.Core\Equinox.Domain.Core.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Equinox.Domain.Core\Equinox.Domain.Core.csproj" />
+	</ItemGroup>
 
 </Project>

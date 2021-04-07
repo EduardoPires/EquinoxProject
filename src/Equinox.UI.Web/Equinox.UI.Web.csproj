@@ -1,37 +1,35 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-Equinox.UI.Web-E78B174C-38BA-44C8-B15D-27A0E358935C</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..</DockerfileContext>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>aspnet-Equinox.UI.Web-61A38C1A-B3EE-4175-AD27-CD2A22786741</UserSecretsId>
+		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
 
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.4" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.5" />
 
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.4" />
-  </ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+	</ItemGroup>
 
-
-  <ItemGroup>
-    <ProjectReference Include="..\Equinox.Application\Equinox.Application.csproj" />
-    <ProjectReference Include="..\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj" />
-    <ProjectReference Include="..\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Equinox.Application\Equinox.Application.csproj" />
+		<ProjectReference Include="..\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj" />
+		<ProjectReference Include="..\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.csproj" />
+	</ItemGroup>
 </Project>

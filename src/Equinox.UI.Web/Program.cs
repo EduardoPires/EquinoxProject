@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Equinox.UI.Web
 {
-    public static class Program
+    public class Program
     {
         public static void Main(string[] args)
         {

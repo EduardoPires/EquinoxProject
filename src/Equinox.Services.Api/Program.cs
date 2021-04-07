@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Equinox.Services.API
+namespace Equinox.Services.Api
 {
-    public static class Program
+    public class Program
     {
         public static void Main(string[] args)
         {

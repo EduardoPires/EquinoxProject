@@ -1,8 +1,8 @@
 using Equinox.Infra.CrossCutting.Identity;
 using Equinox.UI.Web.Configurations;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,9 +14,6 @@ namespace Equinox.UI.Web
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
-
         public Startup(IHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -32,6 +29,8 @@ namespace Equinox.UI.Web
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
+
+        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -52,6 +51,7 @@ namespace Equinox.UI.Web
             services.AddSocialAuthenticationConfiguration(Configuration);
 
             // Interactive AspNetUser (logged in)
+            // NetDevPack.Identity dependency
             services.AddAspNetUserConfiguration();
 
             // AutoMapper Settings
@@ -64,12 +64,13 @@ namespace Equinox.UI.Web
             services.AddDependencyInjectionConfiguration();
         }
 
-        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -83,6 +84,7 @@ namespace Equinox.UI.Web
 
             app.UseRouting();
 
+            // NetDevPack.Identity dependency
             app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>

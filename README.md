@@ -30,11 +30,11 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## Technologies implemented:
 
-- ASP.NET Core 3.1 (with .NET Core 3.1)
+- ASP.NET 5.0 (with .NET Core 5.0)
  - ASP.NET MVC Core 
  - ASP.NET WebApi Core with JWT Bearer Authentication
  - ASP.NET Identity Core
-- Entity Framework Core 3.1
+- Entity Framework Core 5.0
 - .NET Core Native DI
 - AutoMapper
 - FluentValidator
@@ -56,6 +56,10 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Repository
 
 ## News
+
+**v1.7 - 06/04/2021**
+- Migrated for .NET 5.0
+- All dependencies is up to date
 
 **v1.6 - 06/09/2020**
 - Full Refactoring (consistency, events, validation, identity)
@@ -98,7 +102,7 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 Watch our [RoadMap](https://github.com/EduardoPires/EquinoxProject/wiki/RoadMap) to know the new changes
 
 ## Pull-Requests 
-Make a contact! Don't submit PRs for extra features, all new features is coming in V2
+Make a contact! Don't submit PRs for extra features, all the new features are planned
 
 ## Why Equinox?
 The Equinox is an astronomical event in which the plane of Earth's equator passes through the center of the Sun, which occurs twice each year, around 20 March and 23 September. [Wikipedia](https://en.wikipedia.org/wiki/Equinox)
