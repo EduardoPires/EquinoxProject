@@ -57,7 +57,7 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## News
 
-**v1.7 - 06/04/2021**
+**v1.7 - 04/06/2021**
 - Migrated for .NET 5.0
 - All dependencies is up to date
 
