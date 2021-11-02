@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
@@ -39,6 +40,9 @@ namespace Equinox.Application.EventSourcedNormalizers
                     Timestamp = change.Timestamp,
                     Who = change.Who
                 };
+
+                // Remove Possible Script Injection
+                jsSlot.Name = HttpUtility.HtmlEncode(jsSlot.Name);
 
                 list.Add(jsSlot);
                 last = change;

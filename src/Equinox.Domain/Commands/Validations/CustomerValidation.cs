@@ -9,7 +9,8 @@ namespace Equinox.Domain.Commands.Validations
         {
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("Please ensure you have entered the Name")
-                .Length(2, 150).WithMessage("The Name must have between 2 and 150 characters");
+                .Length(2, 150).WithMessage("The Name must have between 2 and 150 characters")
+                .Matches("^[a-zA-Z0-9]*$").WithMessage("Special characters are not allowed");
         }
 
         protected void ValidateBirthDate()
