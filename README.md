@@ -19,7 +19,7 @@ If you liked the project or if Equinox helped you, please give a star ;)
 Check my online courses at [desenvolvedor.io](https://desenvolvedor.io)
 
 ## How to use:
-- You will need the latest Visual Studio 2019 and the latest .NET Core SDK.
+- You will need the latest Visual Studio 2022 and the latest .NET Core SDK.
 - ***Please check if you have installed the same runtime version (SDK) described in global.json***
 - The latest SDK and tools can be downloaded from https://dot.net/core.
 
@@ -29,11 +29,11 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## Technologies implemented:
 
-- ASP.NET 5.0 (with .NET Core 5.0)
+- ASP.NET 6.0
  - ASP.NET MVC Core 
  - ASP.NET WebApi Core with JWT Bearer Authentication
  - ASP.NET Identity Core
-- Entity Framework Core 5.0
+- Entity Framework Core 6.0
 - .NET Core Native DI
 - AutoMapper
 - FluentValidator
@@ -55,6 +55,10 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Repository
 
 ## News
+
+**v1.8 - 03/22/2022**
+- Migrated for .NET 6.0
+- All dependencies is up to date
 
 **v1.7 - 04/06/2021**
 - Migrated for .NET 5.0

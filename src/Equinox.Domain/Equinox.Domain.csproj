@@ -1,19 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\Equinox.Domain.Core\Equinox.Domain.Core.csproj" />
 		<ProjectReference Include="..\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.csproj" />
 	</ItemGroup>
-
 	<ItemGroup>
-		<PackageReference Include="FluentValidation" Version="10.0.0" />
+		<PackageReference Include="FluentValidation" Version="10.4.0" />
 		<PackageReference Include="System.ComponentModel" Version="4.3.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Security.Claims" Version="4.3.0" />
 	</ItemGroup>
-
 </Project>

@@ -1,15 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="mediatr" Version="9.0.0" />
+		<PackageReference Include="mediatr" Version="10.0.1" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\Equinox.Domain.Core\Equinox.Domain.Core.csproj" />
 	</ItemGroup>
-
 </Project>
