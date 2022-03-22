@@ -1,17 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\Equinox.Domain\Equinox.Domain.csproj" />
 	</ItemGroup>
-
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
-		<PackageReference Include="NetDevPack.Identity" Version="1.2.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
+		<PackageReference Include="NetDevPack.Identity" Version="6.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3" />
 	</ItemGroup>
-
 </Project>

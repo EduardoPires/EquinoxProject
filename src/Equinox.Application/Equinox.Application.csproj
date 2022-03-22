@@ -1,16 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-	<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<ProjectReference Include="..\Equinox.Domain\Equinox.Domain.csproj" />
-		<ProjectReference Include="..\Equinox.Infra.Data\Equinox.Infra.Data.csproj" />
+		<ProjectReference Include="..\Equinox.Domain\Equinox.Domain.csproj"/>
+		<ProjectReference Include="..\Equinox.Infra.Data\Equinox.Infra.Data.csproj"/>
 	</ItemGroup>
-
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="AutoMapper" Version="11.0.1"/>
 	</ItemGroup>
-
 </Project>

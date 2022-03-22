@@ -1,11 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="NetDevPack" Version="1.1.1" />
+		<PackageReference Include="NetDevPack" Version="7.0.1" />
 	</ItemGroup>
-
 </Project>
