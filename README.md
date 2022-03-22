@@ -101,9 +101,6 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Beware to use in production way
 - Maybe you don't need a lot of implementations that is included, try avoid the **over engineering**
 
-## About the next versions
-Watch our [RoadMap](https://github.com/EduardoPires/EquinoxProject/wiki/RoadMap) to know the new changes
-
 ## Pull-Requests 
 Make a contact! Don't submit PRs for extra features, all the new features are planned
 
