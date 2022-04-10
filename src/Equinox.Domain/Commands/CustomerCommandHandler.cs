@@ -26,15 +26,13 @@ namespace Equinox.Domain.Commands
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var customer = new Customer(Guid.NewGuid(), message.Name, message.Email, message.BirthDate);
+            var customer = Customer.RegisterNewCustomer(message.Name, message.Email, message.BirthDate);
 
             if (await _customerRepository.GetByEmail(customer.Email) != null)
             {
                 AddError("The customer e-mail has already been taken.");
                 return ValidationResult;
             }
-
-            customer.AddDomainEvent(new CustomerRegisteredEvent(customer.Id, customer.Name, customer.Email, customer.BirthDate));
 
             _customerRepository.Add(customer);
 
@@ -45,19 +43,26 @@ namespace Equinox.Domain.Commands
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var customer = new Customer(message.Id, message.Name, message.Email, message.BirthDate);
-            var existingCustomer = await _customerRepository.GetByEmail(customer.Email);
+            var customer = await _customerRepository.GetById(message.Id);
 
-            if (existingCustomer != null && existingCustomer.Id != customer.Id)
+            if (customer is null)
             {
-                if (!existingCustomer.Equals(customer))
+                AddError("This customer does not exist.");
+                return ValidationResult;
+            }
+
+            var existingCustomer = await _customerRepository.GetByEmail(message.Email);
+
+            if (existingCustomer != null && existingCustomer.Id != message.Id)
+            {
+                if (!existingCustomer.Equals(message))
                 {
                     AddError("The customer e-mail has already been taken.");
                     return ValidationResult;
                 }
             }
 
-            customer.AddDomainEvent(new CustomerUpdatedEvent(customer.Id, customer.Name, customer.Email, customer.BirthDate));
+            customer.UpdateCustomer(message.Name, message.Email, message.BirthDate);
 
             _customerRepository.Update(customer);
 
@@ -76,7 +81,7 @@ namespace Equinox.Domain.Commands
                 return ValidationResult;
             }
 
-            customer.AddDomainEvent(new CustomerRemovedEvent(message.Id));
+            customer.RemoveCustomer();
 
             _customerRepository.Remove(customer);
 
