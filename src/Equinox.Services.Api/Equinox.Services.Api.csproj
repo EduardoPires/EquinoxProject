@@ -11,7 +11,7 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0"/>
 		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.3.0"/>
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.0"/>
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.0"/>
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0"/>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3"/>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
 			<PrivateAssets>all</PrivateAssets>
