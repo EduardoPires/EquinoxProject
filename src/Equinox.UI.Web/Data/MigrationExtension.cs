@@ -1,5 +1,6 @@
 ﻿using Equinox.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Equinox.UI.Web.Data
 {
@@ -22,8 +23,8 @@ namespace Equinox.UI.Web.Data
                     var equinoxContext = service.GetRequiredService<EquinoxContext>();
                     var eventStoreSqlContext = service.GetRequiredService<EventStoreSqlContext>();
 
-                    await equinoxContext.Database.MigrateAsync();
-                    await eventStoreSqlContext.Database.MigrateAsync();
+                    await ApplyMigrationsAsync(equinoxContext);
+                    await ApplyMigrationsAsync(eventStoreSqlContext);
                 }
                 catch (Exception ex)
                 {
@@ -33,6 +34,18 @@ namespace Equinox.UI.Web.Data
             }
             return app;
         }
+
+        private static async Task ApplyMigrationsAsync(DbContext context)
+        {
+            if (context.Database.GetPendingMigrations().Any())
+            {
+                await context.Database.MigrateAsync();
+            }
+        }
+
+        // Somewhere in your code...
+
+        
     }
 
 }
