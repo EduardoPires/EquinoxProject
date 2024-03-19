@@ -1,5 +1,6 @@
 using Equinox.Infra.CrossCutting.Identity;
 using Equinox.UI.Web.Configurations;
+using Equinox.UI.Web.Data;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NetDevPack.Identity;
@@ -72,5 +73,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+
+await app.Migrate();
 
 app.Run();
