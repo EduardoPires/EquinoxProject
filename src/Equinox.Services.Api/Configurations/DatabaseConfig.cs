@@ -1,8 +1,5 @@
-﻿using System;
-using Equinox.Infra.Data.Context;
+﻿using Equinox.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Equinox.Services.Api.Configurations
 {

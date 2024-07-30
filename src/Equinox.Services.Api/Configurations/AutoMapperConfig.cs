@@ -1,6 +1,4 @@
-﻿using System;
-using Equinox.Application.AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Equinox.Application.AutoMapper;
 
 namespace Equinox.Services.Api.Configurations
 {

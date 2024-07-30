@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Equinox.UI.Web.Configurations
+﻿namespace Equinox.UI.Web.Configurations
 {
     public static class IdentityConfig
     {

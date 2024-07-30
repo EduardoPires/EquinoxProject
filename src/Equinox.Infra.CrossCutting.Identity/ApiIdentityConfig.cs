@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NetDevPack.Identity;
 using NetDevPack.Identity.Jwt;
 
 namespace Equinox.Infra.CrossCutting.Identity

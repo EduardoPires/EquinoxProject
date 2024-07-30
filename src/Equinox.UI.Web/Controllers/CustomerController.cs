@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Equinox.Application.Interfaces;
 using Equinox.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;

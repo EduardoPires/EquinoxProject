@@ -1,9 +1,8 @@
 using Equinox.Infra.CrossCutting.Identity;
 using Equinox.UI.Web.Configurations;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using NetDevPack.Identity;
 using NetDevPack.Identity.User;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +37,7 @@ builder.Services.AddAspNetUserConfiguration();
 builder.Services.AddAutoMapperConfiguration();
 
 // Adding MediatR for Domain Events and Notifications
-builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 // .NET Native DI Abstraction
 builder.Services.AddDependencyInjectionConfiguration();

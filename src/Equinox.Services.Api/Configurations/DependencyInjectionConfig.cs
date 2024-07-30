@@ -1,6 +1,4 @@
-﻿using System;
-using Equinox.Infra.CrossCutting.IoC;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Equinox.Infra.CrossCutting.IoC;
 
 namespace Equinox.Services.Api.Configurations
 {
