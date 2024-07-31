@@ -1,15 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Equinox.Domain\Equinox.Domain.csproj" />
 		<ProjectReference Include="..\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
-		<PackageReference Include="NetDevPack.Identity" Version="6.0.5" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Azure.Identity" Version="1.12.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
+		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.0" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.1" />
 	</ItemGroup>
 </Project>

@@ -1,22 +1,21 @@
-﻿using System;
-using Equinox.Infra.Data.Context;
+﻿using Equinox.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Equinox.UI.Web.Configurations
 {
     public static class DatabaseConfig
     {
-        public static void AddDatabaseConfiguration(this IServiceCollection services, IConfiguration configuration)
+        public static WebApplicationBuilder AddDatabaseConfiguration(this WebApplicationBuilder builder)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-            services.AddDbContext<EquinoxContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<EquinoxContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<EventStoreSqlContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<EventStoreSqlContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            return builder;
         }
     }
 }

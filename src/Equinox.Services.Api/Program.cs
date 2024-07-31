@@ -1,69 +1,33 @@
-using Equinox.Infra.CrossCutting.Identity;
+using Equinox.Infra.CrossCutting.Identity.Configuration;
 using Equinox.Services.Api.Configurations;
-using MediatR;
-using NetDevPack.Identity;
-using NetDevPack.Identity.User;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration
-    .SetBasePath(builder.Environment.ContentRootPath)
-    .AddJsonFile("appsettings.json", true, true)
-    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
-    .AddEnvironmentVariables();
-
-// ConfigureServices
-
-// WebAPI Config
-builder.Services.AddControllers();
-
-// Setting DBContexts
-builder.Services.AddDatabaseConfiguration(builder.Configuration);
-
-// ASP.NET Identity Settings & JWT
-builder.Services.AddApiIdentityConfiguration(builder.Configuration);
-
-// Interactive AspNetUser (logged in)
-// NetDevPack.Identity dependency
-builder.Services.AddAspNetUserConfiguration();
-
-// AutoMapper Settings
-builder.Services.AddAutoMapperConfiguration();
-
-// Swagger Config
-builder.Services.AddSwaggerConfiguration();
-
-// Adding MediatR for Domain Events and Notifications
-builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-
-// .NET Native DI Abstraction
-builder.Services.AddDependencyInjectionConfiguration();
+// Configure Services
+builder.AddApiConfiguration()                   // Api Configurations
+       .AddDatabaseConfiguration()              // Setting DBContexts
+       .AddApiIdentityConfiguration()           // ASP.NET Identity Settings & JWT
+       .AddAutoMapperConfiguration()            // AutoMapper Settings
+       .AddSwaggerConfiguration()               // Swagger Config
+       .AddMediatRConfiguration()               // Adding MediatR for Domain Events and Notifications
+       .AddDependencyInjectionConfiguration();  // DotNet Native DI Abstraction
 
 var app = builder.Build();
 
 // Configure
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-
-app.UseHttpsRedirection();
-
-app.UseRouting();
-
-app.UseCors(c =>
-{
-    c.AllowAnyHeader();
-    c.AllowAnyMethod();
-    c.AllowAnyOrigin();
-});
-
-// NetDevPack.Identity dependency
-app.UseAuthConfiguration();
+app.UseHttpsRedirection()
+    .UseCors(c =>
+    {
+        c.AllowAnyHeader();
+        c.AllowAnyMethod();
+        c.AllowAnyOrigin();
+    })
+    .UseAuthentication()
+    .UseAuthorization();
 
 app.MapControllers();
+app.MapIdentityApi<IdentityUser>();
 
 app.UseSwaggerSetup();
-
 app.Run();

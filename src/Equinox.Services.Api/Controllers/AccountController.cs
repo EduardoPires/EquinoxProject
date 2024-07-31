@@ -1,13 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using Equinox.Infra.CrossCutting.Identity.API;
+using Equinox.Infra.CrossCutting.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using NetDevPack.Identity.Jwt;
-using NetDevPack.Identity.Model;
 
 namespace Equinox.Services.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("account")]
     [ApiController]
     public class AccountController : ApiController
     {
@@ -26,7 +25,7 @@ namespace Equinox.Services.Api.Controllers
         }
 
         [HttpPost]
-        [Route("register")]
+        [Route("new")]
         public async Task<ActionResult> Register(RegisterUser registerUser)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
@@ -54,7 +53,7 @@ namespace Equinox.Services.Api.Controllers
         }
 
         [HttpPost]
-        [Route("login")]
+        [Route("enter")]
         public async Task<IActionResult> Login(LoginUser loginUser)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);

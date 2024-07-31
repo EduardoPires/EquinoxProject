@@ -1,17 +1,16 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 
 namespace Equinox.Services.Api.Configurations
 {
     public static class SwaggerConfig
     {
-        public static void AddSwaggerConfiguration(this IServiceCollection services)
+        public static WebApplicationBuilder AddSwaggerConfiguration(this WebApplicationBuilder builder)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-            services.AddSwaggerGen(s =>
+            builder.Services.AddEndpointsApiExplorer();
+
+            builder.Services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
@@ -47,10 +46,42 @@ namespace Equinox.Services.Api.Configurations
                     }
                 });
 
+                // Excluding ASP.NET Identity endpoints
+                s.DocInclusionPredicate((docName, apiDesc) =>
+                {
+                    var relativePath = apiDesc.RelativePath;
+
+                    // List of avoid patches
+                    var identityEndpoints = new[]
+                    {
+                        "register",
+                        "manage",
+                        "refresh",
+                        "login",
+                        "confirmEmail",
+                        "resendConfirmationEmail",
+                        "forgotPassword",
+                        "resetPassword"                        
+                    };
+
+                    // Validating if the endpoint is avoided
+                    foreach (var endpoint in identityEndpoints)
+                    {
+                        if (relativePath.Contains(endpoint, StringComparison.OrdinalIgnoreCase))
+                        {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
+
             });
+
+            return builder;
         }
 
-        public static void UseSwaggerSetup(this IApplicationBuilder app)
+        public static IApplicationBuilder UseSwaggerSetup(this IApplicationBuilder app)
         {
             if (app == null) throw new ArgumentNullException(nameof(app));
 
@@ -59,6 +90,8 @@ namespace Equinox.Services.Api.Configurations
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
             });
+
+            return app;
         }
     }
 }

@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Equinox.Application\Equinox.Application.csproj" />
 		<ProjectReference Include="..\Equinox.Domain\Equinox.Domain.csproj" />
-		<ProjectReference Include="..\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj" />
 		<ProjectReference Include="..\Equinox.Infra.Data\Equinox.Infra.Data.csproj" />
 	</ItemGroup>
 

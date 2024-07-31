@@ -1,10 +1,8 @@
-using System;
-using System.Threading.Tasks;
 using Equinox.Application.Interfaces;
 using Equinox.Application.ViewModels;
+using Equinox.Infra.CrossCutting.Identity.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NetDevPack.Identity.Authorization;
 
 namespace Equinox.UI.Web.Controllers
 {

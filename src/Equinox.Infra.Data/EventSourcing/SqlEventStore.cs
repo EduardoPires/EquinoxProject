@@ -1,6 +1,6 @@
 ﻿using Equinox.Domain.Core.Events;
+using Equinox.Infra.CrossCutting.Identity.User;
 using Equinox.Infra.Data.Repository.EventSourcing;
-using NetDevPack.Identity.User;
 using NetDevPack.Messaging;
 using Newtonsoft.Json;
 
