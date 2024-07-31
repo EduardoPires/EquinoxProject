@@ -11,6 +11,7 @@ using Equinox.Infra.Data.Repository;
 using Equinox.Infra.Data.Repository.EventSourcing;
 using FluentValidation.Results;
 using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using NetDevPack.Mediator;
 
@@ -18,32 +19,32 @@ namespace Equinox.Infra.CrossCutting.IoC
 {
     public static class NativeInjectorBootStrapper
     {
-        public static void RegisterServices(IServiceCollection services)
+        public static void RegisterServices(WebApplicationBuilder builder)
         {
             // Domain Bus (Mediator)
-            services.AddScoped<IMediatorHandler, InMemoryBus>();
+            builder.Services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             // Application
-            services.AddScoped<ICustomerAppService, CustomerAppService>();
+            builder.Services.AddScoped<ICustomerAppService, CustomerAppService>();
 
             // Domain - Events
-            services.AddScoped<INotificationHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
-            services.AddScoped<INotificationHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
-            services.AddScoped<INotificationHandler<CustomerRemovedEvent>, CustomerEventHandler>();
+            builder.Services.AddScoped<INotificationHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
+            builder.Services.AddScoped<INotificationHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
+            builder.Services.AddScoped<INotificationHandler<CustomerRemovedEvent>, CustomerEventHandler>();
 
             // Domain - Commands
-            services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateCustomerCommand, ValidationResult>, CustomerCommandHandler>();
-            services.AddScoped<IRequestHandler<RemoveCustomerCommand, ValidationResult>, CustomerCommandHandler>();
+            builder.Services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
+            builder.Services.AddScoped<IRequestHandler<UpdateCustomerCommand, ValidationResult>, CustomerCommandHandler>();
+            builder.Services.AddScoped<IRequestHandler<RemoveCustomerCommand, ValidationResult>, CustomerCommandHandler>();
 
             // Infra - Data
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<EquinoxContext>();
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+            builder.Services.AddScoped<EquinoxContext>();
 
             // Infra - Data EventSourcing
-            services.AddScoped<IEventStoreRepository, EventStoreSqlRepository>();
-            services.AddScoped<IEventStore, SqlEventStore>();
-            services.AddScoped<EventStoreSqlContext>();
+            builder.Services.AddScoped<IEventStoreRepository, EventStoreSqlRepository>();
+            builder.Services.AddScoped<IEventStore, SqlEventStore>();
+            builder.Services.AddScoped<EventStoreSqlContext>();
         }
     }
 }

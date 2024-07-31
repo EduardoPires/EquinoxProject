@@ -4,11 +4,13 @@ namespace Equinox.UI.Web.Configurations
 {
     public static class AutoMapperConfig
     {
-        public static void AddAutoMapperConfiguration(this IServiceCollection services)
+        public static WebApplicationBuilder AddAutoMapperConfiguration(this WebApplicationBuilder builder)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-            services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
+            builder.Services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
+
+            return builder;
         }
     }
 }

@@ -4,11 +4,11 @@ namespace Equinox.UI.Web.Configurations
 {
     public static class DependencyInjectionConfig
     {
-        public static void AddDependencyInjectionConfiguration(this IServiceCollection services)
+        public static void AddDependencyInjectionConfiguration(this WebApplicationBuilder builder)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-            NativeInjectorBootStrapper.RegisterServices(services);
+            NativeInjectorBootStrapper.RegisterServices(builder);
         }
     }
 }

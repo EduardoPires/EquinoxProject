@@ -21,8 +21,6 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="8.0.7" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.7" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Equinox.Application\Equinox.Application.csproj" />
