@@ -1,6 +1,9 @@
 using Equinox.Infra.CrossCutting.Identity;
 using Equinox.UI.Web.Configurations;
+using Equinox.UI.Web.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NetDevPack.Identity.Data;
 using NetDevPack.Identity.User;
 using System.Reflection;
 
@@ -24,7 +27,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
 // ASP.NET Identity Settings
-builder.Services.AddWebAppIdentityConfiguration(builder.Configuration);
+builder.AddWebAppIdentityConfiguration();
 
 // Authentication & Authorization
 builder.Services.AddSocialAuthenticationConfiguration(builder.Configuration);
