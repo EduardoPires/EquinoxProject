@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31025.218
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{BA4C44CC-65BC-4CE0-9B44-68BA231FAC73}"
 EndProject
@@ -17,23 +17,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 - Data", "5.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - CrossCutting", "5.2 - CrossCutting", "{DF6C4BDE-F3C5-4E53-A5D5-9D27B2D3E38F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.UI.Web", "src\Equinox.UI.Web\Equinox.UI.Web.csproj", "{490517BA-F3C3-44B4-82F8-1E3A4ED6777A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.UI.Web", "src\Equinox.UI.Web\Equinox.UI.Web.csproj", "{490517BA-F3C3-44B4-82F8-1E3A4ED6777A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Services.Api", "src\Equinox.Services.Api\Equinox.Services.Api.csproj", "{EA966EC3-85A6-4B57-82C1-5120E3390243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Services.Api", "src\Equinox.Services.Api\Equinox.Services.Api.csproj", "{EA966EC3-85A6-4B57-82C1-5120E3390243}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Application", "src\Equinox.Application\Equinox.Application.csproj", "{851E7338-2397-4E8D-8199-FD1EAD109418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Application", "src\Equinox.Application\Equinox.Application.csproj", "{851E7338-2397-4E8D-8199-FD1EAD109418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Domain", "src\Equinox.Domain\Equinox.Domain.csproj", "{BF28C988-9C1B-41F5-BD58-D2FCAD7E80BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Domain", "src\Equinox.Domain\Equinox.Domain.csproj", "{BF28C988-9C1B-41F5-BD58-D2FCAD7E80BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Domain.Core", "src\Equinox.Domain.Core\Equinox.Domain.Core.csproj", "{9CC884B7-FA70-49E1-92A6-2B566E00FAB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Domain.Core", "src\Equinox.Domain.Core\Equinox.Domain.Core.csproj", "{9CC884B7-FA70-49E1-92A6-2B566E00FAB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Infra.Data", "src\Equinox.Infra.Data\Equinox.Infra.Data.csproj", "{F0DDF87D-98A4-4237-91C9-FD865ED78ABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.Data", "src\Equinox.Infra.Data\Equinox.Infra.Data.csproj", "{F0DDF87D-98A4-4237-91C9-FD865ED78ABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Infra.CrossCutting.Bus", "src\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.csproj", "{91F0D76D-2BEA-43D2-B123-DC29F2E87792}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.Bus", "src\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.csproj", "{91F0D76D-2BEA-43D2-B123-DC29F2E87792}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Infra.CrossCutting.Identity", "src\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj", "{788030D0-561B-4136-96B4-D5ABFB5CFD07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.Identity", "src\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj", "{788030D0-561B-4136-96B4-D5ABFB5CFD07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Infra.CrossCutting.IoC", "src\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.csproj", "{B3000AD2-5EAA-49A2-8FC4-10DF329B15B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.IoC", "src\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.csproj", "{B3000AD2-5EAA-49A2-8FC4-10DF329B15B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Tests", "6 - Tests", "{7426F6BA-3DAD-411E-9956-3980D42DC36F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Tests.Architecture", "tests\Equinox.Tests.Architecture\Equinox.Tests.Architecture.csproj", "{C4036D98-A669-440C-9970-05DB45815949}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +81,10 @@ Global
 		{B3000AD2-5EAA-49A2-8FC4-10DF329B15B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3000AD2-5EAA-49A2-8FC4-10DF329B15B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3000AD2-5EAA-49A2-8FC4-10DF329B15B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4036D98-A669-440C-9970-05DB45815949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4036D98-A669-440C-9970-05DB45815949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4036D98-A669-440C-9970-05DB45815949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4036D98-A669-440C-9970-05DB45815949}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +101,7 @@ Global
 		{91F0D76D-2BEA-43D2-B123-DC29F2E87792} = {DF6C4BDE-F3C5-4E53-A5D5-9D27B2D3E38F}
 		{788030D0-561B-4136-96B4-D5ABFB5CFD07} = {DF6C4BDE-F3C5-4E53-A5D5-9D27B2D3E38F}
 		{B3000AD2-5EAA-49A2-8FC4-10DF329B15B0} = {DF6C4BDE-F3C5-4E53-A5D5-9D27B2D3E38F}
+		{C4036D98-A669-440C-9970-05DB45815949} = {7426F6BA-3DAD-411E-9956-3980D42DC36F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4050E145-6791-440A-A2E5-75B05ACD4AFE}
