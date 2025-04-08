@@ -35,4 +35,7 @@ app.UseHttpsRedirection()
 app.MapControllerRoute(name: "default",pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+// Applying migrations and seeding some data
+app.UseDbSeed();
+
 app.Run();

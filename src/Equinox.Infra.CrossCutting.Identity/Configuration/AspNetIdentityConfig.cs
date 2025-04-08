@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
@@ -38,9 +39,17 @@ namespace Equinox.Infra.CrossCutting.Identity.Configuration
 
         private static WebApplicationBuilder AddIdentityDbContext(this WebApplicationBuilder builder)
         {
+            if (builder.Environment.IsDevelopment())
+            {
+
+                builder.Services.AddDbContext<EquinoxIdentityContext>(options =>
+                        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+                return builder;
+            }
+
             builder.Services.AddDbContext<EquinoxIdentityContext>(options =>
-                        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-                                b => b.MigrationsAssembly("Equinox.Infra.CrossCutting.Identity.Data")));
+                        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             return builder;
         }
