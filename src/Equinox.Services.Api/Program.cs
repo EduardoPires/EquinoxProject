@@ -8,9 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddApiConfiguration()                   // Api Configurations
        .AddDatabaseConfiguration()              // Setting DBContexts
        .AddApiIdentityConfiguration()           // ASP.NET Identity Settings & JWT
-       .AddAutoMapperConfiguration()            // AutoMapper Settings
        .AddSwaggerConfiguration()               // Swagger Config
-       .AddMediatRConfiguration()               // Adding MediatR for Domain Events and Notifications
        .AddDependencyInjectionConfiguration();  // DotNet Native DI Abstraction
 
 var app = builder.Build();

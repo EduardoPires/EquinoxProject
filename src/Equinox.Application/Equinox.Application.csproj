@@ -7,7 +7,4 @@
 		<ProjectReference Include="..\Equinox.Domain\Equinox.Domain.csproj" />
 		<ProjectReference Include="..\Equinox.Infra.Data\Equinox.Infra.Data.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="14.0.0" />
-	</ItemGroup>
 </Project>

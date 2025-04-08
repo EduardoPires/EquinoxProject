@@ -1,22 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Equinox.Domain.Core.Events;
 using FluentValidation.Results;
-using MediatR;
 using NetDevPack.Mediator;
 using NetDevPack.Messaging;
+using NetDevPack.SimpleMediator.Core.Interfaces;
 
 namespace Equinox.Infra.CrossCutting.Bus
 {
-    public sealed class InMemoryBus : IMediatorHandler
+    public sealed class InMemoryBus(IEventStore eventStore, IMediator mediator) : IMediatorHandler
     {
-        private readonly IMediator _mediator;
-        private readonly IEventStore _eventStore;
-
-        public InMemoryBus(IEventStore eventStore, IMediator mediator)
-        {
-            _eventStore = eventStore;
-            _mediator = mediator;
-        }
+        private readonly IMediator _mediator = mediator;
+        private readonly IEventStore _eventStore = eventStore;
 
         public async Task PublishEvent<T>(T @event) where T : Event
         {

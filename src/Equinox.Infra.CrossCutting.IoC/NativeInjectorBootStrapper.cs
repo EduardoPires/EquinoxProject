@@ -10,10 +10,11 @@ using Equinox.Infra.Data.EventSourcing;
 using Equinox.Infra.Data.Repository;
 using Equinox.Infra.Data.Repository.EventSourcing;
 using FluentValidation.Results;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using NetDevPack.Mediator;
+using NetDevPack.SimpleMediator.Core.Implementation;
+using NetDevPack.SimpleMediator.Core.Interfaces;
 
 namespace Equinox.Infra.CrossCutting.IoC
 {
@@ -22,6 +23,7 @@ namespace Equinox.Infra.CrossCutting.IoC
         public static void RegisterServices(WebApplicationBuilder builder)
         {
             // Domain Bus (Mediator)
+            builder.Services.AddScoped<IMediator, Mediator>();
             builder.Services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             // Application

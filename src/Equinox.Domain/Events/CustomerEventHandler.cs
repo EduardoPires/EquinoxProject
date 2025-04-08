@@ -1,6 +1,6 @@
-﻿using System.Threading;
+﻿using NetDevPack.SimpleMediator.Core.Interfaces;
+using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
 
 namespace Equinox.Domain.Events
 {

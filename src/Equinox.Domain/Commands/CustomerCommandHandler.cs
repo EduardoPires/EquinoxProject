@@ -5,22 +5,17 @@ using Equinox.Domain.Events;
 using Equinox.Domain.Interfaces;
 using Equinox.Domain.Models;
 using FluentValidation.Results;
-using MediatR;
 using NetDevPack.Messaging;
+using NetDevPack.SimpleMediator.Core.Interfaces;
 
 namespace Equinox.Domain.Commands
 {
-    public class CustomerCommandHandler : CommandHandler,
-        IRequestHandler<RegisterNewCustomerCommand, ValidationResult>,
-        IRequestHandler<UpdateCustomerCommand, ValidationResult>,
-        IRequestHandler<RemoveCustomerCommand, ValidationResult>
+    public class CustomerCommandHandler(ICustomerRepository customerRepository) : CommandHandler,
+                                        IRequestHandler<RegisterNewCustomerCommand, ValidationResult>,
+                                        IRequestHandler<UpdateCustomerCommand, ValidationResult>,
+                                        IRequestHandler<RemoveCustomerCommand, ValidationResult>
     {
-        private readonly ICustomerRepository _customerRepository;
-
-        public CustomerCommandHandler(ICustomerRepository customerRepository)
-        {
-            _customerRepository = customerRepository;
-        }
+        private readonly ICustomerRepository _customerRepository = customerRepository;
 
         public async Task<ValidationResult> Handle(RegisterNewCustomerCommand message, CancellationToken cancellationToken)
         {

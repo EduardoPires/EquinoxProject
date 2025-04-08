@@ -4,6 +4,6 @@
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="NetDevPack" Version="7.0.1" />
+		<PackageReference Include="NetDevPack" Version="8.0.2" />
 	</ItemGroup>
 </Project>
