@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Equinox.UI.Web.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         private readonly ICollection<string> _errors = new List<string>();
 

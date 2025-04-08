@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Equinox.Application\Equinox.Application.csproj" />
+    <ProjectReference Include="..\..\src\Equinox.Domain.Core\Equinox.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\src\Equinox.Domain\Equinox.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\..\src\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\..\src\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\..\src\Equinox.Infra.Data\Equinox.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\src\Equinox.Services.Api\Equinox.Services.Api.csproj" />
+    <ProjectReference Include="..\..\src\Equinox.UI.Web\Equinox.UI.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>
