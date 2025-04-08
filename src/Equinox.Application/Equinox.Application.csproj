@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
@@ -8,6 +8,6 @@
 		<ProjectReference Include="..\Equinox.Infra.Data\Equinox.Infra.Data.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="AutoMapper" Version="14.0.0" />
 	</ItemGroup>
 </Project>

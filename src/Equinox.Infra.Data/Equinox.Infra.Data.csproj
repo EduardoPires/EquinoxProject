@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
@@ -8,12 +8,15 @@
 		<ProjectReference Include="..\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Azure.Identity" Version="1.12.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+		<PackageReference Include="Azure.Identity" Version="1.13.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
-		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.0" />
-		<PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.1" />
+		<PackageReference Include="System.Formats.Asn1" Version="9.0.3" />
+		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.3" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="9.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
 	</ItemGroup>
 </Project>

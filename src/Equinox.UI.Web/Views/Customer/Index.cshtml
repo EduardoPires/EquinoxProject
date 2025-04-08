@@ -80,24 +80,6 @@
     </table>
 </div>
 
-@*<div class="modal fade" id="customerHistory" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Customer Data History</h4>
-            </div>
-            <div class="modal-body">
-                <p id="customerHistoryData"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>*@
-
-
 <div class="modal fade" id="customerHistory" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -123,7 +105,7 @@
         $(".viewbutton").on("click", function() {
             var customerId = $(this).data('id');
             $.ajax({
-                url: "https://localhost:5001/customer-management/customer-history/" + customerId,
+                url: "/customer-management/customer-history/" + customerId,
                 //url: "http://equinoxproject.azurewebsites.net/customer-management/customer-history/" + customerId,
                 cache: false
             }).done(function(data) {

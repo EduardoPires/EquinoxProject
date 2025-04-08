@@ -1,22 +1,26 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Equinox.Infra.Data.Migrations.EventStoreSQL
+#nullable disable
+
+namespace Equinox.Infra.Data.Migrations.EventStoreSql
 {
-    public partial class Initial : Migration
+    /// <inheritdoc />
+    public partial class SQLite : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "StoredEvent",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    AggregateId = table.Column<Guid>(nullable: false),
-                    Data = table.Column<string>(nullable: true),
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Data = table.Column<string>(type: "TEXT", nullable: true),
+                    User = table.Column<string>(type: "TEXT", nullable: true),
                     Action = table.Column<string>(type: "varchar(100)", nullable: true),
-                    CreationDate = table.Column<DateTime>(nullable: false),
-                    User = table.Column<string>(nullable: true)
+                    AggregateId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,6 +28,7 @@ namespace Equinox.Infra.Data.Migrations.EventStoreSQL
                 });
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
