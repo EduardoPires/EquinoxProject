@@ -1,0 +1,11 @@
+# Remove unused using directives
+dotnet_diagnostic.CS8019.severity = error
+
+# Unused variables
+dotnet_diagnostic.IDE0059.severity = error
+
+# Unused expressions (e.g., method call with no effect)
+dotnet_diagnostic.IDE0058.severity = error
+
+# Parameter is never used
+dotnet_diagnostic.IDE0060.severity = warning

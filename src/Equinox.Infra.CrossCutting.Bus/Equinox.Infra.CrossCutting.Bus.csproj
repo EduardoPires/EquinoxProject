@@ -4,9 +4,6 @@
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="mediatr" Version="12.5.0" />
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\Equinox.Domain.Core\Equinox.Domain.Core.csproj" />
 	</ItemGroup>
 </Project>

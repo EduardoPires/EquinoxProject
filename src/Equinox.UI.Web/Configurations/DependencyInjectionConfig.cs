@@ -6,7 +6,7 @@ namespace Equinox.UI.Web.Configurations
     {
         public static void AddDependencyInjectionConfiguration(this WebApplicationBuilder builder)
         {
-            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            ArgumentNullException.ThrowIfNull(builder);
 
             NativeInjectorBootStrapper.RegisterServices(builder);
         }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using Equinox.Application.EventSourcedNormalizers;
+using Equinox.Application.Extensions;
 using Equinox.Application.Interfaces;
 using Equinox.Application.ViewModels;
 using Equinox.Domain.Commands;
@@ -13,43 +13,33 @@ using NetDevPack.Mediator;
 
 namespace Equinox.Application.Services
 {
-    public class CustomerAppService : ICustomerAppService
+    public class CustomerAppService(ICustomerRepository customerRepository,
+                                    IMediatorHandler mediator,
+                                    IEventStoreRepository eventStoreRepository) : ICustomerAppService
     {
-        private readonly IMapper _mapper;
-        private readonly ICustomerRepository _customerRepository;
-        private readonly IEventStoreRepository _eventStoreRepository;
-        private readonly IMediatorHandler _mediator;
-
-        public CustomerAppService(IMapper mapper,
-                                  ICustomerRepository customerRepository,
-                                  IMediatorHandler mediator,
-                                  IEventStoreRepository eventStoreRepository)
-        {
-            _mapper = mapper;
-            _customerRepository = customerRepository;
-            _mediator = mediator;
-            _eventStoreRepository = eventStoreRepository;
-        }
+        private readonly ICustomerRepository _customerRepository = customerRepository;
+        private readonly IEventStoreRepository _eventStoreRepository = eventStoreRepository;
+        private readonly IMediatorHandler _mediator = mediator;
 
         public async Task<IEnumerable<CustomerViewModel>> GetAll()
         {
-            return _mapper.Map<IEnumerable<CustomerViewModel>>(await _customerRepository.GetAll());
+            return (await _customerRepository.GetAll()).ToViewModel();
         }
 
         public async Task<CustomerViewModel> GetById(Guid id)
         {
-            return _mapper.Map<CustomerViewModel>(await _customerRepository.GetById(id));
+            return (await _customerRepository.GetById(id)).ToViewModel();
         }
 
         public async Task<ValidationResult> Register(CustomerViewModel customerViewModel)
         {
-            var registerCommand = _mapper.Map<RegisterNewCustomerCommand>(customerViewModel);
+            var registerCommand = customerViewModel.ToRegisterCommand();
             return await _mediator.SendCommand(registerCommand);
         }
 
         public async Task<ValidationResult> Update(CustomerViewModel customerViewModel)
         {
-            var updateCommand = _mapper.Map<UpdateCustomerCommand>(customerViewModel);
+            var updateCommand = customerViewModel.ToUpdateCommand();
             return await _mediator.SendCommand(updateCommand);
         }
 

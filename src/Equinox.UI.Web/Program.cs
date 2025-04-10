@@ -7,8 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddMvcConfiguration()                   // Entire Equinox MVC Config
        .AddDatabaseConfiguration()              // Setting DBContexts
        .AddWebIdentityConfiguration()           // ASP.NET Identity Config
-       .AddAutoMapperConfiguration()            // AutoMapper Config
-       .AddMediatRConfiguration()               // Adding MediatR for Domain Events and Notifications
        .AddDependencyInjectionConfiguration();  // DotNet Native DI Abstraction
 
 var app = builder.Build();

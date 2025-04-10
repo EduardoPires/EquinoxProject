@@ -7,14 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Equinox.UI.Web.Controllers
 {
     [Authorize]
-    public class CustomerController : BaseController
+    public class CustomerController(ICustomerAppService customerAppService) : BaseController
     {
-        private readonly ICustomerAppService _customerAppService;
+        private readonly ICustomerAppService _customerAppService = customerAppService;
 
-        public CustomerController(ICustomerAppService customerAppService)
-        {
-            _customerAppService = customerAppService;
-        }
         [AllowAnonymous]
         [HttpGet("customer-management/list-all")]
         public async Task<IActionResult> Index()
@@ -71,8 +67,10 @@ namespace Equinox.UI.Web.Controllers
 
         [CustomAuthorize("Customers", "Write")]
         [HttpPost("customer-management/edit-customer/{id:guid}")]
-        public async Task<IActionResult> Edit(CustomerViewModel customerViewModel)
+        public async Task<IActionResult> Edit(Guid id, CustomerViewModel customerViewModel)
         {
+            if (id != customerViewModel.Id) return NotFound();
+
             if (!ModelState.IsValid) return View(customerViewModel);
             
             if (ResponseHasErrors(await _customerAppService.Update(customerViewModel)))

@@ -7,7 +7,6 @@ The Equinox Project is a open-source project written in .NET Core
 
 The goal of this project is implement the most common used technologies and share with the technical community the best way to develop great applications with .NET
 
-![Build Status](https://github.com/EduardoPires/EquinoxProject/actions/workflows/dotnet-core.yml/badge.svg)
 [![License](https://img.shields.io/github/license/eduardopires/equinoxproject.svg)](LICENSE)
 [![Issues open](https://img.shields.io/github/issues/eduardopires/equinoxproject.svg)](https://huboard.com/EduardoPires/EquinoxProject/)
 
@@ -18,8 +17,8 @@ If you liked the project or if Equinox helped you, please give a star ;)
 Check my online courses at [desenvolvedor.io](https://desenvolvedor.io)
 
 ## How to use:
-- You will need the latest Visual Studio 2022 and the latest .NET Core SDK.
-- ***Please check if you have installed the same runtime version (SDK) described in global.json***
+- You will need the latest version of Visual Studio and the latest .NET Core SDK.
+- ***Please check if you have installed the runtime version***
 - The latest SDK and tools can be downloaded from https://dot.net/core.
 
 Also you can run the Equinox Project in Visual Studio Code (Windows, Linux or MacOS).
@@ -28,17 +27,16 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 
 ## Technologies implemented:
 
-- ASP.NET 8.0
+- ASP.NET 9.0
  - ASP.NET MVC Core 
  - ASP.NET WebApi Core with JWT Bearer Authentication
  - ASP.NET Identity Core
-- Entity Framework Core 8.0
-- .NET Core Native DI
-- AutoMapper
+- Entity Framework Core 9.0
+- Custom Automatic Mapping (no more AutoMapper)
 - FluentValidator
-- MediatR
+- NetDevPack.SimpleMediator (no more MediatR)
+- NetDevPack (DDD, CQRS, UOW and more)
 - Swagger UI with JWT support
-- .NET DevPack
 
 ## Architecture:
 
@@ -53,6 +51,14 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Repository
 
 ## News
+
+**v1.10 - 04/08/2025**
+- Migrated to .NET 9.0
+- Replaced MediatR with [NetDevPack.SimpleMediator](https://github.com/NetDevPack/SimpleMediator) for lighter and native CQRS handling
+- Removed AutoMapper in favor of lightweight custom mapping extensions
+- Added built-in SQLite support with automatic EF Core migrations (just run and go — no setup required)
+- Updated all dependencies to the latest stable versions
+
 
 **v1.9 - 06/31/2024**
 - Migrated for .NET 8.0
