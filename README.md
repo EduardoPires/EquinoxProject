@@ -1,5 +1,4 @@
-<img src="https://www.eduardopires.net.br/imagens/EquinoxLogoPequenoFundoBranco.png" alt="Equinox Project"> 
-
+<img src="https://github.com/user-attachments/assets/f078a9b9-bf99-48f6-a7a4-50403f33a4b0" alt="Equinox Project" width="45%"> 
 
 What is the Equinox Project?
 =====================
