@@ -55,6 +55,7 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Migrated to .NET 9.0
 - Replaced MediatR with [NetDevPack.SimpleMediator](https://github.com/NetDevPack/SimpleMediator) for lighter and native CQRS handling
 - Removed AutoMapper in favor of lightweight custom mapping extensions
+- Architecture Tests with [NetArchTest.Rules](https://github.com/BenMorris/NetArchTest)
 - Added built-in SQLite support with automatic EF Core migrations (just run and go — no setup required)
 - Updated all dependencies to the latest stable versions
 
