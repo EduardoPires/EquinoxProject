@@ -18,7 +18,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.5" />
-    <PackageReference Include="Moq" Version="4.20.83" />
+    <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="Bogus" Version="35.0.1" />
   </ItemGroup>
   <ItemGroup>
