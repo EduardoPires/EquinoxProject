@@ -10,7 +10,7 @@ namespace Equinox.Infra.CrossCutting.Identity.User
         string Name { get; }
         Guid GetUserId();
         string GetUserEmail();
-        bool IsAutenticated();
+        bool IsAuthenticated();
         bool IsInRole(string role);
         IEnumerable<Claim> GetUserClaims();
         HttpContext GetHttpContext();

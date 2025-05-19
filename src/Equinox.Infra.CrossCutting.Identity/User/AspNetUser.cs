@@ -19,15 +19,15 @@ namespace Equinox.Infra.CrossCutting.Identity.User
 
         public Guid GetUserId()
         {
-            return IsAutenticated() ? Guid.Parse(_accessor.HttpContext.User.GetUserId()) : Guid.Empty;
+            return IsAuthenticated() ? Guid.Parse(_accessor.HttpContext.User.GetUserId()) : Guid.Empty;
         }
 
         public string GetUserEmail()
         {
-            return IsAutenticated() ? _accessor.HttpContext.User.GetUserEmail() : "";
+            return IsAuthenticated() ? _accessor.HttpContext.User.GetUserEmail() : "";
         }
 
-        public bool IsAutenticated()
+        public bool IsAuthenticated()
         {
             return _accessor.HttpContext.User.Identity.IsAuthenticated;
         }
