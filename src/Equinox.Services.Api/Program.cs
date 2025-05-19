@@ -29,3 +29,5 @@ app.MapIdentityApi<IdentityUser>();
 
 app.UseSwaggerSetup();
 app.Run();
+
+public partial class Program { }
