@@ -44,7 +44,7 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Domain Events
 - Domain Notification
 - Domain Validations
-- CQRS (Imediate Consistency)
+- CQRS (Immediate Consistency)
 - Event Sourcing
 - Unit of Work
 - Repository
