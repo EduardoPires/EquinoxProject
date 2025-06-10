@@ -9,11 +9,20 @@ namespace Equinox.Services.Api.Configurations
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-            builder.Services.AddDbContext<EquinoxContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-            builder.Services.AddDbContext<EventStoreSqlContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            if (builder.Environment.EnvironmentName == "Testing")
+            {
+                builder.Services.AddDbContext<EquinoxContext>(options =>
+                    options.UseInMemoryDatabase("Equinox"));
+                builder.Services.AddDbContext<EventStoreSqlContext>(options =>
+                    options.UseInMemoryDatabase("EquinoxEvents"));
+            }
+            else
+            {
+                builder.Services.AddDbContext<EquinoxContext>(options =>
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                builder.Services.AddDbContext<EventStoreSqlContext>(options =>
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            }
 
             return builder;
         }

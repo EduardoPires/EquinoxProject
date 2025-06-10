@@ -14,6 +14,7 @@
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
+                <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
