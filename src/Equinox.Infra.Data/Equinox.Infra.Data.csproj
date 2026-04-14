@@ -13,8 +13,8 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="System.Formats.Asn1" Version="9.0.3" />
-		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.3" />
-		<PackageReference Include="System.Security.Cryptography.Xml" Version="9.0.3" />
+		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.15" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="9.0.15" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Migrations\" />
